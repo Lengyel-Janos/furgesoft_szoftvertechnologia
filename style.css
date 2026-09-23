@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    
+    background-color: #444;
+    color: #eee;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a, a:visited {
+    color: #88e;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.spaced {
+    margin: 4em 2em;
+}
+
+.footer {
+    height: 2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #eee;
+    padding: 0.25em 0.5em;
+}
