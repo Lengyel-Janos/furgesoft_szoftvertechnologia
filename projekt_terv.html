@@ -41,8 +41,9 @@
          <tr> 
             <td>2026-09-23</td> 
             <td>1.1</td> 
-            <td>1-4. pont(fejlesztési terv, programozási nyelvek, fejlesztői eszközök, használni tervzett eszközök,
-                technikák, leendő produktumok (dokumentumok), és létrejöttüknek ideje)</td> 
+            <td>1-7. pont(fejlesztési terv, programozási nyelvek, fejlesztői eszközök, használni tervzett eszközök,
+                technikák, leendő produktumok (dokumentumok), és létrejöttüknek ideje, tesztelési követelmények, bemutatás(demó) 
+                és szállítás módja, ideje, információforrások)</td> 
             <td>Ujfalussy Kristóf</td> 
         </tr>
     </table>
@@ -62,6 +63,15 @@
         <li>
         <a href="#dokumentumok">4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</a>
         </li>
+        <li>
+            <a href="#teszteles">5. Tesztelési követelmények</a>
+        </li>
+        <li>
+            <a href="#bemutatas">6. Bemutatás (demó) és szállítás módja, ideje</a>
+        </li>
+        <li>
+            <a href="#forrasok">7. Információforrások</a
+        </li>
     </ul>
 
     <a name="terv"></a><h2>1. Fejlesztési terv: Mérföldkövek és eredmények</h2>
@@ -70,13 +80,17 @@
         A cél egy modern jegyfoglaló és üzemeltetést támogató rendszer létrehozása.
        <ul style="margin-top: 15px;">
         <li style="margin-bottom: 15px;"><strong>1. Mérföldkő (3. hét): Alapinfrastruktúra, Felfedező és Információs Modul</strong><br>
-        Adatbázis és profilok (vendég, dolgozó, admin) kialakítása. Mozikereső, filmadatlapok, külső IMDB / Rotten Tomatoes API integráció, belső 5 csillagos értékelő rendszer.</li>
+        Adatbázis és profilok (vendég, dolgozó, admin) kialakítása. Mozikereső, filmadatlapok, 
+            külső IMDB / Rotten Tomatoes API integráció, belső 5 csillagos értékelő rendszer.</li>
         <li style="margin-bottom: 15px;"><strong>2. Mérföldkő (6. hét): Jegyfoglaló, AI Ajánló és Büfé Modul</strong><br>
-        Vizuális terem-térkép, székek ideiglenes zárolása. AI asszisztens (okos hely- és filmajánló). Büfé és Kosár modul (snackek, extrák, pl. sajtszósz) integrálása.</li>
+        Vizuális terem-térkép, székek ideiglenes zárolása. AI asszisztens (okos hely- és filmajánló). 
+            üfé és Kosár modul (snackek, extrák, pl. sajtszósz) integrálása.</li>
         <li style="margin-bottom: 15px;"><strong>3. Mérföldkő (9. hét): Pénzügy, Marketing és Műsortervező Modul</strong><br>
-        Dinamikus árazás, diák/VIP jegyek, hűségprogram. Grafikus műsortervező felület a vezetőknek (ütközések elkerülésével), bevételi statisztikák.</li>
+        Dinamikus árazás, diák/VIP jegyek, hűségprogram. Grafikus műsortervező felület a vezetőknek 
+            (ütközések elkerülésével), bevételi statisztikák.</li>
         <li style="margin-bottom: 10px;"><strong>4. Mérföldkő (12. hét): Karbantartó Modul és Rendszer-összehangolás</strong><br>
-        Dolgozói folyamatok automatizálása: a rendszer a film végén jelez a takarítóknak, a "Rendben" gomb után szükség esetén hívja a szerelőt. Hibakeresés és tesztelés befejezése.</li>
+        Dolgozói folyamatok automatizálása: a rendszer a film végén jelez a takarítóknak, 
+            a "Rendben" gomb után szükség esetén hívja a szerelőt. Hibakeresés és tesztelés befejezése.</li>
     </ul>
     </div>
 
@@ -85,7 +99,8 @@
         A gyors fejlesztés és a modern funkciók (AI, valós idejű foglalás) miatt a következő technológiákat választottuk:
     <ul style="margin-top: 15px;">
         <li style="margin-bottom: 10px;"><strong>Backend:</strong> Python (FastAPI - az AI könnyű integrálása miatt) vagy Java (Spring Boot).</li>
-        <li style="margin-bottom: 10px;"><strong>Frontend:</strong> Next.js, TypeScript, Tailwind CSS (a reszponzív felület és a vizuális jegyfoglaló térkép miatt).</li>
+        <li style="margin-bottom: 10px;"><strong>Frontend:</strong> Next.js, TypeScript, 
+            Tailwind CSS (a reszponzív felület és a vizuális jegyfoglaló térkép miatt).</li>
         <li style="margin-bottom: 10px;"><strong>Adatbázis:</strong> PostgreSQL – megbízható a pénzügyi tranzakciókhoz.</li>
         <li style="margin-bottom: 10px;"><strong>Fejlesztői környezet (IDE):</strong> Visual Studio Code, IntelliJ IDEA vagy PyCharm.</li>
     </ul>
@@ -96,8 +111,10 @@
    <ul style="margin-top: 15px;">
         <li style="margin-bottom: 10px;"><strong>Verziókövetés:</strong> Git – a forráskód megosztására és a csapatmunka összehangolására.</li>
         <li style="margin-bottom: 10px;"><strong>Fejlesztési Módszertan:</strong> Scrum vagy Kanban – rövid sprintekkel a modulok párhuzamos fejlesztéséhez.</li>
-        <li style="margin-bottom: 10px;"><strong>API Integrációk:</strong> RESTful architektúra a frontend, backend és a külső szolgáltatások (IMDB, OpenAI) között.</li>
-        <li style="margin-bottom: 10px;"><strong>Valós idejű kommunikáció:</strong> WebSockets – elengedhetetlen a székek zárolásához és a takarítói/szerelői értesítések azonnali kiküldéséhez.</li>
+        <li style="margin-bottom: 10px;"><strong>API Integrációk:</strong> RESTful architektúra a frontend,
+            backend és a külső szolgáltatások (IMDB, OpenAI) között.</li>
+        <li style="margin-bottom: 10px;"><strong>Valós idejű kommunikáció:</strong> WebSockets – elengedhetetlen a székek zárolásához és a 
+            takarítói/szerelői értesítések azonnali kiküldéséhez.</li>
     </ul>
     </div>
     <a name="dokumentumok"></a><h2>4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</h2>
@@ -108,7 +125,8 @@
         Leírás: Meghatározza a projekt céljait, a fejlesztési fázisokat, a használt technológiákat és a verziókövetést.
         <br>Létrejött: A projekt kezdeti fázisában (1-2. hét).</li>
         <li style="margin-bottom: 15px;"><strong>Vízió dokumentum</strong><br>
-        Leírás: A webalkalmazás átfogó célja: egy komplex, modern moziüzemeltetési és jegyfoglaló rendszer létrehozása. Tartalmazza az üzleti lehetőségeket, a felhasználói köröket és a minőségi elvárásokat.
+        Leírás: A webalkalmazás átfogó célja: egy komplex, modern moziüzemeltetési és jegyfoglaló rendszer létrehozása. 
+            Tartalmazza az üzleti lehetőségeket, a felhasználói köröket és a minőségi elvárásokat.
         <br>Létrejött:</li>
         <li style="margin-bottom: 15px;"><strong>SRS (Szoftver Követelmény Specifikáció)</strong><br>
         Leírás: Részletesen meghatározza a szoftver funkcionális (pl. jegyfoglalás, AI filmajánló) és nem funkcionális (pl. WebSocket kommunikáció) követelményeit.
@@ -121,6 +139,51 @@
         <br>Létrejött:</li>
         </ul>
     </div>
+    <a name="teszteles"></a><h2>5. Tesztelési követelmények</h2>
+<div>
+    A minőség biztosítása érdekében a projekt során többféle tesztelést is elvégzünk.
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Unit Tests (Egységtesztek)</strong><br>
+        Követelmény: Minden fontos funkció (pl. jelszó titkosítása, kosárérték és dinamikus jegyár számítása) rendelkezzen automatizált teszttel.</li>
+        <li style="margin-bottom: 15px;"><strong>Integrációs Tesztek</strong><br>
+        Követelmény: Ellenőrizzük a PostgreSQL adatbázissal való kommunikációt, 
+            a külső IMDB és AI API végpontok, valamint a WebSocket (valós idejű székzárolás) megfelelő működését.</li>
+        <li style="margin-bottom: 15px;"><strong>Felhasználói Elfogadási Tesztek</strong><br>
+        Követelmény: A végfelhasználói szerepkörök (vendég, dolgozó, admin) 
+            bevonásával ellenőrizzük a felület használhatóságát, különös tekintettel a vizuális terem-térképre.</li>
+        <li style="margin-bottom: 10px;"><strong>Biztonsági Tesztelés</strong><br>
+        Követelmény: Különös figyelmet fordítunk a bejelentkezési adatok, 
+            a fizetési folyamatok és a hűségprogramban tárolt személyes adatok védelmére.</li>
+    </ul>
+</div>
+
+<a name="bemutatas"></a><h2>6. Bemutatás (demó) és szállítás módja, ideje</h2>
+<div>
+    A projekt bemutatásának módja és ideje a következő:
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Bemutatás módja (Demó)</strong><br>
+        Egy élő demó prezentáció, amely során végigmegyünk a fő funkciókon (jegyfoglalás, AI filmajánló, takarítói workflow). 
+            Kiemeljük a három fő felületet: vendég, dolgozó és adminisztrátor.</li>
+        <li style="margin-bottom: 15px;"><strong>Szállítás Módja</strong><br>
+        A teljes projekt forráskódját egy Git repository-ban adjuk át.
+            A projektterv és egyéb dokumentációk digitális HTML formában kerülnek leadásra.</li>
+        <li style="margin-bottom: 10px;"><strong>Időpont</strong><br>
+        Demó és szállítás határideje: A szorgalmi időszak utolsó hete.</li>
+    </ul>
+</div>
+
+<a name="forrasok"></a><h2>7. Információforrások</h2>
+<div>
+    A fejlesztés során az alábbi információforrásokat használjuk fel a projekthez:
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Hivatalos Technológiai Dokumentációk</strong><br>
+        A választott keretrendszerek (Next.js, FastAPI/Spring Boot), a Tailwind CSS, valamint a külső API-k (IMDB, OpenAI) hivatalos weboldalai és referenciái.</li>
+        <li style="margin-bottom: 15px;"><strong>Piaci Megoldások Elemzése</strong><br>
+        A jelenlegi nagy moziüzemeltetők (pl. Cinema City) és modern jegyfoglaló portálok felhasználói felületének és funkcióinak elemzése inspirációként.</li>
+        <li style="margin-bottom: 10px;"><strong>Közösségi Fórumok és Szakirodalom</strong><br>
+        Stack Overflow és szakmai blogok a felmerülő technikai problémák (pl. valós idejű WebSocket kommunikáció a székek zárolásához) megoldásához.</li>
+    </ul>
+</div>
     <div class="footer"></div>
 </body>
 </html>
