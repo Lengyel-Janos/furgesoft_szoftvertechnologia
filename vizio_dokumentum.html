@@ -285,80 +285,114 @@
     A mozi belső hálózata képes kiszolgálni a dolgozói okoseszközök WebSocket kommunikációját.
 </div>
 
-<h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 & 4.5 Költségbecslés és Installáció</h3>
+<!-- 4.4 & 4.5 KÖLTSÉGBECSLÉS ÉS INSTALLÁCIÓ -->
+<a name="vizio-koltseg"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 & 4.5 Költségbecslés és Installáció</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    Telepítés felhőalapú infrastruktúrára történik konténerizációval. A fenntartási költség a szerverbérletből és az API tranzakciós díjakból áll.
-</div>
-
-<!-- 5. VÉGTERMÉK JELLEMZŐI -->
-<h2 style="margin-bottom: 15px; margin-top: 30px;">5. A végtermék jellemzői, biztosított szolgáltatások</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
-    A rendszer 5 fő, egymással szorosan együttműködő modulból épül fel, integrálva az egyedi adatbázis-architektúrát.
-
-    <p style="margin-top: 15px; font-weight: bold;">1. Felfedező és Információs Modul (A tartalom központja)</p>
-    <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Funkciók:</strong> Összetett mozikereső város és helyszín alapján (<code>Filmkereso_helyhez_kotve</code>,
-            Régió és Mozi ID szűrés). Dinamikus filmadatlapok (korhatár, trailer URL, Rendező).</li>
-        <li><strong>Integrációk:</strong> Külső IMDB API hívások a hiteles, valós idejű értékelések lekéréséhez.</li>
-        <li><strong>Belső minősítés:</strong> 5 csillagos értékelő rendszer a regisztrált (0-s jogosultságú) felhasználók számára.</li>
-    </ul>
-
-    <p style="margin-top: 15px; font-weight: bold;">2. Jegy- és Helyfoglaló Modul (A vásárlás motorja)</p>
-    <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Funkciók:</strong> Vizuális terem-térkép a szabad és foglalt helyekkel. A <code>Vetités</code> adataihoz 
-            (technológia_id, nyelv, kezdés) kötött <code>Szék</code> (sor, szám) lefoglalása.</li>
-        <li><strong>Technológiai innováció (WebSocket):</strong> A kiválasztott székek valós idejű zárolása a fizetés idejére.
-            Kiküszöböli a duplikált foglalásokat.</li>
-        <li><strong>AI Ajánló:</strong> Beépített mesterséges intelligencia asszisztens a személyre szabott filmajánláshoz.</li>
-    </ul>
-
-    <p style="margin-top: 15px; font-weight: bold;">3. Büfé és Kosár Modul (Az upsell felelőse)</p>
-    <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Funkciók:</strong> Snackek és italok előrendelése a jegy mellé.</li>
-        <li><strong>Régió-specifikus árképzés:</strong> Az <code>Arak</code> táblában az ételek árai konkrét mozihoz (mozi_id) 
-            vannak kötve, így városonként eltérhet a popcorn ára.</li>
-    </ul>
-
-    <p style="margin-top: 15px; font-weight: bold;">4. Pénzügy és Marketing Modul (Az üzleti logika)</p>
-    <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Funkciók:</strong> A <code>Felhasználó</code> táblában lévő <code>Kedvezmény</code> mező (0: diák, 1: nyugdíjas, 2: gyerek) 
-            alapján a rendszer automatikusan vonja le a százalékos engedményeket a jegyárból.</li>
-        <li><strong>Marketing:</strong> Dinamikus árazás és integrált hűségprogram (pontszám gyűjtése a profilhoz).</li>
-    </ul>
-
-    <p style="margin-top: 15px; font-weight: bold;">5. Adminisztrátor és Karbantartó Modul (A belső motor)</p>
-    <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Műsortervező UI (Admin - Jog. 2):</strong> A Mozi, Régió, és Terem adatok központi menedzselése. 
-            Grafikus felület a vetítési rend összeállítására, ütközésfigyeléssel.</li>
-        <li><strong>Dolgozói Workflow (Dolgozó - Jog. 1):</strong> A takarítók értesítése a film végén. Jegyellenőrzés, 
-            ahol a <code>Jegy</code> táblában lévő "állapot" mezőt frissítik (felhasználható-e még).</li>
-    </ul>
-</div>
-
-<!-- 6-9. KORLÁTOZÁSOK, MINŐSÉG, KOCKÁZATOK -->
-<h2 style="margin-bottom: 15px; margin-top: 30px;">6. Korlátozások</h2>
-<div style="line-height: 1.7; margin-bottom: 20px;">
-    A rendszer működését befolyásoló tényező a fizetési kapuk maximális tranzakció/másodperc korlátja egy globális premier elővételénél.
-</div>
-
-<h2 style="margin-bottom: 15px; margin-top: 30px;">7. Minőségi elvárások</h2>
-<div style="line-height: 1.7; margin-bottom: 20px;">
-    Megbízhatóság és rendelkezésre állás: A rendszernek 99.9%-os SLA-t kell biztosítania. A térkép betöltése és a székek zárolása
-    nem vehet igénybe többet 1-2 másodpercnél. A személyes adatokat GDPR konform módon kell tárolni (jelszavak hash-elése a PostgreSQL-ben).
-</div>
-
-<h2 style="margin-bottom: 15px; margin-top: 30px;">8. Dokumentációkkal kapcsolatos követelmények</h2>
-<div style="line-height: 1.7; margin-bottom: 20px;">
-    Átfogó végfelhasználói kézikönyv az adminisztrátoroknak, valamint API dokumentáció a fejlesztőknek.
-</div>
-
-<h2 style="margin-bottom: 15px; margin-top: 30px;">9. Kockázat lista</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
+    <strong>Infrastruktúra és Telepítés (Installáció):</strong><br>
+    A rendszer telepítése egy modern, felhőalapú architektúrára (például Amazon Web Services - AWS, vagy Microsoft Azure) történik.
+    A szoftverkomponenseket (Frontend, Backend, Adatbázis, WebSocket szerver) Docker konténerekbe csomagoljuk, 
+    amelyek menedzselését Kubernetes (K8s) végzi. Ez az "Infrastructure as Code" megközelítés lehetővé teszi, 
+    hogy a rendszer telepítése és frissítése teljesen automatizált legyen (CI/CD pipeline, például GitHub Actions használatával). 
+    Az élesítést (deploy) megelőzi egy úgynevezett "Staging" környezetben történő tesztelés, így az új funkciók 
+    (pl. új kedvezmény típusok a 2-es szintű adminok által beállítva) kockázatmentesen próbálhatók ki.
+    <br><br>
+    <strong>Költségbecslés (OPEX és CAPEX):</strong><br>
+    Mivel SaaS (Software as a Service) jellegű felhőmegoldásról van szó, a helyi szerverek beszerzési költsége
+    (CAPEX) minimális. A fenntartási (OPEX) költségek a következőkből tevődnek össze:
     <ul style="margin-top: 5px;">
-        <li><strong>Külső API leállása:</strong> Ha az IMDB vagy az AI API nem elérhető, a filminformációk hiányosak lehetnek (Megoldás: gyorsítótárazás).</li>
-        <li><strong>Teljesítménybeli szűk keresztmetszet:</strong> Kiemelt premierek esetén a WebSocket szerverek túlterhelődhetnek.</li>
-        <li><strong>Felhasználói ellenállás (dolgozók):</strong> Az idősebb személyzet nehezebben állhat át a tabletes munkafolyamat-kezelésre. 
-            (Megoldás: leegyszerűsített UI).</li>
+        <li><strong>Felhő erőforrások:</strong> A PostgreSQL adatbázis tárhelye, a számítási kapacitás (CPU/RAM) a backend API-khoz, 
+            valamint a valós idejű WebSocket szerverek folyamatos üzemeltetése.</li>
+        <li><strong>Harmadik féltől származó szolgáltatások (API-k):</strong> Fizetési kapuk tranzakciós jutalékai, 
+            az OpenAI API hívások (filmajánló asszisztens) token-alapú díjazása, és az automatikus e-maileket küldő szolgáltatás (pl. SendGrid) havidíja.</li>
+        <li><strong>Hardver eszközök a mozikban:</strong> A fizikai dolgozók (1-es jogosultság) 
+            számára biztosított strapabíró tabletek beszerzése és karbantartása, valamint a QR-kód olvasók a helyszíni jegy- és büféellenőrzéshez.</li>
+    </ul>
+</div>
+
+
+<!-- 6. KORLÁTOZÁSOK -->
+<a name="vizio-korlatozasok"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Korlátozások</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A rendszer fejlesztését és napi működését több hardveres, szoftveres és jogi tényező is korlátozhatja, amelyeket a tervezés során figyelembe kell venni:
+    <ul style="margin-top: 5px;">
+        <li><strong>Hálózati korlátok:</strong> A valós idejű székzárolás (WebSocket) kizárólag stabil, 
+            alacsony késleltetésű internetkapcsolat esetén működik tökéletesen. Ha a vendég mobilnetje megszakad a fizetés közben, 
+            a rendszernek egy beállított időkorlát (pl. 10 perc) után automatikusan fel kell szabadítania a lefoglalt széket.</li>
+        <li><strong>Jogi és adatvédelmi korlátok:</strong> A GDPR (Általános Adatvédelmi Rendelet) 
+            szigorúan korlátozza a felhasználói adatok (születési dátum, e-mail) tárolásának idejét és módját. Bankkártyaadatokat
+            a rendszer saját adatbázisa egyáltalán nem tárolhat, azt kizárólag a minősített fizetési szolgáltató (PCI-DSS megfelelőség) kezelheti.</li>
+        <li><strong>Böngésző kompatibilitás:</strong> A modern UI és a React/Next.js keretrendszer miatt a 
+            rendszer nem támogatja a nagyon elavult böngészőket (pl. Internet Explorer 11), kizárólag a modern webmotorokat (Chromium, WebKit).</li>
+    </ul>
+</div>
+
+
+<!-- 7. MINŐSÉGI ELVÁRÁSOK -->
+<a name="vizio-minoseg"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">7. Minőségi elvárások</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A moziüzemeltetési rendszer kritikus infrastruktúra, így a fejlesztendő szoftvernek a legmagasabb minőségi és stabilitási elvárásoknak kell megfelelnie:
+    <ul style="margin-top: 5px;">
+        <li><strong>Teljesítmény (Performance):</strong> A rendszer válaszideje (API response time) normál terhelés
+            mellett nem haladhatja meg a 200 milliszekundumot. A vizuális teremtérképnek és a szabad/foglalt székek 
+            állapotának asztali és mobil környezetben is maximum 2 másodperc alatt be kell töltődnie.</li>
+        <li><strong>Rendelkezésre állás (Availability):</strong> Az év 365 napján, 24 órában működnie kell, 
+            elvárt a 99.9%-os rendelkezésre állás (SLA). Ez havi szinten kevesebb mint 43 perc megengedett
+            leállást jelent, amit skálázható mikroszerviz-architektúrával érünk el.</li>
+        <li><strong>Biztonság (Security):</strong> Minden hálózati kommunikációnak kötelezően HTTPS (TLS 1.3) 
+            titkosítással kell történnie. A felhasználói hitelesítés JWT (JSON Web Token) alapon történik, 
+            rövid lejáratú hozzáférési tokenekkel. Az adatbázisban a jelszavakat erős hash algoritmussal 
+            (pl. bcrypt vagy Argon2) sózva (salted) kell tárolni.</li>
+        <li><strong>Skálázhatóság (Scalability):</strong> A rendszernek képesnek kell lennie a hirtelen
+            kiugró forgalom (spike) kezelésére. Például egy várva várt szuperhősfilm jegyelővételének 
+            megnyitásakor a terheléselosztónak (Load Balancer) automatikusan új szerverpéldányokat kell indítania a megnövekedett forgalom kiszolgálására.</li>
+    </ul>
+</div>
+
+
+<!-- 8. DOKUMENTÁCIÓK -->
+<a name="vizio-dokumentacio"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">8. Dokumentációkkal kapcsolatos követelmények</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A projekt átadásakor a fejlesztőcsapatnak az alábbi részletes dokumentációkat kell biztosítania a megrendelő és a jövőbeli karbantartók számára:
+    <ul style="margin-top: 5px;">
+        <li><strong>Rendszerterv és API Referencia:</strong> A fejlesztők számára készített műszaki leírás. 
+            Tartalmazza a relációs adatbázis UML modelljét (Mozik, Termek, Székek, Felhasználók kapcsolatai), 
+            valamint a végpontok (endpointok) teljes dokumentációját Swagger (OpenAPI) formátumban.</li>
+        <li><strong>Adminisztrátori Kézikönyv:</strong> Részletes útmutató a 2-es jogosultságú (Admin) 
+            felhasználók számára. Lépésről lépésre bemutatja, hogyan kell új Régiót vagy Mozit felvinni a hálózatba, 
+            hogyan kell a grafikus műsortervezőt használni, és miként állíthatók be az egyedi büféárak.</li>
+        <li><strong>Felhasználói (Dolgozói) Útmutató:</strong> Egy vizuális, képernyőfotókkal (screenshotokkal) 
+            ellátott segédlet az 1-es jogosultságú (Dolgozó) személyzet számára, amely bemutatja a tabletes takarítói 
+            riasztórendszer és a jegyellenőrző felület mindennapi használatát.</li>
+    </ul>
+</div>
+
+
+<!-- 9. KOCKÁZATOK -->
+<a name="vizio-kockazatok"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">9. Kockázat lista</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A projekt életciklusa során felmerülő potenciális kockázatok és azok enyhítési (mitigációs) stratégiái:
+    <ul style="margin-top: 5px;">
+        <li><strong>Teljesítménykockázat (Nagy hatás, Közepes valószínűség):</strong><br>
+        <em>Kockázat:</em> A hálózati terhelés hirtelen megnövekedése (pl. premier elővétel) a WebSocket kapcsolatok megszakadását
+            vagy a szerver leállását okozza.<br>
+        <em>Megoldás:</em> Felhőalapú auto-scaling (automatikus méretezés) beállítása, és az adatbázis-lekérdezések
+            optimalizálása gyorsítótárazással (pl. Redis).</li>
+        
+        <li><strong>Adatintegritási kockázat (Kritikus hatás, Alacsony valószínűség):</strong><br>
+        <em>Kockázat:</em> Tranzakciós hiba miatt a jegyárat levonja a rendszer, de a szék a megszakadt internet miatt nem kerül 
+            "Foglalt" státuszba az adatbázisban.<br>
+        <em>Megoldás:</em> Szigorú adatbázis-tranzakciókezelés (ACID elvek) alkalmazása. Ha a folyamat bármelyik lépése
+            (fizetés, szék státuszváltása, jegy generálása) megszakad, az egész folyamat visszagörgetésre (Rollback) kerül.</li>
+
+        <li><strong>Függőségi kockázat (Közepes hatás, Közepes valószínűség):</strong><br>
+        <em>Kockázat:</em> A külső IMDB vagy OpenAI API szolgáltatások ideiglenesen elérhetetlenné válnak.<br>
+        <em>Megoldás:</em> Aszinkron háttérfolyamatok alkalmazása, amelyek naponta szinkronizálják a filmadatokat a saját adatbázisba. 
+            Így külső hiba esetén a rendszer a legutolsó ismert, gyorsítótárazott adatokat jeleníti meg a Vendégek számára.</li>
+
+        <li><strong>Felhasználói / Adaptációs kockázat (Alacsony hatás, Magas valószínűség):</strong><br>
+        <em>Kockázat:</em> A fizikai dolgozók (pl. takarítószemélyzet) nehezen tanulják meg a tabletes riasztórendszer használatát.<br>
+        <em>Megoldás:</em> A dolgozói felület (Frontend) extrém módon leegyszerűsített UX/UI tervezése (hatalmas, színkódolt gombok, egyértelmű ikonok),
+            valamint átfogó helyszíni oktatás biztosítása az induláskor.</li>
     </ul>
 </div>
     <div class="footer"></div>
