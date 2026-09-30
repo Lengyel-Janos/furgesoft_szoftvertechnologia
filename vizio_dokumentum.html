@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>(H1) Projekt terv</title>    
+</head>
+<body>
+    <h1>Csoport neve: Fü(r)ge Soft</h1>
+    <h1>Feladat sorszáma: 1</h1>
+    <h1>Feladat címe: Soft Mozi</h1>
 
+    <h1 class="center spaced">(H1) Projekt terv</h1>
+
+    <div class="center">
+        Gyakorlatvezető:
+        <h2>Árvai László</h2>
+    </div>
+
+    <h2>Csoport tagok: </h2>
+    <table>
+        <tr> <td>Padányi Milán    </td> <td>FMUL84</td> <td>mpadanyi09@gmail.com</td> </tr>
+        <tr> <td>Ujfalussy Kristóf</td> <td>ZZORDN</td> <td>kristof.ujfalussy@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Kecskés Gábor    </td> <td>QDY6TL</td> <td>gabor.kecskes@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Lengyel János    </td> <td>N9XZKQ</td> <td>lengyeljanos2004@gmail.com</td> </tr>
+        <tr> <td>Laczkó Norbert   </td> <td>SLIIKD</td> <td>laczkonorbert4@gmail.com</td> </tr>
+    </table>
+
+    <div class="right spaced">2026-09-30</div>
+
+    <h2>Történet: </h2>
+    <table>
+        <tr> <th>Dátum</th> <th>Verzió</th> <th>Leírás</th> <th>Szerző</th> </tr>
+        <tr> 
+            <td>2026-09-30</td> 
+            <td>1.0</td> 
+            <td>Létrejött a dokumentum.</td> 
+            <td>Ujfalussy Kristóf</td> 
+        </tr>
+    </table>
+
+    <h2>Tartalomjegyzék: </h2>
+    <ul>
+        <li>
+            <!-- Példa arra, hogy odaugorjon az oldal -->
+            <a href="#terv">1. Bevezetés</a>
+        </li>
+        <li>
+            <a href="#nyelv">2. A probléma megfogalmazása</a>
+        </li>
+        <li>
+            <a href="#eszközök">3. Használni tervezett eszközök, technikák</a>
+        </li>
+        <li>
+        <a href="#dokumentumok">4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</a>
+        </li>
+        <li>
+            <a href="#teszteles">5. Tesztelési követelmények</a>
+        </li>
+        <li>
+            <a href="#bemutatas">6. Bemutatás (demó) és szállítás módja, ideje</a>
+        </li>
+        <li>
+            <a href="#forrasok">7. Információforrások</a
+        </li>
+    </ul>
+
+    <a name="terv"></a><h2>1. Beveztés</h2>
+    <div>
+      A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása. 
+      A rendszer egy modern, felhőalapú megoldás, amely egyetlen integrált platformon kezeli a vendégek 
+      jegy- és büfévásárlásait, a személyre szabott mesterséges intelligencia (AI) alapú filmajánlásokat,
+      valamint a dolgozói (karbantartói, takarítói, menedzseri) folyamatokat.
+      A dokumentum rögzíti a felmerülő üzleti problémákat, a rendszer funkcióit, a minőségi elvárásokat
+      és a lehetséges kockázatokat.
+    </div>
+
+    <a name="nyelv"></a><h2>2. A probléma megfogalmazása</h2>
+    <div>
+        A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma és súrlódási pont (pain point) azonosítható, 
+      amelyre a meglévő, elavult rendszerek nem nyújtanak megfelelő megoldást. 
+      A problémák három fő érintetti körre bonthatók: a vendégekre, a fizikai dolgozókra és a menedzsmentre.
+    <h2>A vendégek (felhasználók) problémái:</h2>
+        
+        <h3>Információhiány és döntési paralízis:</h3>
+        <p class="indented-text">A jelenlegi rendszerek csupán a filmek címét és egy rövid szinopszist jelenítenek meg. 
+          A nézők gyakran nem tudják eldönteni, mit nézzenek, külső oldalakra (IMDB, Rotten Tomatoes, YouTube) 
+          kell navigálniuk az értékelésekért és előzetesekért. Nincs személyre szabott ajánlás.</p>
+        
+        <h3>Lassú és frusztráló jegyvásárlási folyamat:</h3>
+        <p class="indented-text">A székek lefoglalásakor gyakran előfordul a "double-booking" jelenség 
+          (amikor ketten próbálják ugyanazt a széket lefoglalni), mert a rendszerek nem valós időben zárolják a helyeket.
+          Ez fizetési hibákhoz és elégedetlenséghez vezet.</p>
+        
+        <h3>Kényelmetlen büfé-sorban állás:</h3>
+        <p class="indented-text">A jegyvásárlás és a büfé (snackek, italok) vásárlása két külön folyamat.
+          A vendégeknek a helyszínen hosszú sorokat kell kivárniuk, ami rontja a moziélményt, és csökkenti a mozi extra bevételét.</p>
+
+        <h2>A dolgozók (takarítók, szerelők) problémái:</h2>
+        
+        <h3>Optimalizálatlan munkafolyamatok:</h3>
+        <p class="indented-text">A takarító személyzet jelenleg manuális beosztás vagy a termek előtti várakozás alapján dolgozik. 
+          Nem kapnak azonnali, automatizált értesítést arról, ha egy film véget ért, vagy ha a terem kiürült.</p>
+
+        <h3>Karbantartási információk hiánya:</h3>
+        <p class="indented-text">Ha egy szék elszakad, vagy egy pohártartó eltörik, 
+          a hiba bejelentése lassú, papíralapú vagy szóbeli. A szerelők nem tudják pontosan, 
+          melyik terem melyik székét kell javítani, így az adott hely sokáig eladhatatlan marad.</p>
+
+        <h2>A menedzsment és az üzemeltetés problémái:</h2>
+        
+        <h3>Rugalmatlan árazási modellek:</h3>
+        <p class="indented-text">A hagyományos mozik fix árakkal dolgoznak. A holtidőkben 
+          (pl. hétköznap délelőtt) a termek üresek, míg a premier napokon telt ház van. A dinamikus,
+          kereslet-alapú árazás hiánya jelentős bevételkiesést okoz.</p>
+        
+        <h3>Műsortervezési nehézségek:</h3>
+        <p class="indented-text">A heti vetítési rend összeállítása nehézkes,
+          a jelenlegi szoftverek nem jelzik egyértelműen az ütközéseket (pl. takarítási idő kihagyása két vetítés között).</p>
+        
+        <h3>Szétaprózott rendszerek:</h3>
+        <p class="indented-text">A büfé készletnyilvántartása, a jegyértékesítés 
+          és a dolgozói beosztás különálló szoftverekben fut, így a vezetőség nem látja át egyetlen felületen a valós idejű statisztikákat.</p>
+    </div>
+    <a name="eszközök"></a><h2>3. Használni tervezett eszközök, technikák</h2>
+    <div>
+    A modern szoftverfejlesztési elvek betartására törekszünk:
+   <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 10px;"><strong>Verziókövetés:</strong> Git – a forráskód megosztására és a csapatmunka összehangolására.</li>
+        <li style="margin-bottom: 10px;"><strong>Fejlesztési Módszertan:</strong> Scrum vagy Kanban – rövid sprintekkel a modulok párhuzamos fejlesztéséhez.</li>
+        <li style="margin-bottom: 10px;"><strong>API Integrációk:</strong> RESTful architektúra a frontend,
+            backend és a külső szolgáltatások (IMDB, OpenAI) között.</li>
+        <li style="margin-bottom: 10px;"><strong>Valós idejű kommunikáció:</strong> WebSockets – elengedhetetlen a székek zárolásához és a 
+            takarítói/szerelői értesítések azonnali kiküldéséhez.</li>
+    </ul>
+    </div>
+    <a name="dokumentumok"></a><h2>4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</h2>
+    <div>
+    A fejlesztés során több dokumentumot is előállítunk, amelyek a projekt átláthatóságát és karbantarthatóságát biztosítják.
+        <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Projekt Terv</strong><br>
+        Leírás: Meghatározza a projekt céljait, a fejlesztési fázisokat, a használt technológiákat és a verziókövetést.
+        <br>Létrejött: A projekt kezdeti fázisában (1-2. hét).</li>
+        <li style="margin-bottom: 15px;"><strong>Vízió dokumentum</strong><br>
+        Leírás: A webalkalmazás átfogó célja: egy komplex, modern moziüzemeltetési és jegyfoglaló rendszer létrehozása. 
+            Tartalmazza az üzleti lehetőségeket, a felhasználói köröket és a minőségi elvárásokat.
+        <br>Létrejött:</li>
+        <li style="margin-bottom: 15px;"><strong>SRS (Szoftver Követelmény Specifikáció)</strong><br>
+        Leírás: Részletesen meghatározza a szoftver funkcionális (pl. jegyfoglalás, AI filmajánló) és nem funkcionális (pl. WebSocket kommunikáció) követelményeit.
+        <br>Létrejött:</li>
+        <li style="margin-bottom: 15px;"><strong>Analízis Modell</strong><br>
+        Leírás: Grafikus (UML) és szöveges modellekkel ábrázolja a rendszer belső felépítését és az adatok közötti kapcsolatokat még a kódolás előtt.
+        <br>Létrejött:</li>
+        <li style="margin-bottom: 10px;"><strong>Rendszer Tervezés (Technikai Terv)</strong><br>
+        Leírás: Meghatározza a rendszer technikai architektúráját, az API-k felépítését, az adatbázis sémát és a modulok közötti kommunikációt.
+        <br>Létrejött:</li>
+        </ul>
+    </div>
+    <a name="teszteles"></a><h2>5. Tesztelési követelmények</h2>
+<div>
+    A minőség biztosítása érdekében a projekt során többféle tesztelést is elvégzünk.
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Unit Tests (Egységtesztek)</strong><br>
+        Követelmény: Minden fontos funkció (pl. jelszó titkosítása, kosárérték és dinamikus jegyár számítása) rendelkezzen automatizált teszttel.</li>
+        <li style="margin-bottom: 15px;"><strong>Integrációs Tesztek</strong><br>
+        Követelmény: Ellenőrizzük a PostgreSQL adatbázissal való kommunikációt, 
+            a külső IMDB és AI API végpontok, valamint a WebSocket (valós idejű székzárolás) megfelelő működését.</li>
+        <li style="margin-bottom: 15px;"><strong>Felhasználói Elfogadási Tesztek</strong><br>
+        Követelmény: A végfelhasználói szerepkörök (vendég, dolgozó, admin) 
+            bevonásával ellenőrizzük a felület használhatóságát, különös tekintettel a vizuális terem-térképre.</li>
+        <li style="margin-bottom: 10px;"><strong>Biztonsági Tesztelés</strong><br>
+        Követelmény: Különös figyelmet fordítunk a bejelentkezési adatok, 
+            a fizetési folyamatok és a hűségprogramban tárolt személyes adatok védelmére.</li>
+    </ul>
+</div>
+
+<a name="bemutatas"></a><h2>6. Bemutatás (demó) és szállítás módja, ideje</h2>
+<div>
+    A projekt bemutatásának módja és ideje a következő:
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Bemutatás módja (Demó)</strong><br>
+        Egy élő demó prezentáció, amely során végigmegyünk a fő funkciókon (jegyfoglalás, AI filmajánló, takarítói workflow). 
+            Kiemeljük a három fő felületet: vendég, dolgozó és adminisztrátor.</li>
+        <li style="margin-bottom: 15px;"><strong>Szállítás Módja</strong><br>
+        A teljes projekt forráskódját egy Git repository-ban adjuk át.
+            A projektterv és egyéb dokumentációk digitális HTML formában kerülnek leadásra.</li>
+        <li style="margin-bottom: 10px;"><strong>Időpont</strong><br>
+        Demó és szállítás határideje: A szorgalmi időszak utolsó hete.</li>
+    </ul>
+</div>
+
+<a name="forrasok"></a><h2>7. Információforrások</h2>
+<div>
+    A fejlesztés során az alábbi információforrásokat használjuk fel a projekthez:
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>Hivatalos Technológiai Dokumentációk</strong><br>
+        A választott keretrendszerek (Next.js, FastAPI/Spring Boot), a Tailwind CSS, valamint a külső API-k (IMDB, OpenAI) hivatalos weboldalai és referenciái.</li>
+        <li style="margin-bottom: 15px;"><strong>Piaci Megoldások Elemzése</strong><br>
+        A jelenlegi nagy moziüzemeltetők (pl. Cinema City) és modern jegyfoglaló portálok felhasználói felületének és funkcióinak elemzése inspirációként.</li>
+        <li style="margin-bottom: 10px;"><strong>Közösségi Fórumok és Szakirodalom</strong><br>
+        Stack Overflow és szakmai blogok a felmerülő technikai problémák (pl. valós idejű WebSocket kommunikáció a székek zárolásához) megoldásához.</li>
+    </ul>
+</div>
+    <div class="footer"></div>
+</body>
+</html>
