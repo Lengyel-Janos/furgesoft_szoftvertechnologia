@@ -42,165 +42,122 @@
 
     <h2>Tartalomjegyzék: </h2>
     <ul>
-        <li>
-            <!-- Példa arra, hogy odaugorjon az oldal -->
-            <a href="#terv">1. Bevezetés</a>
-        </li>
-        <li>
-            <a href="#nyelv">2. A probléma megfogalmazása</a>
-        </li>
-        <li>
-            <a href="#eszközök">3. Használni tervezett eszközök, technikák</a>
-        </li>
-        <li>
-        <a href="#dokumentumok">4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</a>
-        </li>
-        <li>
-            <a href="#teszteles">5. Tesztelési követelmények</a>
-        </li>
-        <li>
-            <a href="#bemutatas">6. Bemutatás (demó) és szállítás módja, ideje</a>
-        </li>
-        <li>
-            <a href="#forrasok">7. Információforrások</a
-        </li>
+    <li><a href="#vizio-bevezetes">1. Bevezetés</a></li>
+    <li><a href="#vizio-problema">2.2. A probléma megfogalmazása</a></li>
+    <li><a href="#vizio-termek-helye">2.3. A termék helye</a></li>
+    <li><a href="#vizio-kornyezet">3.4. Felhasználói környezet</a></li>
+    <li><a href="#vizio-elonyok">4.2. A termék használatának előnyei</a></li>
+    <li><a href="#vizio-feltetelek">4.3. Feltételezések és függőségek</a></li>
+    <li><a href="#vizio-vegtermek">5. A végtermék jellemzői</a></li>
+    <li><a href="#vizio-minoseg">7. Minőségi elvárások</a></li>
+    <li><a href="#vizio-kockazatok">9. Kockázat lista</a></li>
     </ul>
 
-    <a name="terv"></a><h2>1. Beveztés</h2>
-    <div>
-      A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása. 
-      A rendszer egy modern, felhőalapú megoldás, amely egyetlen integrált platformon kezeli a vendégek 
-      jegy- és büfévásárlásait, a személyre szabott mesterséges intelligencia (AI) alapú filmajánlásokat,
-      valamint a dolgozói (karbantartói, takarítói, menedzseri) folyamatokat.
-      A dokumentum rögzíti a felmerülő üzleti problémákat, a rendszer funkcióit, a minőségi elvárásokat
-      és a lehetséges kockázatokat.
-    </div>
+    <h1 style="margin-bottom: 20px; font-size: 2em;">Vízió Dokumentum</h1>
 
-    <a name="nyelv"></a><h2>2. A probléma megfogalmazása</h2>
-    <div>
-        A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma és súrlódási pont (pain point) azonosítható, 
-      amelyre a meglévő, elavult rendszerek nem nyújtanak megfelelő megoldást. 
-      A problémák három fő érintetti körre bonthatók: a vendégekre, a fizikai dolgozókra és a menedzsmentre.
-    <h2>A vendégek (felhasználók) problémái:</h2>
-        
-        <h3>Információhiány és döntési paralízis:</h3>
-        <p class="indented-text">A jelenlegi rendszerek csupán a filmek címét és egy rövid szinopszist jelenítenek meg. 
-          A nézők gyakran nem tudják eldönteni, mit nézzenek, külső oldalakra (IMDB, Rotten Tomatoes, YouTube) 
-          kell navigálniuk az értékelésekért és előzetesekért. Nincs személyre szabott ajánlás.</p>
-        
-        <h3>Lassú és frusztráló jegyvásárlási folyamat:</h3>
-        <p class="indented-text">A székek lefoglalásakor gyakran előfordul a "double-booking" jelenség 
-          (amikor ketten próbálják ugyanazt a széket lefoglalni), mert a rendszerek nem valós időben zárolják a helyeket.
-          Ez fizetési hibákhoz és elégedetlenséghez vezet.</p>
-        
-        <h3>Kényelmetlen büfé-sorban állás:</h3>
-        <p class="indented-text">A jegyvásárlás és a büfé (snackek, italok) vásárlása két külön folyamat.
-          A vendégeknek a helyszínen hosszú sorokat kell kivárniuk, ami rontja a moziélményt, és csökkenti a mozi extra bevételét.</p>
+<a name="vizio-bevezetes"></a><h2 style="margin-bottom: 15px;">1. Bevezetés</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása. A rendszer egy modern,
+    felhőalapú megoldás, amely egyetlen integrált platformon kezeli a vendégek jegy- és büfévásárlásait, 
+    a személyre szabott mesterséges intelligencia (AI) alapú filmajánlásokat, valamint a dolgozói 
+    (karbantartói, takarítói, menedzseri) folyamatokat. A dokumentum rögzíti a felmerülő üzleti problémákat,
+    a rendszer funkcióit, a minőségi elvárásokat és a lehetséges kockázatokat.
+</div>
 
-        <h2>A dolgozók (takarítók, szerelők) problémái:</h2>
-        
-        <h3>Optimalizálatlan munkafolyamatok:</h3>
-        <p class="indented-text">A takarító személyzet jelenleg manuális beosztás vagy a termek előtti várakozás alapján dolgozik. 
-          Nem kapnak azonnali, automatizált értesítést arról, ha egy film véget ért, vagy ha a terem kiürült.</p>
-
-        <h3>Karbantartási információk hiánya:</h3>
-        <p class="indented-text">Ha egy szék elszakad, vagy egy pohártartó eltörik, 
-          a hiba bejelentése lassú, papíralapú vagy szóbeli. A szerelők nem tudják pontosan, 
-          melyik terem melyik székét kell javítani, így az adott hely sokáig eladhatatlan marad.</p>
-
-        <h2>A menedzsment és az üzemeltetés problémái:</h2>
-        
-        <h3>Rugalmatlan árazási modellek:</h3>
-        <p class="indented-text">A hagyományos mozik fix árakkal dolgoznak. A holtidőkben 
-          (pl. hétköznap délelőtt) a termek üresek, míg a premier napokon telt ház van. A dinamikus,
-          kereslet-alapú árazás hiánya jelentős bevételkiesést okoz.</p>
-        
-        <h3>Műsortervezési nehézségek:</h3>
-        <p class="indented-text">A heti vetítési rend összeállítása nehézkes,
-          a jelenlegi szoftverek nem jelzik egyértelműen az ütközéseket (pl. takarítási idő kihagyása két vetítés között).</p>
-        
-        <h3>Szétaprózott rendszerek:</h3>
-        <p class="indented-text">A büfé készletnyilvántartása, a jegyértékesítés 
-          és a dolgozói beosztás különálló szoftverekben fut, így a vezetőség nem látja át egyetlen felületen a valós idejű statisztikákat.</p>
-    </div>
-    <a name="eszközök"></a><h2>3. Használni tervezett eszközök, technikák</h2>
-    <div>
-    A modern szoftverfejlesztési elvek betartására törekszünk:
-   <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 10px;"><strong>Verziókövetés:</strong> Git – a forráskód megosztására és a csapatmunka összehangolására.</li>
-        <li style="margin-bottom: 10px;"><strong>Fejlesztési Módszertan:</strong> Scrum vagy Kanban – rövid sprintekkel a modulok párhuzamos fejlesztéséhez.</li>
-        <li style="margin-bottom: 10px;"><strong>API Integrációk:</strong> RESTful architektúra a frontend,
-            backend és a külső szolgáltatások (IMDB, OpenAI) között.</li>
-        <li style="margin-bottom: 10px;"><strong>Valós idejű kommunikáció:</strong> WebSockets – elengedhetetlen a székek zárolásához és a 
-            takarítói/szerelői értesítések azonnali kiküldéséhez.</li>
-    </ul>
-    </div>
-    <a name="dokumentumok"></a><h2>4. Leendő produktumok (dokumentumok), és létrejöttüknek ideje</h2>
-    <div>
-    A fejlesztés során több dokumentumot is előállítunk, amelyek a projekt átláthatóságát és karbantarthatóságát biztosítják.
-        <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>Projekt Terv</strong><br>
-        Leírás: Meghatározza a projekt céljait, a fejlesztési fázisokat, a használt technológiákat és a verziókövetést.
-        <br>Létrejött: A projekt kezdeti fázisában (1-2. hét).</li>
-        <li style="margin-bottom: 15px;"><strong>Vízió dokumentum</strong><br>
-        Leírás: A webalkalmazás átfogó célja: egy komplex, modern moziüzemeltetési és jegyfoglaló rendszer létrehozása. 
-            Tartalmazza az üzleti lehetőségeket, a felhasználói köröket és a minőségi elvárásokat.
-        <br>Létrejött:</li>
-        <li style="margin-bottom: 15px;"><strong>SRS (Szoftver Követelmény Specifikáció)</strong><br>
-        Leírás: Részletesen meghatározza a szoftver funkcionális (pl. jegyfoglalás, AI filmajánló) és nem funkcionális (pl. WebSocket kommunikáció) követelményeit.
-        <br>Létrejött:</li>
-        <li style="margin-bottom: 15px;"><strong>Analízis Modell</strong><br>
-        Leírás: Grafikus (UML) és szöveges modellekkel ábrázolja a rendszer belső felépítését és az adatok közötti kapcsolatokat még a kódolás előtt.
-        <br>Létrejött:</li>
-        <li style="margin-bottom: 10px;"><strong>Rendszer Tervezés (Technikai Terv)</strong><br>
-        Leírás: Meghatározza a rendszer technikai architektúráját, az API-k felépítését, az adatbázis sémát és a modulok közötti kommunikációt.
-        <br>Létrejött:</li>
-        </ul>
-    </div>
-    <a name="teszteles"></a><h2>5. Tesztelési követelmények</h2>
-<div>
-    A minőség biztosítása érdekében a projekt során többféle tesztelést is elvégzünk.
+<a name="vizio-problema"></a><h2 style="margin-bottom: 15px;">2.2. A probléma megfogalmazása</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma (pain point) azonosítható, 
+    amelyre a meglévő rendszerek nem nyújtanak megoldást:
     <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>Unit Tests (Egységtesztek)</strong><br>
-        Követelmény: Minden fontos funkció (pl. jelszó titkosítása, kosárérték és dinamikus jegyár számítása) rendelkezzen automatizált teszttel.</li>
-        <li style="margin-bottom: 15px;"><strong>Integrációs Tesztek</strong><br>
-        Követelmény: Ellenőrizzük a PostgreSQL adatbázissal való kommunikációt, 
-            a külső IMDB és AI API végpontok, valamint a WebSocket (valós idejű székzárolás) megfelelő működését.</li>
-        <li style="margin-bottom: 15px;"><strong>Felhasználói Elfogadási Tesztek</strong><br>
-        Követelmény: A végfelhasználói szerepkörök (vendég, dolgozó, admin) 
-            bevonásával ellenőrizzük a felület használhatóságát, különös tekintettel a vizuális terem-térképre.</li>
-        <li style="margin-bottom: 10px;"><strong>Biztonsági Tesztelés</strong><br>
-        Követelmény: Különös figyelmet fordítunk a bejelentkezési adatok, 
-            a fizetési folyamatok és a hűségprogramban tárolt személyes adatok védelmére.</li>
+        <li style="margin-bottom: 15px;"><strong>A vendégek problémái:</strong><br>
+        Információhiány és döntési paralízis (külső oldalakra kell navigálni az értékelésekért).
+            Lassú jegyvásárlási folyamat, gyakori a "double-booking" (dupla foglalás) a valós idejű székzárolás hiánya miatt.
+            Kényelmetlen és hosszú sorban állás a büfénél.</li>
+        
+        <li style="margin-bottom: 15px;"><strong>A dolgozók problémái:</strong><br>
+        Optimalizálatlan munkafolyamatok: a takarítók nem kapnak azonnali értesítést a filmek végéről.
+            A karbantartási információk hiányosak, a szerelők nem tudják pontosan, melyik terem melyik székét kell javítani.</li>
+        
+        <li style="margin-bottom: 10px;"><strong>A menedzsment problémái:</strong><br>
+        Rugalmatlan fix árazás, amely miatt holtidőben üresek a termek. Szétaprózott rendszerek 
+            (a büfé, a jegy és a beosztás külön szoftverben fut), és nehézkes heti műsortervezés.</li>
     </ul>
 </div>
 
-<a name="bemutatas"></a><h2>6. Bemutatás (demó) és szállítás módja, ideje</h2>
-<div>
-    A projekt bemutatásának módja és ideje a következő:
+<a name="vizio-termek-helye"></a><h2 style="margin-bottom: 15px;">2.3. A termék helye</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A rendszer a modern szórakoztatóipari szoftverek piacán helyezkedik el. Leváltja a hagyományos, 
+    helyi szervereken futó elavult alkalmazásokat, és egy modern, felhőalapú (SaaS jellegű) platformot kínál. 
+    Két fő szoftvertípust egyesít: egy B2C e-kereskedelmi és jegyfoglaló portált, valamint egy B2B belső ERP rendszert.
+    Célcsoportjai: a gyors online ügyintézést elváró mozilátogatók, a hatékonyabb munkavégzésre vágyó fizikai dolgozók, 
+    és az adatvezérelt döntéseket hozó menedzsment.
+</div>
+
+<a name="vizio-kornyezet"></a><h2 style="margin-bottom: 15px;">3.4. Felhasználói környezet</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
     <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>Bemutatás módja (Demó)</strong><br>
-        Egy élő demó prezentáció, amely során végigmegyünk a fő funkciókon (jegyfoglalás, AI filmajánló, takarítói workflow). 
-            Kiemeljük a három fő felületet: vendég, dolgozó és adminisztrátor.</li>
-        <li style="margin-bottom: 15px;"><strong>Szállítás Módja</strong><br>
-        A teljes projekt forráskódját egy Git repository-ban adjuk át.
-            A projektterv és egyéb dokumentációk digitális HTML formában kerülnek leadásra.</li>
-        <li style="margin-bottom: 10px;"><strong>Időpont</strong><br>
-        Demó és szállítás határideje: A szorgalmi időszak utolsó hete.</li>
+        <li style="margin-bottom: 10px;"><strong>Vendégek:</strong> Bármilyen modern webböngésző (Chrome, Safari, Edge) asztali gépen,
+            tableten vagy okostelefonon. A felület teljesen reszponzív.</li>
+        <li style="margin-bottom: 10px;"><strong>Fizikai dolgozók:</strong> A mozi által biztosított tableteken 
+            vagy saját okostelefonon használják a belső (karbantartó/takarító) modult.</li>
+        <li style="margin-bottom: 10px;"><strong>Menedzsment:</strong> Asztali környezet (PC, laptop) nagy 
+            felbontású kijelzőkkel a grafikus műsortervező és a statisztikák áttekintéséhez.</li>
     </ul>
 </div>
 
-<a name="forrasok"></a><h2>7. Információforrások</h2>
-<div>
-    A fejlesztés során az alábbi információforrásokat használjuk fel a projekthez:
+<a name="vizio-elonyok"></a><h2 style="margin-bottom: 15px;">4.2. A termék használatának előnyei</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
     <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>Hivatalos Technológiai Dokumentációk</strong><br>
-        A választott keretrendszerek (Next.js, FastAPI/Spring Boot), a Tailwind CSS, valamint a külső API-k (IMDB, OpenAI) hivatalos weboldalai és referenciái.</li>
-        <li style="margin-bottom: 15px;"><strong>Piaci Megoldások Elemzése</strong><br>
-        A jelenlegi nagy moziüzemeltetők (pl. Cinema City) és modern jegyfoglaló portálok felhasználói felületének és funkcióinak elemzése inspirációként.</li>
-        <li style="margin-bottom: 10px;"><strong>Közösségi Fórumok és Szakirodalom</strong><br>
-        Stack Overflow és szakmai blogok a felmerülő technikai problémák (pl. valós idejű WebSocket kommunikáció a székek zárolásához) megoldásához.</li>
+        <li style="margin-bottom: 10px;"><strong>Vendégélmény javulása:</strong> Nincs sorban állás a büfénél (előrendelés), 
+            személyre szabott AI filmajánló, gyorsabb és biztonságosabb jegyvásárlás valós idejű székzárolással.</li>
+        <li style="margin-bottom: 10px;"><strong>Bevételnövekedés:</strong> A dinamikus (keresletfüggő) árazás optimalizálja 
+            a bevételeket, az online büfé-előrendelés pedig növeli a kosárértéket.</li>
+        <li style="margin-bottom: 10px;"><strong>Működési hatékonyság:</strong> A dolgozók automatizált értesítése minimalizálja 
+            az állásidőt két vetítés között, a statisztikák pedig segítik az üzleti döntéseket.</li>
     </ul>
+</div>
+
+<a name="vizio-feltetelek"></a><h2 style="margin-bottom: 15px;">4.3. Feltételezések és függőségek</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A filmadatlapok megjelenítése függ a külső IMDB / Rotten Tomatoes API-k elérhetőségétől, az ajánlómodul pedig az OpenAI API stabil működésétől.
+    Feltételezzük továbbá, hogy a felhasználók rendelkeznek stabil internetkapcsolattal, 
+    a mozi belső hálózata pedig képes kiszolgálni a dolgozói eszközök valós idejű (WebSocket) kommunikációját.
+</div>
+
+<a name="vizio-vegtermek"></a><h2 style="margin-bottom: 15px;">5. A végtermék jellemzői (5 Fő Modul)</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 15px;"><strong>1. Felfedező és Információs Modul:</strong> Összetett mozikereső, dinamikus 
+            filmadatlapok (leírás, trailer). Külső IMDB/Rotten Tomatoes integráció a hiteles értékelésekért, valamint belső 5 csillagos minősítési rendszer.</li>
+        <li style="margin-bottom: 15px;"><strong>2. Jegy- és Helyfoglaló Modul:</strong> Interaktív, vizuális terem-térkép. 
+            WebSocket alapú valós idejű székzárolás a dupla foglalások elkerülésére. Beépített AI asszisztens a személyre szabott filmajánláshoz.</li>
+        <li style="margin-bottom: 15px;"><strong>3. Büfé és Kosár Modul:</strong> Snackek, italok és menük előrendelése a jegy mellé. 
+            Lehetőség extra feláras termékek (pl. sajtszósz) dinamikus kosárba tételéhez az upsell növelése érdekében.</li>
+        <li style="margin-bottom: 15px;"><strong>4. Pénzügy és Marketing Modul:</strong> Különböző jegytípusok (diák, VIP) 
+            és napszak/kereslet alapú dinamikus árazás kezelése. Integrált hűségprogram pontgyűjtéssel és kuponbeváltással.</li>
+        <li style="margin-bottom: 10px;"><strong>5. Adminisztrátor és Karbantartó Modul:</strong> Grafikus műsortervező felület ütközés-figyeléssel,
+            valamint bevételi statisztikák. Dolgozói workflow: automatikus értesítések takarítóknak a film végén, és gyors hibabejelentő felület a szerelők felé.</li>
+    </ul>
+</div>
+
+<a name="vizio-minoseg"></a><h2 style="margin-bottom: 15px;">7. Minőségi elvárások</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A jegyértékesítés miatt a rendszernek 99.9%-os rendelkezésre állást kell biztosítania. 
+    A vizuális jegyfoglaló térkép betöltése és a székek zárolása premier időszakban sem vehet igénybe 1-2 másodpercnél többet. 
+    A bankkártyás fizetések lebonyolítása biztonságos külső szolgáltatón keresztül történik, a személyes adatokat pedig GDPR konform módon, titkosítva kezeljük.
+</div>
+
+<a name="vizio-kockazatok"></a><h2 style="margin-bottom: 15px;">9. Kockázat lista</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <ul style="margin-top: 15px;">
+        <li style="margin-bottom: 10px;"><strong>Külső API leállása:</strong> IMDB vagy AI szolgáltatás elérhetetlensége.
+            (Megoldás: saját gyorsítótár / cache alkalmazása az utolsó ismert adatokkal).</li>
+        <li style="margin-bottom: 10px;"><strong>Teljesítménybeli túlterhelés:</strong> Kiemelt premierek (pl. Marvel film) 
+            esetén a sok egyidejű foglalás túlterhelheti a szervert. (Megoldás: felhőalapú, skálázható architektúra bevezetése).</li>
+        <li style="margin-bottom: 10px;"><strong>Felhasználói ellenállás (dolgozók):</strong> Az idősebb személyzet nehezebben 
+            állhat át a digitális tabletes munkafolyamatokra. (Megoldás: rendkívül leegyszerűsített, nagy gombokkal operáló UI tervezése számukra).</li>
+    </ul>
+</div>
 </div>
     <div class="footer"></div>
 </body>
