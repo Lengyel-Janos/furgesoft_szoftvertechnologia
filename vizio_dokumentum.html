@@ -43,121 +43,323 @@
     <h2>Tartalomjegyzék: </h2>
     <ul>
     <li><a href="#vizio-bevezetes">1. Bevezetés</a></li>
-    <li><a href="#vizio-problema">2.2. A probléma megfogalmazása</a></li>
-    <li><a href="#vizio-termek-helye">2.3. A termék helye</a></li>
-    <li><a href="#vizio-kornyezet">3.4. Felhasználói környezet</a></li>
-    <li><a href="#vizio-elonyok">4.2. A termék használatának előnyei</a></li>
-    <li><a href="#vizio-feltetelek">4.3. Feltételezések és függőségek</a></li>
-    <li><a href="#vizio-vegtermek">5. A végtermék jellemzői</a></li>
+    
+    <li><a href="#vizio-alkalmazas-helye">2. Az alkalmazás helye</a>
+        <ul>
+            <li><a href="#vizio-uzleti">2.1 Üzleti lehetőségek</a></li>
+            <li><a href="#vizio-problema">2.2 A probléma megfogalmazása</a></li>
+            <li><a href="#vizio-termek-helye">2.3 Az elkészült termék helye</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="#vizio-erintettek">3. Érintettek és felhasználók</a>
+        <ul>
+            <li><a href="#vizio-erintettek-osszefoglalo">3.1 Az érintettek összefoglalása</a></li>
+            <li><a href="#vizio-felhasznalok-osszefoglalo">3.2 A felhasználók összefoglalása</a></li>
+            <li><a href="#vizio-kornyezet">3.3 Felhasználói környezet</a></li>
+            <li><a href="#vizio-adatok">3.4 & 3.5 Illetékesek és Felhasználók adatai</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="#vizio-attekintes">4. A végtermék áttekintése</a>
+        <ul>
+            <li><a href="#vizio-kapcsolatok">4.1 A termék kapcsolatai</a></li>
+            <li><a href="#vizio-elonyok">4.2 A termék használatának előnyei</a></li>
+            <li><a href="#vizio-feltetelek">4.3 Feltételezések és függőségek</a></li>
+            <li><a href="#vizio-koltseg">4.4 & 4.5 Költségbecslés és Installáció</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="#vizio-vegtermek">5. A végtermék jellemzői, biztosított szolgáltatások</a></li>
+    <li><a href="#vizio-korlatozasok">6. Korlátozások</a></li>
     <li><a href="#vizio-minoseg">7. Minőségi elvárások</a></li>
+    <li><a href="#vizio-dokumentacio">8. Dokumentációkkal kapcsolatos követelmények</a></li>
     <li><a href="#vizio-kockazatok">9. Kockázat lista</a></li>
-    </ul>
+</ul>
 
     <h1 style="margin-bottom: 20px; font-size: 2em;">Vízió Dokumentum</h1>
 
-<a name="vizio-bevezetes"></a><h2 style="margin-bottom: 15px;">1. Bevezetés</h2>
+<h1 style="margin-bottom: 20px; font-size: 2.2em; border-bottom: 1px solid #555; padding-bottom: 10px;">Vízió Dokumentum</h1>
+
+<!-- 1. BEVEZETÉS -->
+<a name="vizio-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása. A rendszer egy modern,
-    felhőalapú megoldás, amely egyetlen integrált platformon kezeli a vendégek jegy- és büfévásárlásait, 
-    a személyre szabott mesterséges intelligencia (AI) alapú filmajánlásokat, valamint a dolgozói 
-    (karbantartói, takarítói, menedzseri) folyamatokat. A dokumentum rögzíti a felmerülő üzleti problémákat,
-    a rendszer funkcióit, a minőségi elvárásokat és a lehetséges kockázatokat.
+    A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása.
+    A rendszer egy modern, felhőalapú megoldás, amely egyetlen integrált platformon kezeli egy több régióból 
+    álló mozihálózat vendégeinek jegy- és büfévásárlásait, a személyre szabott mesterséges intelligencia (AI) 
+    alapú filmajánlásokat, valamint a dolgozói (karbantartói, takarítói, menedzseri) folyamatokat. A dokumentum 
+    rögzíti a felmerülő üzleti problémákat, a rendszer funkcióit, a minőségi elvárásokat és a lehetséges kockázatokat.
 </div>
 
-<a name="vizio-problema"></a><h2 style="margin-bottom: 15px;">2.2. A probléma megfogalmazása</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
-    A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma (pain point) azonosítható, 
-    amelyre a meglévő rendszerek nem nyújtanak megoldást:
-    <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>A vendégek problémái:</strong><br>
-        Információhiány és döntési paralízis (külső oldalakra kell navigálni az értékelésekért).
-            Lassú jegyvásárlási folyamat, gyakori a "double-booking" (dupla foglalás) a valós idejű székzárolás hiánya miatt.
-            Kényelmetlen és hosszú sorban állás a büfénél.</li>
-        
-        <li style="margin-bottom: 15px;"><strong>A dolgozók problémái:</strong><br>
-        Optimalizálatlan munkafolyamatok: a takarítók nem kapnak azonnali értesítést a filmek végéről.
-            A karbantartási információk hiányosak, a szerelők nem tudják pontosan, melyik terem melyik székét kell javítani.</li>
-        
-        <li style="margin-bottom: 10px;"><strong>A menedzsment problémái:</strong><br>
-        Rugalmatlan fix árazás, amely miatt holtidőben üresek a termek. Szétaprózott rendszerek 
-            (a büfé, a jegy és a beosztás külön szoftverben fut), és nehézkes heti műsortervezés.</li>
+<!-- 2. AZ ALKALMAZÁS HELYE -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">2. Az alkalmazás helye</h2>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">2.1 Üzleti lehetőségek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A moziüzemeltetési szoftver fejlesztése a szórakoztatóipar digitalizációs törekvéseibe illeszkedik.
+    A rendszer célja a hatékonyság növelése, az adminisztráció egyszerűsítése és a vendégélmény drasztikus
+    javítása, amely közvetlen bevételnövekedést (pl. büfé előrendelések, dinamikus árazás) eredményez.
+    Központosítva kezeli a különböző régiókban található mozik adatait, támogatva az adatvezérelt döntéshozatalt.
+</div>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">2.2 A probléma megfogalmazása</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma és súrlódási pont 
+    (pain point) azonosítható, amelyre a meglévő, elavult rendszerek nem nyújtanak megfelelő megoldást. 
+    A problémák három fő érintetti körre bonthatók: a vendégekre, a fizikai dolgozókra és a menedzsmentre.
+    
+    <p style="margin-top: 15px; font-weight: bold;">A vendégek (felhasználók) problémái:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Információhiány és döntési paralízis:</strong> A jelenlegi rendszerek csupán a filmek címét és 
+            egy rövid szinopszist jelenítenek meg. Nincs régió alapú gyorsszűrő, a nézők külső oldalakra navigálnak 
+            értékelésekért, és nincs személyre szabott ajánlás.</li>
+        <li><strong>Lassú és frusztráló jegyvásárlási folyamat:</strong> A székek lefoglalásakor gyakran előfordul 
+            a "double-booking" jelenség (ketten próbálják ugyanazt a széket lefoglalni), mert a rendszerek nem valós 
+            időben zárolják a helyeket. Ez fizetési hibákhoz vezet.</li>
+        <li><strong>Kényelmetlen büfé-sorban állás:</strong> A jegyvásárlás és a büfé vásárlása két külön folyamat. 
+            A helyszíni hosszú sorok rontják a moziélményt, és csökkentik az extra bevételt.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">A dolgozók (takarítók, szerelők) problémái:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Optimalizálatlan munkafolyamatok:</strong> A takarító személyzet jelenleg manuális beosztás alapján dolgozik.
+            Nem kapnak azonnali értesítést arról, ha egy film véget ért.</li>
+        <li><strong>Karbantartási információk hiánya:</strong> A hiba bejelentése lassú. A szerelők nem tudják pontosan,
+            melyik terem melyik székét kell javítani, így az eladhatatlan marad.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">A menedzsment és az üzemeltetés problémái:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Rugalmatlan árazási modellek:</strong> A hagyományos mozik fix árakkal dolgoznak.
+            A dinamikus árazás és a mozinként/régiónként eltérő büfé-árképzés hiánya bevételkiesést okoz.</li>
+        <li><strong>Műsortervezési nehézségek:</strong> A heti vetítési rend összeállítása nehézkes, a szoftverek nem jelzik az ütközéseket.</li>
+        <li><strong>Szétaprózott rendszerek:</strong> A büfé készletnyilvántartása, a jegyértékesítés és a dolgozói beosztás különálló szoftverekben fut.</li>
     </ul>
 </div>
 
-<a name="vizio-termek-helye"></a><h2 style="margin-bottom: 15px;">2.3. A termék helye</h2>
+<h3 style="margin-bottom: 10px; margin-top: 20px;">2.3 Az elkészült termék helye</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    A rendszer a modern szórakoztatóipari szoftverek piacán helyezkedik el. Leváltja a hagyományos, 
-    helyi szervereken futó elavult alkalmazásokat, és egy modern, felhőalapú (SaaS jellegű) platformot kínál. 
-    Két fő szoftvertípust egyesít: egy B2C e-kereskedelmi és jegyfoglaló portált, valamint egy B2B belső ERP rendszert.
-    Célcsoportjai: a gyors online ügyintézést elváró mozilátogatók, a hatékonyabb munkavégzésre vágyó fizikai dolgozók, 
-    és az adatvezérelt döntéseket hozó menedzsment.
+    A moziüzemeltetési rendszer a modern szórakoztatóipari szoftverek (Entertainment Management Systems)
+    piacán helyezkedik el. Két fő szoftvertípust egyesít magában: egy B2C (Business-to-Consumer) e-kereskedelmi portált, 
+    valamint egy B2B (Business-to-Business) belső ERP rendszert.
+    
+    <br><br><strong>Kinek szól a termék? (Célcsoportok):</strong>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>A mozilátogatók (Gen Z, Milleniálok, Családok):</strong> Akik gyors, mobilbarát felületen szeretnének jegyet venni. 
+            Értékelik az AI asszisztens segítségét és azt, hogy a popcornt már a jeggyel együtt megvehetik.</li>
+        <li><strong>A fizikai dolgozók (takarítók, karbantartók):</strong> Akiknek a munkáját egy okoseszközön futó belső modul könnyíti
+            meg azonnali notifikációkkal.</li>
+        <li><strong>A mozi menedzsmentje:</strong> Akik egy átlátható adminisztrációs felületet kapnak a dinamikus árazáshoz és a statisztikákhoz.</li>
+    </ul>
+    
+    <strong>Piaci pozíció és architektúra:</strong>
+    A szoftver leváltja a hagyományos asztali alkalmazásokat. Webes technológiákra (Next.js, FastAPI/Spring Boot, PostgreSQL)
+    épülve egy skálázható (SaaS jellegű) platformot kínál. Különlegessége a valós idejű WebSocket kommunikáció 
+    (megakadályozza a székek duplikált lefoglalását), valamint a lokáció alapú keresőrendszer.
 </div>
 
-<a name="vizio-kornyezet"></a><h2 style="margin-bottom: 15px;">3.4. Felhasználói környezet</h2>
+<!-- 3. ÉRINTETTEK ÉS FELHASZNÁLÓK -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">3. Érintettek és felhasználók</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    Ebben a fejezetben összefoglaljuk a rendszer által érintett, és az azt majdan használó személyek 
+    és szervezetek alapvető jellemzőit, jogosultságait és adatait az adatbázis struktúrára építve.
+</div>
+<!-- 3.1 KÁRTYÁS ELRENDEZÉS -->
+<h3 style="margin-bottom: 15px; margin-top: 20px;">3.1 Az érintettek összefoglalása</h3>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+    
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Fejlesztő csapat</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Leírás:</strong> Felelős a rendszer tervezéséért, leprogramozásáért és hibajavításáért.<br>
+            <strong style="color: #bbb;">Szerep:</strong> Megvalósítja a funkciókat, karbantartja a kódot.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Mozi vezetőség / Hálózat Tulajdonos</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Leírás:</strong> A projekt megrendelője, a bevételek növelésében érdekelt.<br>
+            <strong style="color: #bbb;">Szerep:</strong> Statisztikákra támaszkodik, üzleti döntéseket hoz.
+        </div>
+    </div>
+
+</div
+
+<!-- 3.2 KÁRTYÁS ELRENDEZÉS -->
+<h3 style="margin-bottom: 15px; margin-top: 20px;">3.2 A felhasználók összefoglalása (Adatbázis jogosultságok alapján)</h3>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+    
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Vendég (Szint: 0)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Leírás:</strong> Filmeket keres, jegyet és büfét foglal, érvényesíti a kedvezményeit
+            (0: diák, 1: nyugdíjas, 2: gyerek).<br>
+            <strong style="color: #bbb;">Illetékes modul:</strong> Felfedező és Kosár modul
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Dolgozó (Szint: 1)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Leírás:</strong> Ellenőrzi a jegyek érvényességét, kezeli a büfé rendeléseket és a termek takarítási állapotát.<br>
+            <strong style="color: #bbb;">Illetékes modul:</strong> Dolgozói / Pénztáros felület
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Admin (Szint: 2)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Leírás:</strong> Kezeli a Régiókat, Mozikat, Termeket, rögzíti a vetítéseket és az ételek árait mozikra bontva.<br>
+            <strong style="color: #bbb;">Illetékes modul:</strong> Központi Adminisztrációs modul
+        </div>
+    </div>
+
+</div>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">3.3 Felhasználói környezet</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <strong>Vendégek:</strong> Bármilyen modern webböngésző asztali gépen, tableten vagy okostelefonon. A felület reszponzív (Tailwind CSS).<br>
+    <strong>Fizikai dolgozók (takarítók, szerelők):</strong> Elsősorban a mozi által biztosított tableteken vagy okostelefonokon a belső hálózaton keresztül.<br>
+    <strong>Menedzsment / Adminisztrátorok:</strong> Asztali környezet (PC, laptop) nagy felbontású kijelzőkkel a grafikus műsortervezőhöz.
+</div>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">3.4 & 3.5 Illetékesek és Felhasználók adatai</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 10px;"><strong>Vendégek:</strong> Bármilyen modern webböngésző (Chrome, Safari, Edge) asztali gépen,
-            tableten vagy okostelefonon. A felület teljesen reszponzív.</li>
-        <li style="margin-bottom: 10px;"><strong>Fizikai dolgozók:</strong> A mozi által biztosított tableteken 
-            vagy saját okostelefonon használják a belső (karbantartó/takarító) modult.</li>
-        <li style="margin-bottom: 10px;"><strong>Menedzsment:</strong> Asztali környezet (PC, laptop) nagy 
-            felbontású kijelzőkkel a grafikus műsortervező és a statisztikák áttekintéséhez.</li>
+    A rendszer az alábbi adatbázis-struktúra alapján kezeli a Felhasználókat:
+    <ul style="margin-top: 5px;">
+        <li><strong>Személyes adatok:</strong> ID, név, emailcím, jelszó (password), telefonszám, születési dátum, profilkép.</li>
+        <li><strong>Jogosultság (Role):</strong> 0 (vendég), 1 (dolgozó), 2 (admin).</li>
+        <li><strong>Pénzügyi adatok:</strong> Kedvezmény státusz (0: diák, 1: nyugdíjas, 2: gyerek) és az ehhez tartozó százalékok, 
+            valamint a hűségprogram Pontszáma.</li>
     </ul>
 </div>
 
-<a name="vizio-elonyok"></a><h2 style="margin-bottom: 15px;">4.2. A termék használatának előnyei</h2>
+<!-- 4. A VÉGTERMÉK ÁTTEKINTÉSE -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">4. A végtermék áttekintése</h2>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">4.1 A termék kapcsolatai</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Szoros integráció a külső IMDB/Rotten Tomatoes API-kkal a filmadatokhoz, az OpenAI API-val az ajánlóhoz, és biztonságos fizetési átjárókkal a tranzakciókhoz.
+</div>
+    
+<!-- 4.2 KÁRTYÁS ELRENDEZÉS -->
+<h3 style="margin-bottom: 15px; margin-top: 20px;">4.2 A termék használatának előnyei</h3>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+    
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">Vendégélmény javulása</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Nincs többé sorban állás a büfénél. Az integrált online büfé-előrendelés kényelmesebbé teszi a mozizást, miközben növeli az átlagos kosárértéket.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">Gyorsabb és biztonságosabb jegyvásárlás</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            A székek azonnali, WebSocket alapú valós idejű zárolása végleg kiküszöböli a "double-booking" (dupla foglalás) okozta panaszokat és fizetési hibákat.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">Működési hatékonyság a dolgozóknál</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            A takarítók automatizált értesítést kapnak a tableten, amint a vetítés véget ér, így csökken a holtidő két film között.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">Bevételnövekedés és adatvezérelt döntések</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Dinamikus árazási modellek és régió-specifikus statisztikák segítik a menedzsmentet a profit maximalizálásában.
+        </div>
+    </div>
+
+</div>
+    
+<h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Feltételezések és függőségek</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 10px;"><strong>Vendégélmény javulása:</strong> Nincs sorban állás a büfénél (előrendelés), 
-            személyre szabott AI filmajánló, gyorsabb és biztonságosabb jegyvásárlás valós idejű székzárolással.</li>
-        <li style="margin-bottom: 10px;"><strong>Bevételnövekedés:</strong> A dinamikus (keresletfüggő) árazás optimalizálja 
-            a bevételeket, az online büfé-előrendelés pedig növeli a kosárértéket.</li>
-        <li style="margin-bottom: 10px;"><strong>Működési hatékonyság:</strong> A dolgozók automatizált értesítése minimalizálja 
-            az állásidőt két vetítés között, a statisztikák pedig segítik az üzleti döntéseket.</li>
+    <strong>Függőségek:</strong> A filmadatlapok és értékelések megjelenítése függ a külső IMDB API-k elérhetőségétől. 
+    Az AI ajánlómodul függ az OpenAI stabil működésétől.<br>
+    <strong>Feltételezések:</strong> A felhasználók rendelkeznek stabil internetkapcsolattal. 
+    A mozi belső hálózata képes kiszolgálni a dolgozói okoseszközök WebSocket kommunikációját.
+</div>
+
+<h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 & 4.5 Költségbecslés és Installáció</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Telepítés felhőalapú infrastruktúrára történik konténerizációval. A fenntartási költség a szerverbérletből és az API tranzakciós díjakból áll.
+</div>
+
+<!-- 5. VÉGTERMÉK JELLEMZŐI -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">5. A végtermék jellemzői, biztosított szolgáltatások</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A rendszer 5 fő, egymással szorosan együttműködő modulból épül fel, integrálva az egyedi adatbázis-architektúrát.
+
+    <p style="margin-top: 15px; font-weight: bold;">1. Felfedező és Információs Modul (A tartalom központja)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Összetett mozikereső város és helyszín alapján (<code>Filmkereso_helyhez_kotve</code>,
+            Régió és Mozi ID szűrés). Dinamikus filmadatlapok (korhatár, trailer URL, Rendező).</li>
+        <li><strong>Integrációk:</strong> Külső IMDB API hívások a hiteles, valós idejű értékelések lekéréséhez.</li>
+        <li><strong>Belső minősítés:</strong> 5 csillagos értékelő rendszer a regisztrált (0-s jogosultságú) felhasználók számára.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">2. Jegy- és Helyfoglaló Modul (A vásárlás motorja)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Vizuális terem-térkép a szabad és foglalt helyekkel. A <code>Vetités</code> adataihoz 
+            (technológia_id, nyelv, kezdés) kötött <code>Szék</code> (sor, szám) lefoglalása.</li>
+        <li><strong>Technológiai innováció (WebSocket):</strong> A kiválasztott székek valós idejű zárolása a fizetés idejére.
+            Kiküszöböli a duplikált foglalásokat.</li>
+        <li><strong>AI Ajánló:</strong> Beépített mesterséges intelligencia asszisztens a személyre szabott filmajánláshoz.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">3. Büfé és Kosár Modul (Az upsell felelőse)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Snackek és italok előrendelése a jegy mellé.</li>
+        <li><strong>Régió-specifikus árképzés:</strong> Az <code>Arak</code> táblában az ételek árai konkrét mozihoz (mozi_id) 
+            vannak kötve, így városonként eltérhet a popcorn ára.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">4. Pénzügy és Marketing Modul (Az üzleti logika)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> A <code>Felhasználó</code> táblában lévő <code>Kedvezmény</code> mező (0: diák, 1: nyugdíjas, 2: gyerek) 
+            alapján a rendszer automatikusan vonja le a százalékos engedményeket a jegyárból.</li>
+        <li><strong>Marketing:</strong> Dinamikus árazás és integrált hűségprogram (pontszám gyűjtése a profilhoz).</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">5. Adminisztrátor és Karbantartó Modul (A belső motor)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Műsortervező UI (Admin - Jog. 2):</strong> A Mozi, Régió, és Terem adatok központi menedzselése. 
+            Grafikus felület a vetítési rend összeállítására, ütközésfigyeléssel.</li>
+        <li><strong>Dolgozói Workflow (Dolgozó - Jog. 1):</strong> A takarítók értesítése a film végén. Jegyellenőrzés, 
+            ahol a <code>Jegy</code> táblában lévő "állapot" mezőt frissítik (felhasználható-e még).</li>
     </ul>
 </div>
 
-<a name="vizio-feltetelek"></a><h2 style="margin-bottom: 15px;">4.3. Feltételezések és függőségek</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
-    A filmadatlapok megjelenítése függ a külső IMDB / Rotten Tomatoes API-k elérhetőségétől, az ajánlómodul pedig az OpenAI API stabil működésétől.
-    Feltételezzük továbbá, hogy a felhasználók rendelkeznek stabil internetkapcsolattal, 
-    a mozi belső hálózata pedig képes kiszolgálni a dolgozói eszközök valós idejű (WebSocket) kommunikációját.
+<!-- 6-9. KORLÁTOZÁSOK, MINŐSÉG, KOCKÁZATOK -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">6. Korlátozások</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A rendszer működését befolyásoló tényező a fizetési kapuk maximális tranzakció/másodperc korlátja egy globális premier elővételénél.
 </div>
 
-<a name="vizio-vegtermek"></a><h2 style="margin-bottom: 15px;">5. A végtermék jellemzői (5 Fő Modul)</h2>
+<h2 style="margin-bottom: 15px; margin-top: 30px;">7. Minőségi elvárások</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Megbízhatóság és rendelkezésre állás: A rendszernek 99.9%-os SLA-t kell biztosítania. A térkép betöltése és a székek zárolása
+    nem vehet igénybe többet 1-2 másodpercnél. A személyes adatokat GDPR konform módon kell tárolni (jelszavak hash-elése a PostgreSQL-ben).
+</div>
+
+<h2 style="margin-bottom: 15px; margin-top: 30px;">8. Dokumentációkkal kapcsolatos követelmények</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Átfogó végfelhasználói kézikönyv az adminisztrátoroknak, valamint API dokumentáció a fejlesztőknek.
+</div>
+
+<h2 style="margin-bottom: 15px; margin-top: 30px;">9. Kockázat lista</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 15px;"><strong>1. Felfedező és Információs Modul:</strong> Összetett mozikereső, dinamikus 
-            filmadatlapok (leírás, trailer). Külső IMDB/Rotten Tomatoes integráció a hiteles értékelésekért, valamint belső 5 csillagos minősítési rendszer.</li>
-        <li style="margin-bottom: 15px;"><strong>2. Jegy- és Helyfoglaló Modul:</strong> Interaktív, vizuális terem-térkép. 
-            WebSocket alapú valós idejű székzárolás a dupla foglalások elkerülésére. Beépített AI asszisztens a személyre szabott filmajánláshoz.</li>
-        <li style="margin-bottom: 15px;"><strong>3. Büfé és Kosár Modul:</strong> Snackek, italok és menük előrendelése a jegy mellé. 
-            Lehetőség extra feláras termékek (pl. sajtszósz) dinamikus kosárba tételéhez az upsell növelése érdekében.</li>
-        <li style="margin-bottom: 15px;"><strong>4. Pénzügy és Marketing Modul:</strong> Különböző jegytípusok (diák, VIP) 
-            és napszak/kereslet alapú dinamikus árazás kezelése. Integrált hűségprogram pontgyűjtéssel és kuponbeváltással.</li>
-        <li style="margin-bottom: 10px;"><strong>5. Adminisztrátor és Karbantartó Modul:</strong> Grafikus műsortervező felület ütközés-figyeléssel,
-            valamint bevételi statisztikák. Dolgozói workflow: automatikus értesítések takarítóknak a film végén, és gyors hibabejelentő felület a szerelők felé.</li>
+    <ul style="margin-top: 5px;">
+        <li><strong>Külső API leállása:</strong> Ha az IMDB vagy az AI API nem elérhető, a filminformációk hiányosak lehetnek (Megoldás: gyorsítótárazás).</li>
+        <li><strong>Teljesítménybeli szűk keresztmetszet:</strong> Kiemelt premierek esetén a WebSocket szerverek túlterhelődhetnek.</li>
+        <li><strong>Felhasználói ellenállás (dolgozók):</strong> Az idősebb személyzet nehezebben állhat át a tabletes munkafolyamat-kezelésre. 
+            (Megoldás: leegyszerűsített UI).</li>
     </ul>
-</div>
-
-<a name="vizio-minoseg"></a><h2 style="margin-bottom: 15px;">7. Minőségi elvárások</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
-    A jegyértékesítés miatt a rendszernek 99.9%-os rendelkezésre állást kell biztosítania. 
-    A vizuális jegyfoglaló térkép betöltése és a székek zárolása premier időszakban sem vehet igénybe 1-2 másodpercnél többet. 
-    A bankkártyás fizetések lebonyolítása biztonságos külső szolgáltatón keresztül történik, a személyes adatokat pedig GDPR konform módon, titkosítva kezeljük.
-</div>
-
-<a name="vizio-kockazatok"></a><h2 style="margin-bottom: 15px;">9. Kockázat lista</h2>
-<div style="line-height: 1.7; margin-bottom: 30px;">
-    <ul style="margin-top: 15px;">
-        <li style="margin-bottom: 10px;"><strong>Külső API leállása:</strong> IMDB vagy AI szolgáltatás elérhetetlensége.
-            (Megoldás: saját gyorsítótár / cache alkalmazása az utolsó ismert adatokkal).</li>
-        <li style="margin-bottom: 10px;"><strong>Teljesítménybeli túlterhelés:</strong> Kiemelt premierek (pl. Marvel film) 
-            esetén a sok egyidejű foglalás túlterhelheti a szervert. (Megoldás: felhőalapú, skálázható architektúra bevezetése).</li>
-        <li style="margin-bottom: 10px;"><strong>Felhasználói ellenállás (dolgozók):</strong> Az idősebb személyzet nehezebben 
-            állhat át a digitális tabletes munkafolyamatokra. (Megoldás: rendkívül leegyszerűsített, nagy gombokkal operáló UI tervezése számukra).</li>
-    </ul>
-</div>
 </div>
     <div class="footer"></div>
 </body>
