@@ -103,8 +103,8 @@
 <!-- 1. BEVEZETÉS -->
 <a name="vizio-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    A dokumentum célja a tervezett moziüzemeltetési és jegyfoglaló webalkalmazás átfogó bemutatása.
-    A rendszer egy modern, felhőalapú megoldás, amely egyetlen integrált platformon kezeli egy több régióból 
+    A dokumentum célja a moziüzemeltetési webalkalmazás átfogó bemutatása.
+    A rendszer egy modern, felhőalapú megoldást használ, amely egybe kezel egy több régióból 
     álló mozihálózat vendégeinek jegy- és büfévásárlásait, a személyre szabott mesterséges intelligencia (AI) 
     alapú filmajánlásokat, valamint a dolgozói (karbantartói, takarítói, menedzseri) folyamatokat. A dokumentum 
     rögzíti a felmerülő üzleti problémákat, a rendszer funkcióit, a minőségi elvárásokat és a lehetséges kockázatokat.
@@ -123,17 +123,17 @@
 
 <h3 style="margin-bottom: 10px; margin-top: 20px;">2.2 A probléma megfogalmazása</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
-    A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma és súrlódási pont 
-    (pain point) azonosítható, amelyre a meglévő, elavult rendszerek nem nyújtanak megfelelő megoldást. 
-    A problémák három fő érintetti körre bonthatók: a vendégekre, a fizikai dolgozókra és a menedzsmentre.
+    A jelenlegi moziüzemeltetési piacon és a mozilátogatók szokásaiban számos olyan probléma és fursztráció
+    azonosítható, amelyre a meglévő, elavult rendszerek nem nyújtanak megfelelő megoldást. 
+    A problémák érintettjei: a vendégek, a fizikai dolgozók és a menedzsment.
     
     <p style="margin-top: 15px; font-weight: bold;">A vendégek (felhasználók) problémái:</p>
     <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Információhiány és döntési paralízis:</strong> A jelenlegi rendszerek csupán a filmek címét és 
-            egy rövid szinopszist jelenítenek meg. Nincs régió alapú gyorsszűrő, a nézők külső oldalakra navigálnak 
-            értékelésekért, és nincs személyre szabott ajánlás.</li>
+        <li><strong>Információhiány és döntési sokk:</strong> A jelenlegi rendszerek csupán a filmek címét és 
+            egy rövid leírást jelenítenek meg. Nincs régió alapú gyorsszűrő, a nézők külső oldalakat néznek meg 
+            értékelésért, és nincs személyre szabott ajánlás.</li>
         <li><strong>Lassú és frusztráló jegyvásárlási folyamat:</strong> A székek lefoglalásakor gyakran előfordul 
-            a "double-booking" jelenség (ketten próbálják ugyanazt a széket lefoglalni), mert a rendszerek nem valós 
+            a "double-booking" jelenség (ahol ketten próbálják ugyanazt a széket lefoglalni), mert a rendszerek nem valós 
             időben zárolják a helyeket. Ez fizetési hibákhoz vezet.</li>
         <li><strong>Kényelmetlen büfé-sorban állás:</strong> A jegyvásárlás és a büfé vásárlása két külön folyamat. 
             A helyszíni hosszú sorok rontják a moziélményt, és csökkentik az extra bevételt.</li>
@@ -149,7 +149,7 @@
 
     <p style="margin-top: 15px; font-weight: bold;">A menedzsment és az üzemeltetés problémái:</p>
     <ul style="margin-top: 5px; margin-bottom: 15px;">
-        <li><strong>Rugalmatlan árazási modellek:</strong> A hagyományos mozik fix árakkal dolgoznak.
+        <li><strong>fix árazási modellek:</strong> A hagyományos mozik fix árakkal dolgoznak.
             A dinamikus árazás és a mozinként/régiónként eltérő büfé-árképzés hiánya bevételkiesést okoz.</li>
         <li><strong>Műsortervezési nehézségek:</strong> A heti vetítési rend összeállítása nehézkes, a szoftverek nem jelzik az ütközéseket.</li>
         <li><strong>Szétaprózott rendszerek:</strong> A büfé készletnyilvántartása, a jegyértékesítés és a dolgozói beosztás különálló szoftverekben fut.</li>
@@ -339,7 +339,7 @@
             a rendszernek egy beállított időkorlát (pl. 10 perc) után automatikusan fel kell szabadítania a lefoglalt széket.</li>
         <li><strong>Jogi és adatvédelmi korlátok:</strong> A GDPR (Általános Adatvédelmi Rendelet) 
             szigorúan korlátozza a felhasználói adatok (születési dátum, e-mail) tárolásának idejét és módját. Bankkártyaadatokat
-            a rendszer saját adatbázisa egyáltalán nem tárolhat, azt kizárólag a minősített fizetési szolgáltató (PCI-DSS megfelelőség) kezelheti.</li>
+            a rendszer saját adatbázisa egyáltalán nem tárolhat, azt kizárólag a minősített fizetési szolgáltató kezelheti.</li>
         <li><strong>Böngésző kompatibilitás:</strong> A modern UI és a React/Next.js keretrendszer miatt a 
             rendszer nem támogatja a nagyon elavult böngészőket (pl. Internet Explorer 11), kizárólag a modern webmotorokat (Chromium, WebKit).</li>
     </ul>
@@ -373,7 +373,7 @@
 <div style="line-height: 1.7; margin-bottom: 20px;">
     A projekt átadásakor a fejlesztőcsapatnak az alábbi részletes dokumentációkat kell biztosítania a megrendelő és a jövőbeli karbantartók számára:
     <ul style="margin-top: 5px;">
-        <li><strong>Rendszerterv és API Referencia:</strong> A fejlesztők számára készített műszaki leírás. 
+        <li><strong>Rendszerterv és API:</strong> A fejlesztők számára készített műszaki leírás. 
             Tartalmazza a relációs adatbázis UML modelljét (Mozik, Termek, Székek, Felhasználók kapcsolatai), 
             valamint a végpontok (endpointok) teljes dokumentációját Swagger (OpenAPI) formátumban.</li>
         <li><strong>Adminisztrátori Kézikönyv:</strong> Részletes útmutató a 2-es jogosultságú (Admin) 
