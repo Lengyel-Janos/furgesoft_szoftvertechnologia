@@ -63,6 +63,12 @@
             <td> A moziüzemeltetés végeles ER-diagramjának elkészítése.</td>
             <td>Padányi Milán</td>
         </tr>
+         <tr>
+            <td>2026-10-14</td>
+            <td>1.3</td>
+            <td> Hibák kijavítása,weboldal kiegészítése.</td>
+            <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
+        </tr>
         
     </table>
     
@@ -94,6 +100,7 @@
             <li><a href="#vizio-elonyok">4.2 A termék használatának előnyei</a></li>
             <li><a href="#vizio-feltetelek">4.3 Feltételezések és függőségek</a></li>
             <li><a href="#vizio-koltseg">4.4 & 4.5 Költségbecslés és Installáció</a></li>
+            <li><a href="#ER-diagram">4.6 Adatbázis-architektúra (ER-diagram)</a></li>
         </ul>
     </li>
     
@@ -335,7 +342,7 @@
             számára biztosított strapabíró tabletek beszerzése és karbantartása, valamint a QR-kód olvasók a helyszíni jegy- és büféellenőrzéshez.</li>
     </ul>
 </div>
-    <h3 style="margin-bottom: 15px; margin-top: 30px;">Adatbázis-architektúra (ER-diagram)</h3>
+    <a name="ER-diagram"></a><h3 style="margin-bottom: 15px; margin-top: 30px;">4.6 Adatbázis-architektúra (ER-diagram)</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Az alábbi Entitás-Kapcsolat (ER) diagram szemlélteti a moziüzemeltetési rendszer relációs adatbázisának teljes logikai felépítését. A vizuális modell bemutatja a hálózat hierarchiáját 
     (Régiók, Mozik, Termek, Székek), a film- és vetítéskezelési adatokat, a kedvezményrendszerrel támogatott Felhasználókat, valamint a büfé- és jegyvásárlási tranzakciók egymás közötti kulcs-kapcsolatait (Foreign Key), 
@@ -343,7 +350,43 @@
     <img src="erdplus_1.png" width="1001" height = "600">
 </div>
 
+<!-- 5. VÉGTERMÉK JELLEMZŐI -->
+<h2 style="margin-bottom: 15px; margin-top: 30px;">5. A végtermék jellemzői, biztosított szolgáltatások</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A rendszer 5 fő, egymással szorosan együttműködő modulból épül fel, integrálva az egyedi adatbázis-architektúrát.
 
+    <p style="margin-top: 15px; font-weight: bold;">1. Felfedező és Információs Modul (A tartalom központja)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Összetett mozikereső város és helyszín alapján (<code>Filmkereso_helyhez_kotve</code>, Régió és Mozi ID szűrés). Dinamikus filmadatlapok (korhatár, trailer URL, Rendező).</li>
+        <li><strong>Integrációk:</strong> Külső IMDB API hívások a hiteles, valós idejű értékelések lekéréséhez.</li>
+        <li><strong>Belső minősítés:</strong> 5 csillagos értékelő rendszer a regisztrált (0-s jogosultságú) felhasználók számára.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">2. Jegy- és Helyfoglaló Modul (A vásárlás motorja)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Vizuális terem-térkép a szabad és foglalt helyekkel. A <code>Vetités</code> adataihoz (technológia_id, nyelv, kezdés) kötött <code>Szék</code> (sor, szám) lefoglalása.</li>
+        <li><strong>Technológiai innováció (WebSocket):</strong> A kiválasztott székek valós idejű zárolása a fizetés idejére. Kiküszöböli a duplikált foglalásokat.</li>
+        <li><strong>AI Ajánló:</strong> Beépített mesterséges intelligencia asszisztens a személyre szabott filmajánláshoz.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">3. Büfé és Kosár Modul (Az upsell felelőse)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> Snackek és italok előrendelése a jegy mellé.</li>
+        <li><strong>Régió-specifikus árképzés:</strong> Az <code>Arak</code> táblában az ételek árai konkrét mozihoz (mozi_id) vannak kötve, így városonként eltérhet a popcorn ára.</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">4. Pénzügy és Marketing Modul (Az üzleti logika)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Funkciók:</strong> A <code>Felhasználó</code> táblában lévő <code>Kedvezmény</code> mező (0: diák, 1: nyugdíjas, 2: gyerek) alapján a rendszer automatikusan vonja le a százalékos engedményeket a jegyárból.</li>
+        <li><strong>Marketing:</strong> Dinamikus árazás és integrált hűségprogram (pontszám gyűjtése a profilhoz).</li>
+    </ul>
+
+    <p style="margin-top: 15px; font-weight: bold;">5. Adminisztrátor és Karbantartó Modul (A belső motor)</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Műsortervező UI (Admin - Jog. 2):</strong> A Mozi, Régió, és Terem adatok központi menedzselése. Grafikus felület a vetítési rend összeállítására, ütközésfigyeléssel.</li>
+        <li><strong>Dolgozói Workflow (Dolgozó - Jog. 1):</strong> A takarítók értesítése a film végén. Jegyellenőrzés, ahol a <code>Jegy</code> táblában lévő "állapot" mezőt frissítik (felhasználható-e még).</li>
+    </ul>
+</div>
 
 <!-- 6. KORLÁTOZÁSOK -->
 <a name="vizio-korlatozasok"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Korlátozások</h2>
