@@ -50,6 +50,12 @@
              <td>Szótár kiegészítése a Vízió dokumentumban megjelenő új üzleti, technológiai és mérnöki szakkifejezések (pl. SaaS, SLA, Docker, JWT) magyarázatával.</td>
             <td>Ujfalussy Kristóf</td>
         </tr>
+        <tr>
+            <td>2026-10-16</td>
+            <td>1.3</td>
+            <td>Szótár kiegészítése az SRS dokumentumban megjelenő új fogalmakkal (pl. használati eset, MoSCoW, szekvenciadiagram, multiplicitás).</td>
+            <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
+        </tr>
     </table>
 
     <h2>Szótár: </h2>
@@ -172,6 +178,49 @@
     <p style="margin-bottom: 10px;"><strong><u>Swagger (OpenAPI):</u></strong> Egy széles körben használt fejlesztői eszköz és szabvány, 
         amellyel a rendszer API végpontjait (tehát a szerver kommunikációs csatornáit) lehet átláthatóan, interaktív weblap formájában dokumentálni
         a jövőbeli fejlesztők számára.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Funkcionális követelmény:</u></strong> Azt írja le, hogy mit kell tudnia a rendszernek 
+        (pl. "a vendég ki tudjon választani egy széket").</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Nem funkcionális követelmény:</u></strong> Azt írja le, hogy milyen jól kell működnie a rendszernek 
+        (pl. milyen gyors legyen, mennyire legyen biztonságos).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Használati eset (Use Case):</u></strong> Leírja lépésről lépésre, hogy egy felhasználó mit csinál a rendszerrel 
+        (pl. "Jegyvásárlás"), és mi történik, ha valami nem úgy megy, ahogy kellene.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Szereplő (Aktor):</u></strong> Valaki vagy valami, ami használja a rendszert 
+        (pl. Vendég, Dolgozó, Admin, vagy a film végét jelző Rendszeridőzítő).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>«include» és «extend»:</u></strong> Kapcsolatok a használati eset diagramon. Az «include» azt jelenti, 
+        hogy az egyik eset mindig tartalmazza a másikat, az «extend» pedig azt, hogy csak néha.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>MoSCoW módszer:</u></strong> A követelmények fontosság szerinti besorolása: Must have (kötelező), 
+        Should have (fontos), Could have (ha marad idő), Won't have (most nem).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Elfogadási feltétel:</u></strong> Egy előre leírt feltétel ("Adott – Amikor – Akkor"), ami alapján 
+        eldönthető, hogy egy funkció jól működik-e.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Üzleti szabály:</u></strong> A mozi működéséből jövő szabály, amit a rendszernek be kell tartatnia 
+        (pl. "két vetítés között legalább 20 perc kell a takarításra").</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Szekvenciadiagram:</u></strong> UML diagram, ami megmutatja, hogy a rendszer részei milyen sorrendben 
+        küldenek egymásnak üzeneteket (pl. a jegyvásárlás lépései).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Állapotdiagram:</u></strong> UML diagram, ami megmutatja, hogy egy dolog (pl. egy szék vagy egy jegy) 
+        milyen állapotokban lehet, és mi miatt vált át egyikből a másikba.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Aktivitásdiagram:</u></strong> UML diagram, ami egy folyamat lépéseit és döntési pontjait mutatja, 
+        hasonlóan egy folyamatábrához (pl. a jegyár kiszámítása).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Multiplicitás:</u></strong> Az UML diagramon a kapcsolatok végén lévő szám, ami megmutatja, 
+        hogy egy elemhez hány másik tartozhat (pl. 1 – 0..* azt jelenti, hogy egy mozihoz akárhány terem tartozhat).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>UML kapcsolatok:</u></strong> Az osztálydiagramon a kapcsolatok fajtáját a vonal vége mutatja:
+        sima vonal = asszociáció, üres rombusz = aggregáció (a rész az egész nélkül is létezhet), teli rombusz = kompozíció
+        (a rész nem létezhet az egész nélkül), üres háromszög = öröklődés.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Gantt-diagram:</u></strong> Ütemtervet mutató diagram, ahol a feladatok csíkokként 
+        látszanak egy időtengelyen.</p>
 </div>
 
     <div class="footer"></div>

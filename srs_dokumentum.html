@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>(H3) SRS dokumentum</title>
+</head>
+<body>
+    <h1>Csoport neve: Fü(r)ge Soft</h1>
+    <h1>Feladat sorszáma: 3</h1>
+    <h1>Feladat címe: Soft Mozi</h1>
+
+    <h1 class="center spaced">(H3) SRS dokumentum</h1>
+
+    <div class="center">
+        Gyakorlatvezető:
+        <h2>Árvai László</h2>
+    </div>
+
+    <h2>Csoport tagok: </h2>
+    <table>
+        <tr> <td>Padányi Milán    </td> <td>FMUL84</td> <td>mpadanyi09@gmail.com</td> </tr>
+        <tr> <td>Ujfalussy Kristóf</td> <td>ZZORDN</td> <td>kristof.ujfalussy@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Kecskés Gábor    </td> <td>QDY6TL</td> <td>gabor.kecskes@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Lengyel János    </td> <td>N9XZKQ</td> <td>lengyeljanos2004@gmail.com</td> </tr>
+        <tr> <td>Laczkó Norbert   </td> <td>SLIIKD</td> <td>laczkonorbert4@gmail.com</td> </tr>
+    </table>
+
+    <div class="right spaced">2026-10-14</div>
+
+    <h2>Történet: </h2>
+    <table>
+        <tr> <th>Dátum</th> <th>Verzió</th> <th>Leírás</th> <th>Szerző</th> </tr>
+        <tr>
+            <td>2026-10-14</td>
+            <td>1.0</td>
+            <td>Létrejött a dokumentum.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-10-14</td>
+            <td>1.1</td>
+            <td>Megírtuk az 1-2. pontot (bevezetés, a dokumentum célja, mi tartozik a projektbe és mi nem, fogalmak,
+                a rendszer általános leírása, felhasználók, környezet, megszorítások).</td>
+            <td>Ujfalussy Kristóf</td>
+        </tr>
+        <tr>
+            <td>2026-10-15</td>
+            <td>1.2</td>
+            <td>Összegyűjtöttük a funkcionális követelményeket modulonként (4. pont, 39 db) és fontosság szerint besoroltuk őket.
+                Elkészültek a használati esetek és a legfontosabbak részletes leírása (5. pont).</td>
+            <td>Kecskés Gábor<br>Laczkó Norbert</td>
+        </tr>
+        <tr>
+            <td>2026-10-15</td>
+            <td>1.3</td>
+            <td>Külső kapcsolatok (3. pont): felület, külső rendszerek, a fontosabb API végpontok.
+                Nem funkcionális követelmények (9. pont).</td>
+            <td>Laczkó Norbert</td>
+        </tr>
+        <tr>
+            <td>2026-10-15</td>
+            <td>1.4</td>
+            <td>Az adatbázis-terv átdolgozása (7. pont): az ER-diagramot UML jelöléssel újrarajzoltuk és kiegészítettük a hiányzó táblákkal
+                (Termek, Székek, Vetítések, Technológiák, Értékelések, Büfé rendelések). Üzleti szabályok (8. pont).</td>
+            <td>Padányi Milán</td>
+        </tr>
+        <tr>
+            <td>2026-10-16</td>
+            <td>1.5</td>
+            <td>A diagramok megrajzolása (kontextus-, használati eset-, szekvencia-, állapot-, aktivitás-, architektúra- és Gantt-diagram)
+                és beillesztése a dokumentumba.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-10-16</td>
+            <td>1.6</td>
+            <td>Követelmények összesítő táblázata (10. pont), elfogadási feltételek (11. pont).
+                A dokumentum átnézése, hibák javítása, szótár kiegészítése.</td>
+            <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
+        </tr>
+    </table>
+
+
+    <h2>Tartalomjegyzék: </h2>
+    <ul>
+    <li><a href="#srs-bevezetes">1. Bevezetés</a>
+        <ul>
+            <li><a href="#srs-cel">1.1 A dokumentum célja</a></li>
+            <li><a href="#srs-hatokor">1.2 A projekt határai</a></li>
+            <li><a href="#srs-definiciok">1.3 Fogalmak és rövidítések</a></li>
+            <li><a href="#srs-hivatkozasok">1.4 Hivatkozások</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-altalanos">2. Általános leírás</a>
+        <ul>
+            <li><a href="#srs-perspektiva">2.1 A rendszer és a környezete</a></li>
+            <li><a href="#srs-funkciok">2.2 A rendszer fő funkciói</a></li>
+            <li><a href="#srs-felhasznalok">2.3 Felhasználók</a></li>
+            <li><a href="#srs-kornyezet">2.4 Működési környezet</a></li>
+            <li><a href="#srs-megszoritasok">2.5 Megszorítások</a></li>
+            <li><a href="#srs-feltetelezesek">2.6 Feltételezések és függőségek</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-interfesz">3. Külső kapcsolatok (interfészek)</a>
+        <ul>
+            <li><a href="#srs-ui">3.1 Felhasználói felület</a></li>
+            <li><a href="#srs-hardver">3.2 Hardver</a></li>
+            <li><a href="#srs-szoftver">3.3 Külső szoftverek</a></li>
+            <li><a href="#srs-kommunikacio">3.4 Kommunikáció (API és WebSocket)</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-funkcionalis">4. Funkcionális követelmények</a>
+        <ul>
+            <li><a href="#srs-prioritas">4.1 Fontossági sorrend</a></li>
+            <li><a href="#srs-fk-felhasznalo">4.2 Felhasználókezelés</a></li>
+            <li><a href="#srs-fk-felfedezo">4.3 Felfedező és Információs Modul</a></li>
+            <li><a href="#srs-fk-jegy">4.4 Jegy- és Helyfoglaló Modul</a></li>
+            <li><a href="#srs-fk-bufe">4.5 Büfé és Kosár Modul</a></li>
+            <li><a href="#srs-fk-penzugy">4.6 Pénzügy és Marketing Modul</a></li>
+            <li><a href="#srs-fk-admin">4.7 Adminisztrátor Modul</a></li>
+            <li><a href="#srs-fk-dolgozo">4.8 Dolgozói (Karbantartó) Modul</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-hasznalati">5. Használati esetek</a>
+        <ul>
+            <li><a href="#srs-uc-vendeg">5.1 A Vendég használati esetei</a></li>
+            <li><a href="#srs-uc-belso">5.2 A Dolgozó és az Admin használati esetei</a></li>
+            <li><a href="#srs-uc-reszletes">5.3 Részletes leírások</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-dinamikus">6. A rendszer működése diagramokon</a>
+        <ul>
+            <li><a href="#srs-szekv-jegy">6.1 Jegyvásárlás</a></li>
+            <li><a href="#srs-szekv-takaritas">6.2 Takarítás és székhiba</a></li>
+            <li><a href="#srs-allapot-szek">6.3 A szék állapotai</a></li>
+            <li><a href="#srs-allapot-jegy">6.4 A jegy állapotai</a></li>
+            <li><a href="#srs-aktivitas-ar">6.5 A jegyár kiszámítása</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-adat">7. Adatbázis</a>
+        <ul>
+            <li><a href="#srs-er">7.1 Az adatbázis UML diagramja</a></li>
+            <li><a href="#srs-adatszotar">7.2 A táblák leírása</a></li>
+            <li><a href="#srs-megorzes">7.3 Mentés és adatmegőrzés</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#srs-uzleti">8. Üzleti szabályok</a></li>
+    <li><a href="#srs-nemfunkcionalis">9. Nem funkcionális követelmények</a>
+        <ul>
+            <li><a href="#srs-nfk-tablazat">9.1 A követelmények listája</a></li>
+            <li><a href="#srs-architektura">9.2 A rendszer felépítése</a></li>
+        </ul>
+    </li>
+    <li><a href="#srs-nyomon">10. Követelmények összesítése és ütemezése</a></li>
+    <li><a href="#srs-elfogadas">11. Elfogadási feltételek</a></li>
+</ul>
+
+<h1 style="margin-bottom: 20px; font-size: 2.2em; border-bottom: 1px solid #555; padding-bottom: 10px;">Szoftver Követelmény Specifikáció</h1>
+
+<!-- 1. BEVEZETÉS -->
+<a name="srs-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
+
+<a name="srs-cel"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.1 A dokumentum célja</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Ebben a dokumentumban leírjuk, hogy pontosan mit kell tudnia a Soft Mozi rendszernek. A Vízió dokumentumban
+    azt írtuk le, hogy mit szeretnénk és miért, itt pedig azt, hogy a rendszernek konkrétan milyen funkciói legyenek
+    és ezeknek hogyan kell működniük. Minden követelmény kap egy azonosítót (pl. FK-01), így később az Analízis Modellben (H4),
+    a Rendszer Tervezésben (H5) és a tesztelésnél is könnyen hivatkozni tudunk rájuk.
+    <br><br>
+    A dokumentumot elsősorban magunknak (a fejlesztőcsapatnak) és a gyakorlatvezetőnek írtuk, hogy mindenki ugyanazt értse
+    a rendszer alatt, és a fejlesztés közben legyen mihez igazodni.
+</div>
+
+<a name="srs-hatokor"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.2 A projekt határai</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A Soft Mozi egy webes alkalmazás, amely egy több régióban működő mozihálózatot szolgál ki.
+    <p style="margin-top: 15px; font-weight: bold;">Amit a rendszer tud:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>Online jegyvásárlás teremtérképpel, ahol a kiválasztott széket más nem tudja közben lefoglalni.</li>
+        <li>Büfé termékek rendelése a jeggyel együtt, mozinként eltérő árakkal.</li>
+        <li>Mozi- és filmkereső régió és város alapján, filmadatlapok IMDB és saját értékelésekkel.</li>
+        <li>AI filmajánló.</li>
+        <li>Kedvezmények (diák, nyugdíjas, gyerek), dinamikus árazás és hűségpontok.</li>
+        <li>Admin felület: régiók, mozik, termek, vetítések és árak kezelése, statisztikák.</li>
+        <li>Dolgozói felület: jegyellenőrzés, büfé rendelések, takarítás és székhibák bejelentése.</li>
+    </ul>
+    <p style="margin-top: 15px; font-weight: bold;">Amit a rendszer nem csinál:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>A bankkártyás fizetést nem mi dolgozzuk fel, hanem egy külső fizetési szolgáltató.</li>
+        <li>Nem foglalkozik a dolgozók fizetésével, munkaidejével.</li>
+        <li>Nem kezeli a büfé raktárkészletét és a beszállítókat.</li>
+        <li>Nem lesz külön mobilalkalmazás, a weboldal telefonon is jól használható lesz.</li>
+    </ul>
+</div>
+
+<a name="srs-definiciok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.3 Fogalmak és rövidítések</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A dokumentumban használt fontosabb rövidítések. A többi fogalom a projekt <a href="szotar.html">Szótár</a> oldalán található.
+    <table style="margin-top: 10px;">
+        <tr> <th>Rövidítés / Fogalom</th> <th>Jelentés</th> </tr>
+        <tr> <td>SRS</td> <td>Szoftver Követelmény Specifikáció (ez a dokumentum).</td> </tr>
+        <tr> <td>FK-xx</td> <td>Funkcionális követelmény azonosítója.</td> </tr>
+        <tr> <td>NFK-xx</td> <td>Nem funkcionális követelmény azonosítója.</td> </tr>
+        <tr> <td>UC-xx</td> <td>Használati eset (Use Case) azonosítója.</td> </tr>
+        <tr> <td>ÜSZ-xx</td> <td>Üzleti szabály azonosítója.</td> </tr>
+        <tr> <td>EK-xx</td> <td>Elfogadási feltétel (kritérium) azonosítója.</td> </tr>
+        <tr> <td>M / S / C</td> <td>A követelmények fontossága: kötelező / fontos / ha marad idő (MoSCoW módszer).</td> </tr>
+        <tr> <td>Vendég / Dolgozó / Admin</td> <td>A három jogosultsági szint (0 / 1 / 2) a Felhasználók táblában.</td> </tr>
+        <tr> <td>Zárolás</td> <td>Amikor egy széket ideiglenesen lefoglalunk a vendégnek, amíg fizet.</td> </tr>
+        <tr> <td>E-jegy</td> <td>A vásárlás után kapott digitális jegy QR-kóddal.</td> </tr>
+    </table>
+</div>
+
+<a name="srs-hivatkozasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.4 Hivatkozások</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <ul style="margin-top: 5px;">
+        <li><a href="projekt_terv.html">(H1) Projekt terv</a> – mérföldkövek, technológiák, tesztelés.</li>
+        <li><a href="vizio_dokumentum.html">(H2) Vízió dokumentum</a> – célok, felhasználók, modulok, az első ER-diagram.</li>
+        <li><a href="szotar.html">Szótár</a> – a projekt fogalmai.</li>
+        <li>IEEE 830 – ajánlás az SRS dokumentumok felépítésére (ez alapján készült a dokumentum szerkezete).</li>
+        <li>GDPR – az EU adatvédelmi rendelete.</li>
+    </ul>
+</div>
+
+<!-- 2. ÁLTALÁNOS LEÍRÁS -->
+<a name="srs-altalanos"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">2. Általános leírás</h2>
+
+<a name="srs-perspektiva"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.1 A rendszer és a környezete</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A Soft Mozi egy új rendszer, ami azokat a dolgokat fogja össze, amik a moziknál most külön programokban vannak
+    (jegyeladás, büfé, dolgozók, műsor). A rendszert három fajta felhasználó használja, és négy külső szolgáltatással
+    kommunikál. Ezt mutatja az alábbi ábra.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/01_kontextus.png" alt="Kontextus diagram" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: A Soft Mozi kontextus diagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-funkciok"></a><h3 style="margin-bottom: 15px; margin-top: 20px;">2.2 A rendszer fő funkciói</h3>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Keresés és információ</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Mozik keresése régió és város szerint, napi műsor, filmadatlapok értékelésekkel, AI filmajánló.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Jegy- és büfévásárlás</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Teremtérkép, szék zárolása, közös kosár a jegyeknek és a büfének, online fizetés, e-jegy QR-kóddal.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Kedvezmények és pontok</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            A kedvezmények automatikus levonása, dinamikus árazás, hűségpontok gyűjtése és beváltása.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Adminisztráció</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Régiók, mozik, termek és székek kezelése, műsortervező, büfé árak mozinként, statisztikák.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">Dolgozói feladatok</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            Jegyellenőrzés QR-kóddal, büfé rendelések kiadása, értesítés takarításra a film végén, székhibák bejelentése.
+        </div>
+    </div>
+
+</div>
+
+<a name="srs-felhasznalok"></a><h3 style="margin-bottom: 15px; margin-top: 20px;">2.3 Felhasználók</h3>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Nem regisztrált látogató</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Mit csinál:</strong> Nézi a műsort és a filmeket. Vásárolni és értékelni csak bejelentkezés után tud.<br>
+            <strong style="color: #bbb;">Mire kell figyelni:</strong> Bárki lehet, ezért a felületnek magától értetődőnek kell lennie.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Vendég (Szint: 0)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Mit csinál:</strong> Jegyet és büfét vesz, kedvezményt használ, pontokat gyűjt, filmeket értékel.<br>
+            <strong style="color: #bbb;">Mire kell figyelni:</strong> Főleg telefonról használja, premiereknél sokan vannak egyszerre.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Dolgozó (Szint: 1)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Mit csinál:</strong> Pénztáros, jegyszedő, büfés, takarító vagy szerelő. Csak a saját mozijának adatait látja.<br>
+            <strong style="color: #bbb;">Mire kell figyelni:</strong> Nem mindenki ért a számítógéphez, ezért nagy gombok és kevés lépés kell.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #ff7b00;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #ff7b00;">Admin (Szint: 2)</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Mit csinál:</strong> Mozivezető. Kezeli a mozikat, a műsort, az árakat és a felhasználók jogosultságait.<br>
+            <strong style="color: #bbb;">Mire kell figyelni:</strong> Számítógépen dolgozik, a műsortervezőhöz nagyobb képernyő kell.
+        </div>
+    </div>
+
+</div>
+
+<a name="srs-kornyezet"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.4 Működési környezet</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li><strong>Szerver:</strong> Felhőben fut (pl. AWS vagy Azure), Docker konténerekben, PostgreSQL adatbázissal.</li>
+        <li><strong>Vendégek:</strong> Bármilyen modern böngésző (Chrome, Firefox, Edge, Safari) számítógépen vagy telefonon.</li>
+        <li><strong>Dolgozók:</strong> A mozi által adott tablet kamerával (a QR-kódokhoz), a mozi Wi-Fi hálózatán.</li>
+        <li><strong>Adminok:</strong> Asztali gép vagy laptop.</li>
+    </ul>
+</div>
+
+<a name="srs-megszoritasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.5 Megszorítások</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li><strong>Technológia:</strong> A Projekt tervben megadott technológiákat használjuk: Next.js, TypeScript és Tailwind CSS a frontendhez,
+            Python FastAPI vagy Java Spring Boot a backendhez, PostgreSQL az adatbázishoz.</li>
+        <li><strong>Adatvédelem:</strong> Bankkártyaadatot nem tárolunk. A személyes adatokat a GDPR szerint kell kezelni.</li>
+        <li><strong>Idő:</strong> A félév végéig kell elkészülni, négy mérföldkőben, ezért nem fér bele minden funkció, sorrendet kell felállítani.</li>
+        <li><strong>Csapat:</strong> 5 fős a csapat, és a fejlesztés alatt ingyenes vagy hallgatói szolgáltatásokat szeretnénk használni.</li>
+        <li><strong>Nyelv:</strong> A felület magyar nyelvű lesz.</li>
+    </ul>
+</div>
+
+<a name="srs-feltetelezesek"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.6 Feltételezések és függőségek</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <strong>Feltételezzük, hogy:</strong>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>a vendégeknek van e-mail címük és internetük,</li>
+        <li>minden moziban van Wi-Fi és legalább egy tablet a dolgozóknak,</li>
+        <li>a kedvezményhez szükséges igazolványt a jegyszedő a helyszínen nézi meg.</li>
+    </ul>
+    <strong>A rendszer ezektől függ:</strong>
+    <ul style="margin-top: 5px;">
+        <li><strong>IMDB API:</strong> innen jönnek a filmadatok és az értékelések. Ha nem elérhető, a legutóbb elmentett adatokat mutatjuk.</li>
+        <li><strong>OpenAI API:</strong> az AI ajánlóhoz kell. Ha nem működik, egyszerűen a legnépszerűbb filmeket ajánljuk.</li>
+        <li><strong>Fizetési szolgáltató:</strong> ha nem működik, nem lehet online fizetni, erről üzenetet írunk ki.</li>
+        <li><strong>E-mail küldő szolgáltatás:</strong> ha nem működik, a jegy a profilban akkor is megtalálható.</li>
+    </ul>
+</div>
+
+<!-- 3. KÜLSŐ KAPCSOLATOK -->
+<a name="srs-interfesz"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">3. Külső kapcsolatok (interfészek)</h2>
+
+<a name="srs-ui"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.1 Felhasználói felület</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Mindhárom felhasználói körnek külön felülete lesz, de ugyanazokkal a színekkel és stílussal.
+    <p style="margin-top: 15px; font-weight: bold;">Vendég felület:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>Reszponzív, telefonon és számítógépen is jól néz ki.</li>
+        <li>Felül menüsor: régióválasztó, kereső, kosár, profil.</li>
+        <li>A teremtérképen a székek színe mutatja az állapotukat: szabad (szürke), kiválasztott (kék), foglalt (piros), hibás (áthúzva).</li>
+        <li>A vásárlás 4 lépés: szék kiválasztása → büfé → összesítő → fizetés. Közben látszik, mennyi idő van még a zárolásból.</li>
+    </ul>
+    <p style="margin-top: 15px; font-weight: bold;">Dolgozói felület (tablet):</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>Nagy, színes gombok, egy képernyőn egy feladat.</li>
+        <li>A QR-kód beolvasása egy gombnyomással indul, az eredmény zöld (érvényes) vagy piros (érvénytelen) képernyő.</li>
+        <li>Az új feladatokról (takarítás, javítás) hangjelzés szól.</li>
+    </ul>
+    <p style="margin-top: 15px; font-weight: bold;">Admin felület:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li>Oldalsó menü: Mozik, Filmek, Műsortervező, Árak, Felhasználók, Statisztikák.</li>
+        <li>A műsortervezőben termenként egy idősáv látszik, ide lehet behúzni a filmeket. Ha két vetítés ütközik, pirosan jelzi.</li>
+    </ul>
+</div>
+
+<a name="srs-hardver"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.2 Hardver</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li><strong>Tablet kamera:</strong> a dolgozók ezzel olvassák be a jegyek QR-kódját, közvetlenül a böngészőben.</li>
+        <li><strong>QR-kód olvasó:</strong> a pénztáraknál sima USB-s olvasó is használható.</li>
+    </ul>
+</div>
+
+<a name="srs-szoftver"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.3 Külső szoftverek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Rendszer</th> <th>Mire használjuk</th> <th>Hogyan kapcsolódunk</th> </tr>
+        <tr> <td>IMDB / Rotten Tomatoes API</td> <td>Filmadatok és értékelések</td> <td>REST API, naponta egyszer frissítjük</td> </tr>
+        <tr> <td>OpenAI API</td> <td>AI filmajánló</td> <td>REST API, amikor a felhasználó kér ajánlást</td> </tr>
+        <tr> <td>Fizetési szolgáltató</td> <td>Bankkártyás fizetés</td> <td>REST API, minden vásárlásnál</td> </tr>
+        <tr> <td>E-mail küldő szolgáltatás</td> <td>Regisztráció megerősítése, e-jegy küldése</td> <td>REST API</td> </tr>
+        <tr> <td>PostgreSQL</td> <td>Az adatok tárolása</td> <td>A backendből</td> </tr>
+    </table>
+</div>
+
+<a name="srs-kommunikacio"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.4 Kommunikáció (API és WebSocket)</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A frontend és a backend REST API-n keresztül kommunikál, HTTPS-en. A bejelentkezéshez JWT tokent használunk.
+    A fontosabb végpontok (a teljes lista a Rendszer Tervezésben lesz):
+    <table style="margin-top: 10px;">
+        <tr> <th>Metódus</th> <th>Végpont</th> <th>Mire jó</th> <th>Ki használhatja</th> </tr>
+        <tr> <td>POST</td> <td><code>/api/regisztracio</code></td> <td>Regisztráció</td> <td>Bárki</td> </tr>
+        <tr> <td>POST</td> <td><code>/api/bejelentkezes</code></td> <td>Bejelentkezés</td> <td>Bárki</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/mozik</code></td> <td>Mozik listája régiónként</td> <td>Bárki</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/mozik/{id}/musor</code></td> <td>Egy mozi műsora</td> <td>Bárki</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/filmek/{id}</code></td> <td>Filmadatlap</td> <td>Bárki</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/vetitesek/{id}/szekek</code></td> <td>A terem székei</td> <td>Bárki</td> </tr>
+        <tr> <td>POST</td> <td><code>/api/rendelesek</code></td> <td>Kosár elküldése, fizetés</td> <td>Vendég</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/profil/jegyek</code></td> <td>Saját jegyek és pontok</td> <td>Vendég</td> </tr>
+        <tr> <td>POST</td> <td><code>/api/jegyek/ellenorzes</code></td> <td>Jegy ellenőrzése a bejáratnál</td> <td>Dolgozó</td> </tr>
+        <tr> <td>POST</td> <td><code>/api/admin/vetitesek</code></td> <td>Új vetítés felvétele</td> <td>Admin</td> </tr>
+        <tr> <td>GET</td> <td><code>/api/admin/statisztikak</code></td> <td>Statisztikák</td> <td>Admin</td> </tr>
+    </table>
+
+    <p style="margin-top: 20px;">
+        A WebSocket kapcsolatot arra használjuk, hogy a szerver azonnal szólni tudjon a böngészőnek, például ha valaki lefoglalt egy széket,
+        vagy ha egy takarítónak új feladata van. A fontosabb üzenetek:
+    </p>
+    <ul style="margin-top: 5px;">
+        <li><strong>szék zárolva:</strong> valaki kiválasztott egy széket, a többieknél foglaltként jelenik meg,</li>
+        <li><strong>szék felszabadult:</strong> lejárt a zárolás, a szék újra szabad,</li>
+        <li><strong>szék foglalt:</strong> valaki kifizette a jegyet,</li>
+        <li><strong>takarítási feladat:</strong> vége egy filmnek, a takarító értesítést kap,</li>
+        <li><strong>javítási feladat:</strong> elromlott egy szék, a szerelő értesítést kap.</li>
+    </ul>
+</div>
+
+<!-- 4. FUNKCIONÁLIS KÖVETELMÉNYEK -->
+<a name="srs-funkcionalis"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">4. Funkcionális követelmények</h2>
+
+<a name="srs-prioritas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.1 Fontossági sorrend</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A követelményeket a MoSCoW módszerrel soroltuk be aszerint, hogy mennyire fontosak:
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>M – Must have (kötelező):</strong> enélkül nem működik a rendszer, mindenképp meg kell csinálni.</li>
+        <li><strong>S – Should have (fontos):</strong> nagyon kellene, de átmenetileg el lehet nélküle lenni.</li>
+        <li><strong>C – Could have (ha marad idő):</strong> jó lenne, de csak akkor csináljuk meg, ha a többivel végeztünk.</li>
+    </ul>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/12_prioritas.png" alt="Követelmények fontosság szerint" style="width: 100%; max-width: 798px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: A 39 funkcionális követelmény fontosság szerint</em></div>
+    </div>
+</div>
+
+<a name="srs-fk-felhasznalo"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Felhasználókezelés</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-01</td> <td>Regisztráció névvel, e-mail címmel, jelszóval és születési dátummal. Az e-mail címet egy linkkel kell megerősíteni.</td> <td>M</td> </tr>
+        <tr> <td>FK-02</td> <td>Bejelentkezés e-mail címmel és jelszóval.</td> <td>M</td> </tr>
+        <tr> <td>FK-03</td> <td>Elfelejtett jelszó esetén új jelszót lehessen beállítani egy e-mailben kapott linkkel.</td> <td>S</td> </tr>
+        <tr> <td>FK-04</td> <td>A felhasználó módosíthassa a nevét, telefonszámát és profilképét.</td> <td>C</td> </tr>
+        <tr> <td>FK-05</td> <td>A felhasználó beállíthassa a kedvezményét (diák, nyugdíjas, gyerek). A nyugdíjas és gyerek kedvezménynél a rendszer a születési dátumot is ellenőrzi.</td> <td>M</td> </tr>
+        <tr> <td>FK-06</td> <td>Mindenki csak azt lássa és használja, amihez a jogosultsága (0, 1, 2) alapján joga van.</td> <td>M</td> </tr>
+        <tr> <td>FK-07</td> <td>A felhasználó törölhesse a fiókját. Ilyenkor a személyes adatait töröljük, de a vásárlásai név nélkül megmaradnak.</td> <td>M</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-felfedezo"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Felfedező és Információs Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-08</td> <td>Mozik keresése régió és város alapján.</td> <td>M</td> </tr>
+        <tr> <td>FK-09</td> <td>Egy mozi napi műsorának megjelenítése a kezdési időkkel, nyelvvel és technológiával (2D, 3D, IMAX, 4DX).</td> <td>M</td> </tr>
+        <tr> <td>FK-10</td> <td>Filmadatlap: cím, rendező, játékidő, korhatár, bemutató, műfajok, leírás, trailer link.</td> <td>M</td> </tr>
+        <tr> <td>FK-11</td> <td>A műsor szűrése műfaj, technológia, nyelv (szinkronos / feliratos) és napszak szerint.</td> <td>S</td> </tr>
+        <tr> <td>FK-12</td> <td>Az IMDB értékelés megjelenítése a filmadatlapon.</td> <td>S</td> </tr>
+        <tr> <td>FK-13</td> <td>A vendég 1-5 csillaggal értékelhet egy filmet, de csak akkor, ha látta (volt rá felhasznált jegye).</td> <td>S</td> </tr>
+        <tr> <td>FK-14</td> <td>A trailert az oldalon belül is meg lehessen nézni.</td> <td>C</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-jegy"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 Jegy- és Helyfoglaló Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-15</td> <td>A terem térképének megjelenítése a székekkel (sor, szám) és azok állapotával.</td> <td>M</td> </tr>
+        <tr> <td>FK-16</td> <td>Ha a vendég kiválaszt egy széket, a rendszer zárolja, és a többi vendégnél is rögtön foglaltként jelenik meg (WebSocket).</td> <td>M</td> </tr>
+        <tr> <td>FK-17</td> <td>Ha a vendég 10 percen belül nem fizet, vagy kiveszi a kosárból, a szék újra szabad lesz.</td> <td>M</td> </tr>
+        <tr> <td>FK-18</td> <td>Egyszerre legfeljebb 10 jegyet lehessen venni.</td> <td>M</td> </tr>
+        <tr> <td>FK-19</td> <td>Fizetés után a vendég e-jegyet kap QR-kóddal, e-mailben és a profiljában is.</td> <td>M</td> </tr>
+        <tr> <td>FK-20</td> <td>A jegyet a vetítés előtt legalább 2 órával le lehessen mondani, ilyenkor visszakapja a pénzét.</td> <td>S</td> </tr>
+        <tr> <td>FK-21</td> <td>Az AI ajánló a korábbi vásárlások és értékelések alapján ajánljon filmeket és vetítéseket (a korhatárt figyelembe véve).</td> <td>S</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-bufe"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.5 Büfé és Kosár Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-22</td> <td>A büfé termékek megjelenítése az adott mozi saját áraival (Árak tábla).</td> <td>M</td> </tr>
+        <tr> <td>FK-23</td> <td>A jegyek és a büfé termékek egy kosárba kerülnek, és egyszerre lehet kifizetni őket.</td> <td>M</td> </tr>
+        <tr> <td>FK-24</td> <td>A büfé rendelést a helyszínen a QR-kóddal lehessen átvenni.</td> <td>C</td> </tr>
+        <tr> <td>FK-25</td> <td>A termékekhez extrát lehessen választani (pl. sajtszósz, nagyobb méret).</td> <td>C</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-penzugy"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.6 Pénzügy és Marketing Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-26</td> <td>A kedvezményt (Kedvezmények tábla, százalék) a rendszer automatikusan levonja a jegy árából. A büfére nem jár kedvezmény.</td> <td>M</td> </tr>
+        <tr> <td>FK-27</td> <td>A fizetés a külső fizetési szolgáltatónál történik, mi csak az eredményt kapjuk meg.</td> <td>M</td> </tr>
+        <tr> <td>FK-28</td> <td>Dinamikus árazás: a jegy ára változhat a napszak és a terem telítettsége alapján.</td> <td>S</td> </tr>
+        <tr> <td>FK-29</td> <td>Hűségpontok: minden 100 Ft után 1 pont jár, 100 pont = 500 Ft kedvezmény a következő vásárlásnál.</td> <td>S</td> </tr>
+        <tr> <td>FK-30</td> <td>A vásárlásról letölthető legyen egy PDF nyugta.</td> <td>C</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-admin"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.7 Adminisztrátor Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-31</td> <td>Régiók, mozik, termek és székek felvétele, módosítása és törlése.</td> <td>M</td> </tr>
+        <tr> <td>FK-32</td> <td>Műsortervező: új vetítést csak akkor lehessen elmenteni, ha nem ütközik egy másikkal ugyanabban a teremben (a takarítási időt is beleszámolva).</td> <td>M</td> </tr>
+        <tr> <td>FK-33</td> <td>A büfé árakat mozinként külön lehessen beállítani.</td> <td>M</td> </tr>
+        <tr> <td>FK-34</td> <td>Statisztikák mozinként és régiónként: bevétel, eladott jegyek, büfé eladások, grafikonokkal.</td> <td>S</td> </tr>
+        <tr> <td>FK-35</td> <td>Az admin módosíthassa a felhasználók jogosultságát, és a dolgozókat mozihoz rendelhesse.</td> <td>M</td> </tr>
+        <tr> <td>FK-36</td> <td>A statisztikákat le lehessen tölteni táblázatként (CSV).</td> <td>C</td> </tr>
+    </table>
+</div>
+
+<a name="srs-fk-dolgozo"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.8 Dolgozói (Karbantartó) Modul</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Követelmény</th> <th>Fontosság</th> </tr>
+        <tr> <td>FK-37</td> <td>A dolgozó beolvassa a jegy QR-kódját, a rendszer megmondja, hogy érvényes-e (jó vetítésre, jó moziba szól, és még nem használták fel), majd felhasználtnak jelöli.</td> <td>M</td> </tr>
+        <tr> <td>FK-38</td> <td>A film végén a rendszer értesíti a takarítókat, akik a "Rendben" gombbal jelzik, hogy végeztek.</td> <td>S</td> </tr>
+        <tr> <td>FK-39</td> <td>A dolgozó bejelentheti, ha egy szék elromlott. Ekkor a széket nem lehet eladni, és a szerelő értesítést kap.</td> <td>S</td> </tr>
+    </table>
+</div>
+
+<!-- 5. HASZNÁLATI ESETEK -->
+<a name="srs-hasznalati"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">5. Használati esetek</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    A használati esetek azt mutatják meg, hogy a felhasználók mit tudnak csinálni a rendszerrel.
+    Az <em>«include»</em> azt jelenti, hogy az egyik eset mindig tartalmazza a másikat, az <em>«extend»</em> pedig azt,
+    hogy csak néha (pl. büfét nem kötelező venni a jegy mellé).
+</div>
+
+<a name="srs-uc-vendeg"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.1 A Vendég használati esetei</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/02_hasznalati_esetek_vendeg.png" alt="A Vendég használati eset diagramja" style="width: 100%; max-width: 875px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: A Vendég használati eset diagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-uc-belso"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.2 A Dolgozó és az Admin használati esetei</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Itt van egy nem ember szereplő is, a Rendszeridőzítő, ami a film végén magától elindítja a takarítást.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/03_hasznalati_esetek_dolgozo_admin.png" alt="A Dolgozó és az Admin használati eset diagramja" style="width: 100%; max-width: 1218px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: A Dolgozó, az Admin és a Rendszeridőzítő használati eset diagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-uc-reszletes"></a><h3 style="margin-bottom: 15px; margin-top: 20px;">5.3 Részletes leírások</h3>
+<div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">UC-06 / UC-08: Jegyvásárlás</h4>
+        <table style="font-size: 0.95em;">
+            <tr> <td style="width: 22%;"><strong>Szereplő</strong></td> <td>Vendég, Fizetési szolgáltató</td> </tr>
+            <tr> <td><strong>Előfeltétel</strong></td> <td>A vendég be van jelentkezve, és van még szabad szék a vetítésre.</td> </tr>
+            <tr> <td><strong>Lépések</strong></td> <td>
+                1. A vendég kiválaszt egy vetítést.<br>
+                2. Megjelenik a teremtérkép.<br>
+                3. A vendég kiválaszt egy vagy több szabad széket.<br>
+                4. A rendszer 10 percre zárolja a székeket.<br>
+                5. A vendég kiválasztja a jegy típusát (teljes árú vagy kedvezményes), és ha akar, büfét is tesz a kosárba.<br>
+                6. A rendszer kiírja a végösszeget.<br>
+                7. A vendég a fizetésre kattint, és a fizetési szolgáltató oldalán fizet.<br>
+                8. Sikeres fizetés után a rendszer elmenti a jegyeket, a székek foglaltak lesznek, a vendég pontokat kap.<br>
+                9. A vendég megkapja az e-jegyet.</td> </tr>
+            <tr> <td><strong>Ha valami máshogy történik</strong></td> <td>
+                3a. Valaki közben lefoglalta a széket: hibaüzenet, másik széket kell választani.<br>
+                4a. Letelik a 10 perc: a székek felszabadulnak, elölről kell kezdeni.<br>
+                5a. A film korhatáros és a vendég túl fiatal: nem mehet tovább (ÜSZ-04).<br>
+                7a. Sikertelen a fizetés: nem jön létre jegy, a vendég újra próbálkozhat, amíg tart a zárolás.</td> </tr>
+            <tr> <td><strong>Eredmény</strong></td> <td>A jegyek érvényesek, a székek foglaltak.</td> </tr>
+            <tr> <td><strong>Követelmények</strong></td> <td>FK-15, FK-16, FK-17, FK-18, FK-19, FK-23, FK-26, FK-27, FK-29</td> </tr>
+        </table>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">UC-02: Mozi keresése</h4>
+        <table style="font-size: 0.95em;">
+            <tr> <td style="width: 22%;"><strong>Szereplő</strong></td> <td>Látogató vagy Vendég</td> </tr>
+            <tr> <td><strong>Előfeltétel</strong></td> <td>Nincs, bejelentkezés nélkül is megy.</td> </tr>
+            <tr> <td><strong>Lépések</strong></td> <td>
+                1. A felhasználó megnyitja a főoldalt.<br>
+                2. Kiválasztja a régiót, majd a várost.<br>
+                3. A rendszer kilistázza a város moziait.<br>
+                4. A felhasználó kiválaszt egy mozit és egy napot.<br>
+                5. Megjelenik a napi műsor, amit szűrni is lehet (műfaj, nyelv, technológia).</td> </tr>
+            <tr> <td><strong>Ha valami máshogy történik</strong></td> <td>
+                5a. Aznap nincs vetítés: a rendszer a következő napot ajánlja, amikor van.</td> </tr>
+            <tr> <td><strong>Eredmény</strong></td> <td>A felhasználó látja a műsort, és innen tud jegyet venni (UC-06).</td> </tr>
+            <tr> <td><strong>Követelmények</strong></td> <td>FK-08, FK-09, FK-11</td> </tr>
+        </table>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">UC-11: Jegy ellenőrzése</h4>
+        <table style="font-size: 0.95em;">
+            <tr> <td style="width: 22%;"><strong>Szereplő</strong></td> <td>Dolgozó (jegyszedő)</td> </tr>
+            <tr> <td><strong>Előfeltétel</strong></td> <td>A dolgozó be van jelentkezve a tableten.</td> </tr>
+            <tr> <td><strong>Lépések</strong></td> <td>
+                1. A dolgozó megnyomja a "Beolvasás" gombot.<br>
+                2. A vendég megmutatja a QR-kódot.<br>
+                3. A rendszer megnézi, hogy a jegy érvényes-e, és erre a moziba, erre a vetítésre szól-e.<br>
+                4. Zöld képernyő jelenik meg a film címével, a teremmel és a székkel.<br>
+                5. A jegy felhasznált lesz.</td> </tr>
+            <tr> <td><strong>Ha valami máshogy történik</strong></td> <td>
+                3a. A jegyet már felhasználták: piros képernyő.<br>
+                3b. A jegy másik moziba vagy másik vetítésre szól: piros képernyő a helyes adatokkal.<br>
+                4a. Kedvezményes a jegy: a rendszer szól, hogy meg kell nézni az igazolványt.</td> </tr>
+            <tr> <td><strong>Eredmény</strong></td> <td>A jegyet nem lehet még egyszer felhasználni.</td> </tr>
+            <tr> <td><strong>Követelmények</strong></td> <td>FK-37, ÜSZ-07</td> </tr>
+        </table>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">UC-13 / UC-21: Takarítás a film végén</h4>
+        <table style="font-size: 0.95em;">
+            <tr> <td style="width: 22%;"><strong>Szereplő</strong></td> <td>Rendszeridőzítő, Dolgozó (takarító, szerelő)</td> </tr>
+            <tr> <td><strong>Előfeltétel</strong></td> <td>Véget ért egy vetítés, és van bejelentkezett takarító a moziban.</td> </tr>
+            <tr> <td><strong>Lépések</strong></td> <td>
+                1. A Rendszeridőzítő jelzi, hogy vége a filmnek.<br>
+                2. A terem állapota "takarításra vár" lesz.<br>
+                3. A takarítók értesítést kapnak a tableten.<br>
+                4. Egy takarító elvállalja a feladatot.<br>
+                5. Ha végzett, megnyomja a "Rendben" gombot.<br>
+                6. A terem újra kész a következő vetítésre.</td> </tr>
+            <tr> <td><strong>Ha valami máshogy történik</strong></td> <td>
+                4a. 5 percen belül senki nem vállalja: újra szól a rendszer, és az admin is értesítést kap.<br>
+                5a. A takarító elromlott széket talál: bejelenti (UC-14), a szék hibás lesz, a szerelő értesítést kap.</td> </tr>
+            <tr> <td><strong>Eredmény</strong></td> <td>A terem tiszta, a hibás székeket nem lehet eladni.</td> </tr>
+            <tr> <td><strong>Követelmények</strong></td> <td>FK-38, FK-39, ÜSZ-08</td> </tr>
+        </table>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #00d2ff;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #00d2ff;">UC-16: Vetítés felvétele a műsortervezőben</h4>
+        <table style="font-size: 0.95em;">
+            <tr> <td style="width: 22%;"><strong>Szereplő</strong></td> <td>Admin</td> </tr>
+            <tr> <td><strong>Előfeltétel</strong></td> <td>Az admin be van jelentkezve, a mozi, a termek és a film már fel vannak véve.</td> </tr>
+            <tr> <td><strong>Lépések</strong></td> <td>
+                1. Az admin megnyitja a műsortervezőt, kiválaszt egy mozit és egy hetet.<br>
+                2. Látja termenként a meglévő vetítéseket.<br>
+                3. Behúz egy filmet a kiválasztott terembe és időpontra.<br>
+                4. Megadja a nyelvet és a technológiát.<br>
+                5. A rendszer megnézi, hogy nem ütközik-e egy másik vetítéssel.<br>
+                6. A vetítés elmentődik, és megjelenik a műsorban.</td> </tr>
+            <tr> <td><strong>Ha valami máshogy történik</strong></td> <td>
+                5a. Ütközik egy másik vetítéssel: piros lesz, nem lehet elmenteni, a rendszer felajánl egy szabad időpontot.<br>
+                6a. Olyan vetítést módosít, amire már vettek jegyet: a rendszer rákérdez, és értesíti a vendégeket.</td> </tr>
+            <tr> <td><strong>Eredmény</strong></td> <td>A vetítés bekerül a műsorba, lehet rá jegyet venni.</td> </tr>
+            <tr> <td><strong>Követelmények</strong></td> <td>FK-31, FK-32, ÜSZ-08</td> </tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- 6. DIAGRAMOK -->
+<a name="srs-dinamikus"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. A rendszer működése diagramokon</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    Ebben a részben a legfontosabb folyamatokat rajzoltuk le szekvencia-, állapot- és aktivitásdiagramokkal,
+    hogy jobban érthető legyen, hogyan kell működnie a rendszernek. A részletesebb modellek az Analízis Modellben (H4) lesznek.
+</div>
+
+<a name="srs-szekv-jegy"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.1 Jegyvásárlás</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A jegyvásárlás a legfontosabb folyamat. Az ábrán látszik, hogyan zároljuk a széket WebSocketen keresztül, mi történik,
+    ha valaki már lefoglalta, és hogy sikertelen fizetésnél minden visszavonódik (rollback), így nem marad félkész foglalás.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/05_szekv_jegyfoglalas.png" alt="Jegyvásárlás szekvenciadiagramja" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>5. ábra: A jegyvásárlás szekvenciadiagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-szekv-takaritas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.2 Takarítás és székhiba</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/06_szekv_takaritas.png" alt="Takarítás szekvenciadiagramja" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>6. ábra: A takarítás és a székhiba bejelentésének szekvenciadiagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-allapot-szek"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.3 A szék állapotai</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Egy szék négy állapotban lehet. Ha hibás, akkor egyik vetítésre sem lehet eladni, amíg a szerelő meg nem javítja.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/07_allapot_szek.png" alt="A szék állapotdiagramja" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>7. ábra: A szék állapotdiagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-allapot-jegy"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.4 A jegy állapotai</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A Jegyek tábla "állapot" mezőjének lehetséges értékei. Ha egy jegy egyszer felhasznált, lejárt vagy visszatérített lett, az már nem változik.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/08_allapot_jegy.png" alt="A jegy állapotdiagramja" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>8. ábra: A jegy állapotdiagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-aktivitas-ar"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.5 A jegyár kiszámítása</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A végösszeget mindig a szerver számolja ki, nem a böngésző. Először jönnek a felárak és a dinamikus árazás,
+    utána a kedvezmény, végül a pontok beváltása és a büfé.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/09_aktivitas_arszamitas.png" alt="A jegyár számításának aktivitásdiagramja" style="width: 100%; max-width: 260px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>9. ábra: A jegyár kiszámításának aktivitásdiagramja</em></div>
+    </div>
+</div>
+
+<!-- 7. ADATBÁZIS -->
+<a name="srs-adat"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">7. Adatbázis</h2>
+
+<a name="srs-er"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.1 Az adatbázis UML diagramja</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Ez az ábra a <a href="vizio_dokumentum.html#ER-diagram">Vízió dokumentumban</a> lévő ER-diagram átdolgozott változata, UML jelöléssel.
+    A követelmények összegyűjtése közben rájöttünk, hogy a jegyfoglaláshoz és a dolgozói funkciókhoz még kellenek táblák, ezért
+    felvettük a <strong>Termek</strong>, <strong>Székek</strong>, <strong>Vetítések</strong>, <strong>Technológiák</strong>,
+    <strong>Értékelések</strong> és <strong>Büfé rendelések</strong> táblákat.
+    <p style="margin-top: 15px; font-weight: bold;">A diagramon használt UML kapcsolatok:</p>
+    <ul style="margin-top: 5px; margin-bottom: 15px;">
+        <li><strong>Asszociáció (sima vonal):</strong> két osztály kapcsolatban van egymással (pl. egy felhasználó jegyeket vásárol).</li>
+        <li><strong>Aggregáció (üres rombusz):</strong> az egész tartalmazza a részeket, de a részek nélküle is létezhetnek (egy régió mozikat tartalmaz).</li>
+        <li><strong>Kompozíció (teli rombusz):</strong> a rész nem létezhet az egész nélkül (a terem a mozi része, a szék a teremé, az árlista a mozié).</li>
+        <li><strong>Öröklődés (üres háromszög):</strong> a Vendég, a Dolgozó és az Admin mind Felhasználók. Az adatbázisban ez nem külön tábla,
+            hanem a Felhasználók tábla jogosultság mezője (0, 1, 2) dönti el.</li>
+    </ul>
+    A kapcsolatok végén lévő számok a multiplicitást jelölik (pl. 1 – 0..* = egyhez akárhány tartozhat).
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/04_er_diagram.png" alt="Az adatbázis UML diagramja" style="width: 100%;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>10. ábra: A Soft Mozi adatbázisának UML diagramja</em></div>
+    </div>
+</div>
+
+<a name="srs-adatszotar"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.2 A táblák leírása</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Tábla</th> <th>Mit tárol</th> <th>Megjegyzés</th> </tr>
+        <tr> <td>Régiók</td> <td>A hálózat régiói (pl. Észak-Magyarország).</td> <td>A név nem ismétlődhet.</td> </tr>
+        <tr> <td>Mozik</td> <td>A mozik címe és elérhetőségei.</td> <td>Mindig egy régióhoz tartozik.</td> </tr>
+        <tr> <td>Termek</td> <td>A mozik termei.</td> <td>A kapacitás = a terem székeinek száma.</td> </tr>
+        <tr> <td>Székek</td> <td>A terem székei sor és szám szerint.</td> <td>Egy teremben egy sor-szám páros csak egyszer lehet.</td> </tr>
+        <tr> <td>Filmek</td> <td>A filmek adatai (IMDB-ből frissítve).</td> <td>Korhatár: 0, 6, 12, 16, 18.</td> </tr>
+        <tr> <td>Műfaj, Filmek-Műfaj</td> <td>A műfajok, és hogy melyik film melyik műfajba tartozik.</td> <td>Egy filmnek több műfaja is lehet.</td> </tr>
+        <tr> <td>Technológiák</td> <td>2D, 3D, IMAX, 4DX.</td> <td>Mindegyikhez tartozik egy felár.</td> </tr>
+        <tr> <td>Vetítések</td> <td>Melyik film, melyik teremben, mikor, milyen nyelven és technológiával megy.</td> <td>Egy teremben nem lehet két vetítés egyszerre (ÜSZ-08).</td> </tr>
+        <tr> <td>Felhasználók</td> <td>Minden felhasználó, a jogosultságtól függetlenül.</td> <td>Az e-mail cím egyedi, a jelszót titkosítva tároljuk.</td> </tr>
+        <tr> <td>Kedvezmények</td> <td>A kedvezmény típusa és százaléka.</td> <td>Diák, nyugdíjas, gyerek.</td> </tr>
+        <tr> <td>Jegyek</td> <td>A megvett jegyek.</td> <td>Egy székre egy vetítésre csak egy érvényes jegy lehet.</td> </tr>
+        <tr> <td>Értékelések</td> <td>A vendégek csillagos értékelései.</td> <td>Egy vendég egy filmet egyszer értékelhet.</td> </tr>
+        <tr> <td>Büfé, Árak</td> <td>A büfé termékei és azok árai mozinként.</td> <td>Ugyanaz a termék mozinként más árú lehet.</td> </tr>
+        <tr> <td>Büfé rendelések</td> <td>A kosárba tett büfé termékek.</td> <td>Állapot: függőben / kifizetve / kiadva.</td> </tr>
+        <tr> <td>Filmkereső</td> <td>Melyik film melyik moziban megy.</td> <td>A kereséshez kell, a vetítésekből frissül.</td> </tr>
+    </table>
+</div>
+
+<a name="srs-megorzes"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.3 Mentés és adatmegőrzés</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <ul style="margin-top: 5px;">
+        <li><strong>Mentés:</strong> Az adatbázisról minden nap automatikus mentés készül, amit 30 napig megőrzünk.</li>
+        <li><strong>Vásárlások:</strong> A vásárlások adatait a törvény miatt meg kell őrizni, fióktörlés után is (név nélkül).</li>
+        <li><strong>Személyes adatok:</strong> A GDPR szerint csak addig tároljuk őket, amíg szükséges. Ha valaki törli a fiókját, a személyes adatai törlődnek.</li>
+    </ul>
+</div>
+
+<!-- 8. ÜZLETI SZABÁLYOK -->
+<a name="srs-uzleti"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">8. Üzleti szabályok</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Ezek a mozi működéséből jövő szabályok, amiket a rendszernek be kell tartatnia.
+    <table style="margin-top: 10px;">
+        <tr> <th>Azonosító</th> <th>Szabály</th> </tr>
+        <tr> <td>ÜSZ-01</td> <td>Diák kedvezmény 26 éves korig jár, diákigazolvánnyal.</td> </tr>
+        <tr> <td>ÜSZ-02</td> <td>Gyerek kedvezmény 14 év alatt, nyugdíjas kedvezmény 65 év felett jár.</td> </tr>
+        <tr> <td>ÜSZ-03</td> <td>Egy jegyre csak egy kedvezmény használható, de a hűségpontokat mellette is be lehet váltani.</td> </tr>
+        <tr> <td>ÜSZ-04</td> <td>Korhatáros (16, 18) filmre csak az vehet jegyet, aki a születési dátuma alapján elég idős.</td> </tr>
+        <tr> <td>ÜSZ-05</td> <td>A dinamikus árazás nem térhet el túl nagyon az alapártól (legfeljebb 30%-kal olcsóbb vagy 25%-kal drágább).</td> </tr>
+        <tr> <td>ÜSZ-06</td> <td>Jegyet a vetítés előtt legalább 2 órával lehet lemondani, ilyenkor a büfé ára is visszajár.</td> </tr>
+        <tr> <td>ÜSZ-07</td> <td>A beengedés a vetítés előtt 30 perccel kezdődik, és a kezdés után 20 percig tart.</td> </tr>
+        <tr> <td>ÜSZ-08</td> <td>Két vetítés között ugyanabban a teremben legalább 20 percnek kell lennie a takarítás miatt.</td> </tr>
+        <tr> <td>ÜSZ-09</td> <td>A hűségpontok 1 évig érvényesek. Ha a vásárlást lemondják, a pontokat levonjuk.</td> </tr>
+        <tr> <td>ÜSZ-10</td> <td>A dolgozó csak a saját mozijának adatait láthatja.</td> </tr>
+    </table>
+</div>
+
+<!-- 9. NEM FUNKCIONÁLIS KÖVETELMÉNYEK -->
+<a name="srs-nemfunkcionalis"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">9. Nem funkcionális követelmények</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    Ezek nem azt írják le, hogy mit csinál a rendszer, hanem hogy milyen jól kell működnie. A Vízió dokumentum 7. pontjában
+    leírt minőségi elvárásokra épülnek, és a Projekt tervben szereplő tesztekkel fogjuk ellenőrizni őket.
+</div>
+
+<a name="srs-nfk-tablazat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">9.1 A követelmények listája</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Azonosító</th> <th>Fajta</th> <th>Követelmény</th> <th>Hogyan ellenőrizzük</th> </tr>
+        <tr> <td>NFK-01</td> <td>Sebesség</td> <td>A szerver általában 200 ms alatt válaszoljon.</td> <td>Terheléses teszt</td> </tr>
+        <tr> <td>NFK-02</td> <td>Sebesség</td> <td>A teremtérkép telefonon is 2 másodpercen belül betöltődjön.</td> <td>Kézi tesztelés</td> </tr>
+        <tr> <td>NFK-03</td> <td>Valós idő</td> <td>Ha valaki lefoglal egy széket, az kb. 1 másodpercen belül látszódjon a többieknél is.</td> <td>Integrációs teszt</td> </tr>
+        <tr> <td>NFK-04</td> <td>Terhelhetőség</td> <td>Premierkor is működjön, amikor sokan (akár 1000+ ember) vesznek jegyet egyszerre.</td> <td>Terheléses teszt</td> </tr>
+        <tr> <td>NFK-05</td> <td>Elérhetőség</td> <td>A rendszer a nap 24 órájában elérhető legyen (99,9%).</td> <td>Folyamatos figyelés</td> </tr>
+        <tr> <td>NFK-06</td> <td>Biztonság</td> <td>HTTPS kapcsolat, a jelszavakat titkosítva (bcrypt) tároljuk, bejelentkezés JWT tokennel.</td> <td>Biztonsági tesztelés</td> </tr>
+        <tr> <td>NFK-07</td> <td>Biztonság</td> <td>A szerver minden kérésnél ellenőrizze, hogy a felhasználónak van-e joga az adott művelethez.</td> <td>Biztonsági tesztelés</td> </tr>
+        <tr> <td>NFK-08</td> <td>Megbízhatóság</td> <td>Egy széket egy vetítésre soha ne lehessen kétszer eladni (ACID tranzakció).</td> <td>Integrációs teszt</td> </tr>
+        <tr> <td>NFK-09</td> <td>Használhatóság</td> <td>Egy új felhasználó segítség nélkül, pár perc alatt tudjon jegyet venni.</td> <td>Felhasználói elfogadási teszt</td> </tr>
+        <tr> <td>NFK-10</td> <td>Kompatibilitás</td> <td>Működjön a modern böngészőkben, telefonon is.</td> <td>Kézi tesztelés</td> </tr>
+        <tr> <td>NFK-11</td> <td>Karbantarthatóság</td> <td>A fontos számításokhoz (jegyár, kosár, kedvezmény) legyenek unit tesztek, a kódot Giten tároljuk.</td> <td>Unit tesztek</td> </tr>
+        <tr> <td>NFK-12</td> <td>Adatvédelem</td> <td>A rendszer feleljen meg a GDPR-nak (adatkezelési tájékoztató, fiók törlése).</td> <td>Ellenőrzőlista</td> </tr>
+    </table>
+</div>
+
+<a name="srs-architektura"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">9.2 A rendszer felépítése</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A rendszer a Projekt tervben kiválasztott technológiákra épül. A felhasználók böngészőből vagy tabletről érik el a
+    Next.js frontendet, ami a backenddel (FastAPI vagy Spring Boot) REST API-n kommunikál. A szék zárolásához és az
+    értesítésekhez (NFK-03) WebSocketet használunk. Az adatokat PostgreSQL adatbázisban tároljuk, ahol a vásárlások
+    tranzakcióban mennek végbe (NFK-08). A részletes terv a Rendszer Tervezésben (H5) lesz.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/10_architektura.png" alt="A rendszer felépítése" style="width: 100%; max-width: 822px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>11. ábra: A Soft Mozi felépítése</em></div>
+    </div>
+</div>
+
+<!-- 10. ÖSSZESÍTÉS -->
+<a name="srs-nyomon"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">10. Követelmények összesítése és ütemezése</h2>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az alábbi táblázatban összesítettük, hogy melyik használati eset melyik követelményekhez tartozik, melyik modul része,
+    és melyik mérföldkőre kell elkészülnie.
+    <table style="margin-top: 10px;">
+        <tr> <th>Használati eset</th> <th>Követelmények</th> <th>Modul</th> <th>Mérföldkő</th> <th>Elfogadási feltétel</th> </tr>
+        <tr> <td>UC-01 Regisztráció és bejelentkezés</td> <td>FK-01, FK-02, FK-03, FK-06</td> <td>Felhasználókezelés</td> <td>1.</td> <td>EK-01</td> </tr>
+        <tr> <td>UC-02 Mozi keresése</td> <td>FK-08, FK-09, FK-11</td> <td>Felfedező</td> <td>1.</td> <td>EK-02</td> </tr>
+        <tr> <td>UC-03 Filmadatlap</td> <td>FK-10, FK-12, FK-14</td> <td>Felfedező</td> <td>1.</td> <td>–</td> </tr>
+        <tr> <td>UC-04 Film értékelése</td> <td>FK-13</td> <td>Felfedező</td> <td>1.</td> <td>–</td> </tr>
+        <tr> <td>UC-05 AI filmajánló</td> <td>FK-21</td> <td>Jegyfoglaló</td> <td>2.</td> <td>–</td> </tr>
+        <tr> <td>UC-06 Székválasztás</td> <td>FK-15, FK-16, FK-17, FK-18</td> <td>Jegyfoglaló</td> <td>2.</td> <td>EK-03, EK-04</td> </tr>
+        <tr> <td>UC-07 Büfé kosárba</td> <td>FK-22, FK-23, FK-25</td> <td>Büfé</td> <td>2.</td> <td>–</td> </tr>
+        <tr> <td>UC-08 Fizetés és kedvezmény</td> <td>FK-19, FK-26, FK-27, FK-28, FK-29</td> <td>Pénzügy</td> <td>3.</td> <td>EK-05, EK-06</td> </tr>
+        <tr> <td>UC-09 Jegyeim, pontjaim</td> <td>FK-19, FK-20, FK-29, FK-30</td> <td>Pénzügy</td> <td>3.</td> <td>–</td> </tr>
+        <tr> <td>UC-10 Profil módosítása</td> <td>FK-04, FK-05, FK-07</td> <td>Felhasználókezelés</td> <td>1.</td> <td>–</td> </tr>
+        <tr> <td>UC-11 Jegyellenőrzés</td> <td>FK-37</td> <td>Dolgozói</td> <td>4.</td> <td>EK-07</td> </tr>
+        <tr> <td>UC-12 Büfé rendelés kiadása</td> <td>FK-24</td> <td>Büfé</td> <td>4.</td> <td>–</td> </tr>
+        <tr> <td>UC-13 / UC-21 Takarítás</td> <td>FK-38</td> <td>Dolgozói</td> <td>4.</td> <td>EK-08</td> </tr>
+        <tr> <td>UC-14 Székhiba bejelentése</td> <td>FK-39</td> <td>Dolgozói</td> <td>4.</td> <td>–</td> </tr>
+        <tr> <td>UC-15 Régiók, mozik, termek kezelése</td> <td>FK-31</td> <td>Adminisztrátor</td> <td>1.</td> <td>–</td> </tr>
+        <tr> <td>UC-16 Műsortervezés</td> <td>FK-32</td> <td>Adminisztrátor</td> <td>3.</td> <td>EK-09</td> </tr>
+        <tr> <td>UC-17 Büfé árak</td> <td>FK-33</td> <td>Adminisztrátor</td> <td>2.</td> <td>–</td> </tr>
+        <tr> <td>UC-18 Kedvezmények, árazás</td> <td>FK-26, FK-28</td> <td>Adminisztrátor</td> <td>3.</td> <td>–</td> </tr>
+        <tr> <td>UC-19 Statisztikák</td> <td>FK-34, FK-36</td> <td>Adminisztrátor</td> <td>3.</td> <td>–</td> </tr>
+        <tr> <td>UC-20 Jogosultságok</td> <td>FK-06, FK-35</td> <td>Adminisztrátor</td> <td>1.</td> <td>EK-10</td> </tr>
+    </table>
+    <p style="margin-top: 20px;">
+        A Gantt-diagramon a dokumentumok és a fejlesztés tervezett ütemezése látható, a Projekt tervben megadott négy mérföldkő szerint.
+    </p>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/11_utemterv.png" alt="Ütemterv" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>12. ábra: Ütemterv</em></div>
+    </div>
+</div>
+
+<!-- 11. ELFOGADÁSI FELTÉTELEK -->
+<a name="srs-elfogadas"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">11. Elfogadási feltételek</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    Az elfogadási feltételek alapján tudjuk eldönteni, hogy egy funkció tényleg jól működik-e. Mindegyiket
+    "Adott – Amikor – Akkor" formában írtuk le, így könnyen lehet belőlük tesztet csinálni.
+    A rendszer akkor kész, ha az összes kötelező (M) követelményhez tartozó feltétel teljesül.
+</div>
+<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-01: Regisztráció</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy e-mail cím, amivel még nem regisztráltak.<br>
+            <strong style="color: #bbb;">Amikor:</strong> a felhasználó kitölti a regisztrációs űrlapot.<br>
+            <strong style="color: #bbb;">Akkor:</strong> létrejön a fiók vendég (0) jogosultsággal, és megérkezik a megerősítő e-mail.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-02: Keresés régió szerint</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> két régió, mindkettőben legalább két mozi.<br>
+            <strong style="color: #bbb;">Amikor:</strong> a felhasználó kiválaszt egy régiót.<br>
+            <strong style="color: #bbb;">Akkor:</strong> csak az adott régió mozijai jelennek meg.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-03: Két vendég ugyanazt a széket választja</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> két vendég ugyanannak a vetítésnek a teremtérképét nézi.<br>
+            <strong style="color: #bbb;">Amikor:</strong> szinte egyszerre ugyanarra a szabad székre kattintanak.<br>
+            <strong style="color: #bbb;">Akkor:</strong> csak az egyikük kapja meg a széket, a másik hibaüzenetet kap, és nála a szék foglalt lesz.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-04: Lejár a zárolás</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy vendég kiválasztott egy széket, de nem fizetett.<br>
+            <strong style="color: #bbb;">Amikor:</strong> eltelik 10 perc.<br>
+            <strong style="color: #bbb;">Akkor:</strong> a szék újra szabad lesz mindenkinél.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-05: Kedvezmény levonása</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy diák vendég, egy 2500 Ft-os 2D vetítés, 20%-os diák kedvezmény, dinamikus árazás kikapcsolva.<br>
+            <strong style="color: #bbb;">Amikor:</strong> a vendég vesz egy kedvezményes jegyet és egy 1200 Ft-os popcornt.<br>
+            <strong style="color: #bbb;">Akkor:</strong> a végösszeg 2000 + 1200 = 3200 Ft.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-06: Sikertelen fizetés</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy kosár két kiválasztott székkel.<br>
+            <strong style="color: #bbb;">Amikor:</strong> a fizetés sikertelen.<br>
+            <strong style="color: #bbb;">Akkor:</strong> nem jön létre jegy, nem jár pont, és nem marad félkész adat az adatbázisban.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-07: Ugyanaz a jegy kétszer</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy jegy, amit már beolvastak.<br>
+            <strong style="color: #bbb;">Amikor:</strong> a dolgozó újra beolvassa.<br>
+            <strong style="color: #bbb;">Akkor:</strong> piros képernyő jelenik meg, hogy a jegyet már felhasználták.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-08: Takarítási értesítés</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy 18:00-kor kezdődő, 120 perces film és egy bejelentkezett takarító.<br>
+            <strong style="color: #bbb;">Amikor:</strong> véget ér a film (stáblistával együtt).<br>
+            <strong style="color: #bbb;">Akkor:</strong> a takarító tabletjén megjelenik a feladat a terem nevével.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-09: Ütköző vetítés</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> az 1-es teremben 18:00 és 20:00 között van egy vetítés.<br>
+            <strong style="color: #bbb;">Amikor:</strong> az admin 20:10-re akar új vetítést felvenni ugyanide.<br>
+            <strong style="color: #bbb;">Akkor:</strong> a rendszer nem engedi elmenteni (20 perc takarítási idő kell), és a 20:20-as időpontot ajánlja.
+        </div>
+    </div>
+
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border-left: 5px solid #4facfe;">
+        <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1em; color: #4facfe;">EK-10: Nincs jogosultság</h4>
+        <div style="line-height: 1.6; font-size: 0.95em;">
+            <strong style="color: #bbb;">Adott:</strong> egy bejelentkezett vendég (0-s jogosultság).<br>
+            <strong style="color: #bbb;">Amikor:</strong> megpróbálja megnyitni az admin statisztikákat (<code>/api/admin/statisztikak</code>).<br>
+            <strong style="color: #bbb;">Akkor:</strong> a rendszer nem engedi, és hibaüzenetet ad.
+        </div>
+    </div>
+
+</div>
+    <div class="footer"></div>
+</body>
+</html>
