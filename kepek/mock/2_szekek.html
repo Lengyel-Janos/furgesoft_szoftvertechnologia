@@ -1,0 +1,42 @@
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+.steps{display:flex;gap:0;margin-bottom:18px}.steps div{flex:1;padding:10px;text-align:center;border-bottom:3px solid #2a2f39;color:#7d8590;font-size:13px}
+.steps .on{border-color:#4facfe;color:#fff;font-weight:bold}
+#g{display:grid;grid-template-columns:20px repeat(14,30px) 20px;gap:7px;justify-content:center}
+.s{height:28px;border-radius:7px 7px 3px 3px;background:#5b616c}
+.s.sel{background:#4facfe}.s.res{background:#c94a4a}.s.bad{background:repeating-linear-gradient(45deg,#555,#555 4px,#2a2a2a 4px,#2a2a2a 8px)}
+.rl{color:#7d8590;font-size:11px;display:flex;align-items:center;justify-content:center}
+.lg span{margin-right:18px;font-size:12px;color:#b9bec7}.lg i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:5px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2a2f39}
+</style></head><body>
+<div class="top"><div class="logo">SOFT<b>MOZI</b></div><div class="sel">📍 Észak-Magyarország ▾</div><div class="search">🔍 Film vagy mozi keresése…</div><div class="ico">🛒<span class="badge">2</span></div><div class="ico">👤</div></div>
+<div style="padding:20px 28px;display:flex;gap:24px">
+ <div style="flex:1">
+  <div class="steps"><div class="on">1. Székek</div><div>2. Büfé</div><div>3. Összesítő</div><div>4. Fizetés</div></div>
+  <div class="card" style="padding:22px">
+   <div style="width:70%;margin:0 auto 6px;height:10px;border-radius:50%/100% 100% 0 0;border-top:4px solid #8fd0ff;box-shadow:0 -8px 24px #4facfe55"></div>
+   <div class="muted" style="text-align:center;font-size:11px;letter-spacing:4px;margin-bottom:26px">VÁSZON</div>
+   <div id="g"></div>
+   <div class="lg" style="text-align:center;margin-top:24px"><span><i style="background:#5b616c"></i>szabad</span><span><i style="background:#4facfe"></i>kiválasztott</span><span><i style="background:#c94a4a"></i>foglalt</span><span><i style="background:repeating-linear-gradient(45deg,#555,#555 3px,#2a2a2a 3px,#2a2a2a 6px)"></i>hibás</span></div>
+  </div>
+ </div>
+ <div style="width:300px">
+  <div class="card" style="padding:16px;margin-bottom:14px;border-color:#4facfe66;background:#4facfe14"><div class="muted" style="font-size:12px">A székeket fenntartjuk még</div><div style="font-size:30px;font-weight:bold;color:#8fd0ff">08:42</div></div>
+  <div class="card" style="padding:16px">
+   <div style="font-weight:bold;font-size:16px">Csillagköd <span class="age">12</span></div>
+   <div class="muted" style="margin:4px 0 12px;font-size:12px">Ma, nov. 6. · 18:30 · IMAX · feliratos<br>Soft Mozi Miskolc – Plaza · 3-as terem</div>
+   <div class="row"><span>F sor 7. szék</span><span>3 290 Ft</span></div>
+   <div class="row"><span>F sor 8. szék</span><span>3 290 Ft</span></div>
+   <div class="row muted" style="font-size:12px"><span>ebből IMAX felár</span><span>2 × 900 Ft</span></div>
+   <div class="row" style="border:0;font-weight:bold;font-size:16px;padding-top:12px"><span>Részösszeg</span><span>6 580 Ft</span></div>
+   <div class="muted" style="font-size:11px;margin:4px 0 14px">A kedvezményt és a pontokat az összesítőben számoljuk.</div>
+   <div class="btn" style="width:100%;text-align:center">Tovább a büféhez →</div>
+  </div>
+ </div>
+</div>
+<script>
+var g=document.getElementById('g'),R="ABCDEFGHI",res=["A5","A6","B9","B10","C3","C4","C5","D11","D12","E6","E7","E8","G2","G3","H10","H11","H12","I7"],sel=["F7","F8"],bad=["C12","H5"];
+for(var i=0;i<R.length;i++){var l=document.createElement('div');l.className='rl';l.textContent=R[i];g.appendChild(l);
+for(var j=1;j<=14;j++){var d=document.createElement('div'),k=R[i]+j;d.className='s';if(i<2&&(j==1||j==14))d.style.visibility='hidden';
+if(res.indexOf(k)>-1)d.className+=' res';if(sel.indexOf(k)>-1)d.className+=' sel';if(bad.indexOf(k)>-1)d.className+=' bad';g.appendChild(d);}
+var r=document.createElement('div');r.className='rl';r.textContent=R[i];g.appendChild(r);}
+</script></body></html>

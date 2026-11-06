@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Felhasználói Kézikönyv</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { fontFamily: 'Arial, sans-serif' } });
+    </script>
+</head>
+<body>
+    <h1>Csoport neve: Fü(r)ge Soft</h1>
+    <h1>Feladat címe: Soft Mozi</h1>
+
+    <h1 class="center spaced">Felhasználói Kézikönyv</h1>
+
+    <div class="center">
+        Gyakorlatvezető:
+        <h2>Árvai László</h2>
+    </div>
+
+    <h2>Csoport tagok: </h2>
+    <table>
+        <tr> <td>Padányi Milán    </td> <td>FMUL84</td> <td>mpadanyi09@gmail.com</td> </tr>
+        <tr> <td>Ujfalussy Kristóf</td> <td>ZZORDN</td> <td>kristof.ujfalussy@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Kecskés Gábor    </td> <td>QDY6TL</td> <td>gabor.kecskes@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Lengyel János    </td> <td>N9XZKQ</td> <td>lengyeljanos2004@gmail.com</td> </tr>
+        <tr> <td>Laczkó Norbert   </td> <td>SLIIKD</td> <td>laczkonorbert4@gmail.com</td> </tr>
+    </table>
+
+    <div class="right spaced">2026-11-06</div>
+
+    <h2>Történet: </h2>
+    <table>
+        <tr> <th>Dátum</th> <th>Verzió</th> <th>Leírás</th> <th>Szerző</th> </tr>
+        <tr>
+            <td>2026-11-06</td>
+            <td>0.1</td>
+            <td>Létrejött a dokumentum váza: fejezetek, a vendég, a dolgozó és az admin felület főbb lépései vázlatosan.
+                A kézikönyv a fejlesztés előrehaladtával, a kész felületek képernyőképeivel bővül.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-11-06</td>
+            <td>0.2</td>
+            <td>Minta képernyőképek (tervek) hozzáadása: mozi műsora, székválasztás, e-jegy telefonon, jegyellenőrzés a dolgozói tableten, műsortervező.</td>
+            <td>Ujfalussy Kristóf<br>Laczkó Norbert</td>
+        </tr>
+    </table>
+
+    <h2>Tartalomjegyzék: </h2>
+    <ul>
+        <li><a href="#fk-bevezetes">1. Bevezetés</a>
+            <ul>
+                <li><a href="#fk-cel">1.1 Kinek szól a kézikönyv</a></li>
+                <li><a href="#fk-kovetelmenyek">1.2 Rendszerkövetelmények</a></li>
+                <li><a href="#fk-szerepkorok">1.3 Szerepkörök</a></li>
+            </ul>
+        </li>
+        <li><a href="#fk-elso-lepesek">2. Első lépések</a>
+            <ul>
+                <li><a href="#fk-regisztracio">2.1 Regisztráció</a></li>
+                <li><a href="#fk-belepes">2.2 Bejelentkezés és elfelejtett jelszó</a></li>
+                <li><a href="#fk-profil">2.3 Profil és kedvezmények</a></li>
+            </ul>
+        </li>
+        <li><a href="#fk-vendeg">3. Vendégeknek</a>
+            <ul>
+                <li><a href="#fk-kereses">3.1 Mozi és film keresése</a></li>
+                <li><a href="#fk-vasarlas">3.2 Jegyvásárlás lépésről lépésre</a></li>
+                <li><a href="#fk-jegyeim">3.3 Jegyeim, lemondás, hűségpontok</a></li>
+                <li><a href="#fk-ertekeles">3.4 Filmek értékelése és AI ajánló</a></li>
+            </ul>
+        </li>
+        <li><a href="#fk-dolgozo">4. Dolgozóknak</a>
+            <ul>
+                <li><a href="#fk-ellenorzes">4.1 Jegyellenőrzés</a></li>
+                <li><a href="#fk-feladatok">4.2 Takarítási és javítási feladatok</a></li>
+                <li><a href="#fk-bufe-kiadas">4.3 Büfé rendelés kiadása</a></li>
+            </ul>
+        </li>
+        <li><a href="#fk-admin">5. Adminisztrátoroknak</a>
+            <ul>
+                <li><a href="#fk-torzsadatok">5.1 Régiók, mozik, termek</a></li>
+                <li><a href="#fk-musor">5.2 Műsortervezés</a></li>
+                <li><a href="#fk-arak">5.3 Árak és kedvezmények</a></li>
+                <li><a href="#fk-felhasznalok">5.4 Felhasználók és jogosultságok</a></li>
+                <li><a href="#fk-statisztikak">5.5 Statisztikák</a></li>
+            </ul>
+        </li>
+        <li><a href="#fk-hibak">6. Hibaüzenetek és megoldásuk</a></li>
+        <li><a href="#fk-gyik">7. Gyakori kérdések</a></li>
+        <li><a href="#fk-kapcsolat">8. Segítség és kapcsolat</a></li>
+    </ul>
+
+<h1 style="margin-bottom: 20px; font-size: 2.2em; border-bottom: 1px solid #555; padding-bottom: 10px;">Felhasználói Kézikönyv</h1>
+
+<!-- 1. BEVEZETÉS -->
+<a name="fk-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
+
+<a name="fk-cel"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.1 Kinek szól a kézikönyv</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A kézikönyv a Soft Mozi rendszer mindhárom felhasználói körének szól: a <strong>vendégeknek</strong>, akik jegyet vesznek,
+    a <strong>dolgozóknak</strong>, akik a moziban a jegyeket ellenőrzik és a termeket rendben tartják, és az
+    <strong>adminisztrátoroknak</strong>, akik a mozihálózatot kezelik. Mindenkinek elég a saját fejezetét elolvasnia,
+    valamint az Első lépések részt.
+</div>
+
+<a name="fk-kovetelmenyek"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.2 Rendszerkövetelmények</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li>Modern böngésző (Chrome, Firefox, Safari, Edge) számítógépen vagy telefonon.</li>
+        <li>Internetkapcsolat.</li>
+        <li>Dolgozóknak: tablet kamerával (a QR-kód beolvasásához), a böngészőben engedélyezni kell a kamera használatát.</li>
+    </ul>
+</div>
+
+<a name="fk-szerepkorok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.3 Szerepkörök</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table>
+        <tr> <th>Szerepkör</th> <th>Mit tud</th> <th>Hogyan lesz valaki ilyen</th> </tr>
+        <tr> <td>Látogató (nincs bejelentkezve)</td> <td>Mozik, műsor és filmek böngészése.</td> <td>–</td> </tr>
+        <tr> <td>Vendég</td> <td>Jegy- és büfévásárlás, értékelés, profil, hűségpontok.</td> <td>Regisztrációval.</td> </tr>
+        <tr> <td>Dolgozó</td> <td>Jegyellenőrzés, feladatok, székhiba bejelentése a saját moziban.</td> <td>Az admin állítja be.</td> </tr>
+        <tr> <td>Admin</td> <td>A teljes rendszer kezelése.</td> <td>Az admin állítja be.</td> </tr>
+    </table>
+</div>
+
+<!-- 2. ELSŐ LÉPÉSEK -->
+<a name="fk-elso-lepesek"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">2. Első lépések</h2>
+
+<a name="fk-regisztracio"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.1 Regisztráció</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ol style="margin-top: 5px;">
+        <li>Kattintson a jobb felső sarokban a <strong>Regisztráció</strong> gombra.</li>
+        <li>Adja meg a nevét, e-mail címét, jelszavát és születési dátumát.</li>
+        <li>Nyissa meg a kapott e-mailt, és kattintson a megerősítő linkre.</li>
+    </ol>
+    <em style="color: #bbb;">TODO: képernyőkép a regisztrációs űrlapról.</em>
+</div>
+
+<a name="fk-belepes"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.2 Bejelentkezés és elfelejtett jelszó</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Bejelentkezni e-mail címmel és jelszóval lehet. Bejelentkezés után a rendszer a szerepkörének megfelelő kezdőlapra viszi.
+    Ha elfelejtette a jelszavát, kattintson az <strong>Elfelejtett jelszó</strong> linkre, és kövesse az e-mailben kapott utasításokat.
+    <br><em style="color: #bbb;">TODO: képernyőkép.</em>
+</div>
+
+<a name="fk-profil"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.3 Profil és kedvezmények</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A <strong>Profil</strong> oldalon módosíthatja a nevét, telefonszámát és profilképét, valamint beállíthatja a kedvezményét
+    (diák, nyugdíjas, gyerek). A kedvezmény feltételei:
+    <ul style="margin-top: 5px;">
+        <li>Diák: 26 éves korig, diákigazolvánnyal (a belépésnél ellenőrizhetik).</li>
+        <li>Gyerek: 14 év alatt. Nyugdíjas: 65 év felett (a születési dátum alapján).</li>
+    </ul>
+    Itt lehet a fiókot is törölni. Ilyenkor a személyes adatai törlődnek.
+</div>
+
+<!-- 3. VENDÉG -->
+<a name="fk-vendeg"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">3. Vendégeknek</h2>
+
+<a name="fk-kereses"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.1 Mozi és film keresése</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Válasszon régiót a felső menüben, majd egy mozit. A mozi oldalán a napi műsor látszik, amit műfaj, technológia (2D, 3D, IMAX, 4DX),
+    nyelv és napszak szerint szűrhet. Egy filmre kattintva megnyílik a filmadatlap a leírással, az előzetessel és az értékelésekkel.
+<div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_01_musor.png" alt="A mozi műsora szűrőkkel" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: Egy mozi napi műsora a szűrőkkel (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
+</div>
+
+<a name="fk-vasarlas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.2 Jegyvásárlás lépésről lépésre</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+flowchart LR
+    A["Vetítés<br>kiválasztása"] --> B["1. Székek"]
+    B --> C["2. Büfé<br>(nem kötelező)"]
+    C --> D["3. Összesítő"]
+    D --> E["4. Fizetés"]
+    E --> F["E-jegy<br>e-mailben és<br>a profilban"]
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: A jegyvásárlás lépései</em></div>
+    </div>
+    <ol style="margin-top: 15px;">
+        <li><strong>Székek:</strong> kattintson a szabad (szürke) székekre, legfeljebb 10-et választhat. A kiválasztott székeket
+            10 percig fenntartjuk Önnek, a hátralévő idő a jobb felső sarokban látszik.</li>
+        <li><strong>Büfé:</strong> ha szeretne, tegyen a kosárba üdítőt, popcornt, extrákat.</li>
+        <li><strong>Összesítő:</strong> ellenőrizze a tételeket. Itt látja a kedvezményt, és itt válthatja be a hűségpontjait.</li>
+        <li><strong>Fizetés:</strong> a rendszer átirányítja a fizetési oldalra. Sikeres fizetés után megkapja az e-jegyet.</li>
+    </ol>
+    <p style="margin-top: 10px;"><strong>Fontos:</strong> ha a 10 perc lejár, a székek felszabadulnak, és elölről kell kezdeni.</p>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_02_szekek.png" alt="Székválasztás a teremtérképen" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: Az 1. lépés: székválasztás a teremtérképen, jobb oldalon a hátralévő idő és a kosár (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
+</div>
+
+<a name="fk-jegyeim"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.3 Jegyeim, lemondás, hűségpontok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li>A <strong>Jegyeim</strong> oldalon látja a megvett jegyeket QR-kóddal. A belépéskor ezt kell felmutatni.</li>
+        <li>A jegyet a vetítés előtt legalább 2 órával lemondhatja, ilyenkor a jegy és a büfé ára is visszajár.</li>
+        <li>Minden 100 Ft után 1 pont jár, 100 pont = 500 Ft kedvezmény. A pontok 1 évig érvényesek.</li>
+        <li>A vásárlásról PDF nyugtát is letölthet.</li>
+    </ul>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_03_ejegy.png" alt="E-jegy telefonon" style="width: 100%; max-width: 390px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: Az e-jegy QR-kóddal és a hűségpontok telefonon (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
+</div>
+
+<a name="fk-ertekeles"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.4 Filmek értékelése és AI ajánló</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Ha megnézett egy filmet, a filmadatlapon 1-5 csillaggal értékelheti. Az <strong>AI ajánló</strong> a korábbi vásárlásai és
+    értékelései alapján javasol filmeket és vetítéseket.
+    <br><em style="color: #bbb;">TODO: kidolgozni, amikor az ajánló felülete elkészül.</em>
+</div>
+
+<!-- 4. DOLGOZÓ -->
+<a name="fk-dolgozo"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">4. Dolgozóknak</h2>
+
+<a name="fk-ellenorzes"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.1 Jegyellenőrzés</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ol style="margin-top: 5px;">
+        <li>Nyomja meg a <strong>Beolvasás</strong> gombot, és tartsa a kamerát a vendég QR-kódja elé.</li>
+        <li><span style="color: #6c6;">Zöld képernyő:</span> a jegy érvényes, a vendég beléphet. A képernyőn látszik a terem, a sor és a szék.</li>
+        <li><span style="color: #e55;">Piros képernyő:</span> a jegy érvénytelen. Az ok is megjelenik (másik mozi, rossz időpont, már felhasznált).</li>
+    </ol>
+    A beengedés a vetítés előtt 30 perccel kezdődik, és a kezdés után 20 percig tart.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_04_dolgozo.png" alt="Érvényes jegy a dolgozói tableten" style="width: 100%; max-width: 1024px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>5. ábra: Érvényes jegy beolvasása után a dolgozói tableten (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
+</div>
+
+<a name="fk-feladatok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Takarítási és javítási feladatok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li>Új feladatnál hangjelzés szól, és megjelenik egy kártya a <strong>Feladataim</strong> oldalon.</li>
+        <li>Az <strong>Elfogadom</strong> gombbal vállalja a feladatot, a <strong>Rendben</strong> gombbal jelzi, hogy végzett.</li>
+        <li>Ha egy szék elromlott, a <strong>Székhiba bejelentése</strong> oldalon válassza ki a termet és a széket. A széket ezután nem lehet eladni,
+            amíg a szerelő meg nem javítja.</li>
+        <li>Ha egy feladatot 15 percig senki nem fogad el, a rendszer mindenkinek és az adminnak is szól.</li>
+    </ul>
+</div>
+
+<a name="fk-bufe-kiadas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Büfé rendelés kiadása</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Olvassa be a vendég QR-kódját a <strong>Büfé kiadás</strong> oldalon. Megjelenik az előre kifizetett rendelés, a kiadás után
+    nyomja meg a <strong>Kiadva</strong> gombot.
+    <br><em style="color: #bbb;">TODO: kidolgozni (ha marad idő funkció, FK-24).</em>
+</div>
+
+<!-- 5. ADMIN -->
+<a name="fk-admin"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">5. Adminisztrátoroknak</h2>
+
+<a name="fk-torzsadatok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.1 Régiók, mozik, termek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az oldalsó menü <strong>Mozik</strong> pontjában lehet régiókat, mozikat, termeket és a termek székeit felvenni, módosítani, törölni.
+    <br><em style="color: #bbb;">TODO: a teremszerkesztő leírása (sorok, székek száma, kihagyott helyek).</em>
+</div>
+
+<a name="fk-musor"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.2 Műsortervezés</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ol style="margin-top: 5px;">
+        <li>Válassza ki a mozit és a napot. Termenként egy idősáv jelenik meg.</li>
+        <li>Húzza a filmet a megfelelő idősávba, adja meg a nyelvet és a technológiát.</li>
+        <li>Ha a vetítés ütközik egy másikkal (a 20 perces takarítási időt is beleszámolva), pirosan jelenik meg, és nem menthető.</li>
+    </ol>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_05_musor_admin.png" alt="Műsortervező ütközéssel" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>6. ábra: A műsortervező egy ütköző vetítéssel a 2-es teremben (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
+</div>
+
+<a name="fk-arak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.3 Árak és kedvezmények</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Itt állíthatók be a büfé árak mozinként, a kedvezmények százalékai és a dinamikus árazás.
+    A dinamikus ár legfeljebb 30%-kal lehet olcsóbb vagy 25%-kal drágább az alapárnál.
+</div>
+
+<a name="fk-felhasznalok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.4 Felhasználók és jogosultságok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Keresse meg a felhasználót, módosítsa a jogosultságát (vendég, dolgozó, admin), és dolgozónál válassza ki a mozit, ahol dolgozik.
+</div>
+
+<a name="fk-statisztikak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.5 Statisztikák</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Bevétel, eladott jegyek és büfé eladások mozinként és régiónként, grafikonokkal. A táblázat CSV-ként letölthető.
+    <br><em style="color: #bbb;">TODO: képernyőkép.</em>
+</div>
+
+<!-- 6. HIBAÜZENETEK -->
+<a name="fk-hibak"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Hibaüzenetek és megoldásuk</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table>
+        <tr> <th>Üzenet</th> <th>Mit jelent</th> <th>Mit tegyen</th> </tr>
+        <tr> <td>„Ezt a széket közben valaki más választotta.”</td> <td>Egy másik vendég gyorsabb volt.</td> <td>Válasszon másik széket.</td> </tr>
+        <tr> <td>„Lejárt a foglalási idő.”</td> <td>Eltelt a 10 perc fizetés nélkül.</td> <td>Kezdje újra a vásárlást.</td> </tr>
+        <tr> <td>„Sikertelen fizetés.”</td> <td>A bank elutasította a fizetést.</td> <td>Próbálja újra, vagy használjon másik kártyát.</td> </tr>
+        <tr> <td>„Erre a filmre nem vásárolhat jegyet.”</td> <td>A korhatár miatt.</td> <td>–</td> </tr>
+        <tr> <td>„A munkamenet lejárt.”</td> <td>Régen jelentkezett be.</td> <td>Jelentkezzen be újra.</td> </tr>
+        <tr> <td>„A vetítés ütközik egy másikkal.” (admin)</td> <td>Ugyanabban a teremben átfedés van.</td> <td>Válasszon másik időpontot vagy termet.</td> </tr>
+    </table>
+</div>
+
+<!-- 7. GYIK -->
+<a name="fk-gyik"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">7. Gyakori kérdések</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <ul style="margin-top: 5px;">
+        <li style="margin-bottom: 10px;"><strong>Nem kaptam meg az e-jegyet.</strong> Nézze meg a levélszemét mappát. A jegy a profiljában a Jegyeim oldalon is megtalálható.</li>
+        <li style="margin-bottom: 10px;"><strong>Kinyomtassam a jegyet?</strong> Nem kell, elég a telefonon felmutatni a QR-kódot.</li>
+        <li style="margin-bottom: 10px;"><strong>Használhatok két kedvezményt egyszerre?</strong> Nem, egy jegyre egy kedvezmény jár, de a hűségpontok mellette is beválthatók.</li>
+        <li style="margin-bottom: 10px;"><em style="color: #bbb;">TODO: bővíteni a tesztelés során felmerülő kérdésekkel.</em></li>
+    </ul>
+</div>
+
+<!-- 8. KAPCSOLAT -->
+<a name="fk-kapcsolat"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">8. Segítség és kapcsolat</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Ha a kézikönyvben nem talál választ, írjon az ügyfélszolgálatnak.
+    <br><em style="color: #bbb;">TODO: ügyfélszolgálati elérhetőség.</em>
+</div>
+
+    <div class="footer"></div>
+</body>
+</html>

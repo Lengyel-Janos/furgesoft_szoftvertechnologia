@@ -1,0 +1,34 @@
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+.side{width:200px;background:#0f1115;border-right:1px solid #262a33;padding:18px 0;height:100vh}
+.side div{padding:11px 22px;color:#9aa0aa}.side .on{background:#4facfe1a;color:#8fd0ff;border-left:3px solid #4facfe}
+.tl{position:relative;height:58px;border-bottom:1px solid #262a33;margin-left:110px}
+.lab{position:absolute;left:-110px;width:100px;top:18px;color:#b9bec7;font-size:13px}
+.blk{position:absolute;top:8px;height:42px;border-radius:6px;padding:5px 8px;font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cl{position:absolute;top:8px;height:42px;background:repeating-linear-gradient(45deg,#2a2f39,#2a2f39 4px,#20242c 4px,#20242c 8px);border-radius:4px}
+</style></head><body style="display:flex">
+<div class="side"><div class="logo" style="padding:0 22px 18px">SOFT<b>MOZI</b></div><div>Irányítópult</div><div>Mozik, termek</div><div>Filmek</div><div class="on">Műsortervező</div><div>Árak, kedvezmények</div><div>Felhasználók</div><div>Statisztikák</div></div>
+<div style="flex:1;padding:20px 26px">
+ <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><h1 style="font-size:22px;flex:1">Műsortervező</h1><div class="sel">Miskolc – Plaza ▾</div><div class="sel">‹ 2026. nov. 12., csütörtök ›</div><div class="btn">Mentés</div></div>
+ <div style="display:flex;gap:18px">
+ <div class="card" style="width:170px;padding:12px;align-self:flex-start"><div class="muted" style="font-size:11px;margin-bottom:8px">FILMEK – húzza az idősávba</div>
+  <div class="blk" style="position:static;margin-bottom:8px;background:#2a5298">Csillagköd · 142'</div><div class="blk" style="position:static;margin-bottom:8px;background:#a5352b">Éjféli expressz · 118'</div><div class="blk" style="position:static;margin-bottom:8px;background:#3f8a5a">Bükki legendák · 94'</div><div class="blk" style="position:static;background:#7a4fa0">Kék óra · 105'</div></div>
+ <div class="card" style="flex:1;padding:14px 16px 6px">
+  <div id="hrs" style="position:relative;height:22px;margin-left:110px;color:#7d8590;font-size:11px"></div>
+  <div id="rows"></div>
+  <div style="margin:12px 0 8px;padding:10px 14px;border:1px solid #c94a4a;background:#c94a4a1f;border-radius:8px;color:#ffb3b3;font-size:13px">⚠ Ütközés a 2-es teremben: a „Kék óra” 18:45-kor ér véget, a 20 perces takarítással együtt 19:05-ig foglalt a terem, ezért a 19:00-kor kezdődő „Éjféli expressz” ütközik vele. A vetítés így nem menthető.</div>
+  <div class="muted" style="font-size:11px;margin-bottom:6px">A csíkozott sáv a 20 perces takarítási idő (ÜSZ-08).</div>
+ </div></div>
+</div>
+<script>
+var W=document.getElementById('hrs').clientWidth-30,H0=10,H1=24,px=W/(H1-H0);function x(h){return (h-H0)*px}
+var hrs=document.getElementById('hrs');for(var h=H0;h<=H1;h+=2){var s=document.createElement('span');s.style.cssText='position:absolute;left:'+(x(h)-12)+'px';s.textContent=h+':00';hrs.appendChild(s)}
+var rows=[["1-es terem",[[10.5,94/60,"Bükki legendák","#3f8a5a"],[13,142/60,"Csillagköd","#2a5298"],[16.5,118/60,"Éjféli expressz","#a5352b"],[20,142/60,"Csillagköd","#2a5298"]]],
+["2-es terem",[[12,105/60,"Kék óra","#7a4fa0"],[15,94/60,"Bükki legendák","#3f8a5a"],[17,105/60,"Kék óra","#7a4fa0"],[19,118/60,"Éjféli expressz","bad"]]],
+["3-as (IMAX)",[[11,142/60,"Csillagköd","#2a5298"],[14.25,142/60,"Csillagköd","#2a5298"],[18.5,142/60,"Csillagköd","#2a5298"],[21.5,118/60,"Éjféli expressz","#a5352b"]]],
+["4-es (4DX)",[[13.5,105/60,"Kék óra","#7a4fa0"],[16,94/60,"Bükki legendák","#3f8a5a"],[20.75,142/60,"Csillagköd","#2a5298"]]]];
+var R=document.getElementById('rows');rows.forEach(function(r){var t=document.createElement('div');t.className='tl';t.innerHTML='<div class="lab">'+r[0]+'</div>';
+r[1].forEach(function(b){var c=document.createElement('div');c.className='cl';c.style.left=x(b[0]+b[1])+'px';c.style.width=(px/3)+'px';if(b[3]!='bad')t.appendChild(c);
+var d=document.createElement('div');d.className='blk';d.style.left=x(b[0])+'px';d.style.width=(b[1]*px-2)+'px';
+var hh=Math.floor(b[0]),mm=Math.round((b[0]-hh)*60);d.innerHTML='<b>'+b[2]+'</b><br>'+hh+':'+(mm<10?'0':'')+mm;
+if(b[3]=='bad'){d.style.background='#c94a4a55';d.style.border='2px dashed #ff6b6b';}else d.style.background=b[3];t.appendChild(d)});R.appendChild(t)});
+</script></body></html>

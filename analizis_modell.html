@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>(H4) Analízis Modell</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            themeVariables: { fontFamily: 'Arial, sans-serif', fontSize: '14px' },
+            class: { useMaxWidth: true },
+            flowchart: { useMaxWidth: true, htmlLabels: true }
+        });
+    </script>
+</head>
+<body>
+    <h1>Csoport neve: Fü(r)ge Soft</h1>
+    <h1>Feladat sorszáma: 4</h1>
+    <h1>Feladat címe: Soft Mozi</h1>
+
+    <h1 class="center spaced">(H4) Analízis Modell</h1>
+
+    <div class="center">
+        Gyakorlatvezető:
+        <h2>Árvai László</h2>
+    </div>
+
+    <h2>Csoport tagok: </h2>
+    <table>
+        <tr> <td>Padányi Milán    </td> <td>FMUL84</td> <td>mpadanyi09@gmail.com</td> </tr>
+        <tr> <td>Ujfalussy Kristóf</td> <td>ZZORDN</td> <td>kristof.ujfalussy@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Kecskés Gábor    </td> <td>QDY6TL</td> <td>gabor.kecskes@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Lengyel János    </td> <td>N9XZKQ</td> <td>lengyeljanos2004@gmail.com</td> </tr>
+        <tr> <td>Laczkó Norbert   </td> <td>SLIIKD</td> <td>laczkonorbert4@gmail.com</td> </tr>
+    </table>
+
+    <div class="right spaced">2026-11-06</div>
+
+    <h2>Történet: </h2>
+    <table>
+        <tr> <th>Dátum</th> <th>Verzió</th> <th>Leírás</th> <th>Szerző</th> </tr>
+        <tr>
+            <td>2026-11-06</td>
+            <td>1.0</td>
+            <td>Létrejött a dokumentum. Fejléc, történet táblázat, tartalomjegyzék és a fejezetek váza. A főoldalon a link beállítása.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-11-07</td>
+            <td>1.1</td>
+            <td>1. pont megírása (a dokumentum célja, kapcsolat az SRS-sel, a használt jelölések).
+                Az osztálycsoportok (2.1 pont) meghatározása az SRS moduljai alapján.</td>
+            <td>Ujfalussy Kristóf</td>
+        </tr>
+        <tr>
+            <td>2026-11-08</td>
+            <td>1.2</td>
+            <td>Az analízis osztálydiagram elkészítése (2.2 pont) az SRS adatbázis-terve alapján, öt osztálycsoportra bontva.
+                Az osztályok leírása (2.3 pont).</td>
+            <td>Padányi Milán<br>Kecskés Gábor</td>
+        </tr>
+        <tr>
+            <td>2026-11-09</td>
+            <td>1.3</td>
+            <td>A szolgáltatás (vezérlő) osztályok diagramja (2.4 pont), az árszámítás szabályainak szétbontása
+                (stratégia minta), csomagdiagram (2.5 pont).</td>
+            <td>Laczkó Norbert<br>Kecskés Gábor</td>
+        </tr>
+        <tr>
+            <td>2026-11-10</td>
+            <td>1.4</td>
+            <td>A dinamikus modell (3. pont): BCE diagram a jegyvásárláshoz, szekvenciadiagramok (bejelentkezés,
+                jegyellenőrzés, műsortervezés), a rendelés és a dolgozói feladat állapotdiagramja.</td>
+            <td>Lengyel János<br>Padányi Milán</td>
+        </tr>
+        <tr>
+            <td>2026-11-11</td>
+            <td>1.5</td>
+            <td>A frontend terv (4. pont): oldaltérkép, útvonalak, komponensek, állapotkezelés, a teremtérkép vázlata, mappaszerkezet.</td>
+            <td>Ujfalussy Kristóf<br>Laczkó Norbert</td>
+        </tr>
+        <tr>
+            <td>2026-11-12</td>
+            <td>1.6</td>
+            <td>Követhetőségi táblázat (5. pont), nyitott kérdések (6. pont). A dokumentum átnézése, a hivatkozások ellenőrzése,
+                a szótár kiegészítése.</td>
+            <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
+        </tr>
+    </table>
+
+    <h2>Tartalomjegyzék: </h2>
+    <ul>
+        <li><a href="#am-bevezetes">1. Bevezetés</a>
+            <ul>
+                <li><a href="#am-cel">1.1 A dokumentum célja</a></li>
+                <li><a href="#am-kapcsolat">1.2 Kapcsolat a korábbi dokumentumokkal</a></li>
+                <li><a href="#am-jeloles">1.3 A használt jelölések</a></li>
+            </ul>
+        </li>
+        <li><a href="#am-statikus">2. Statikus modell</a>
+            <ul>
+                <li><a href="#am-csoportok">2.1 Osztálycsoportok</a></li>
+                <li><a href="#am-osztalydiagram">2.2 Analízis osztálydiagram</a></li>
+                <li><a href="#am-osztalyleiras">2.3 Az osztályok leírása</a></li>
+                <li><a href="#am-szolgaltatasok">2.4 Szolgáltatás (vezérlő) osztályok</a></li>
+                <li><a href="#am-csomagok">2.5 Csomagdiagram</a></li>
+            </ul>
+        </li>
+        <li><a href="#am-dinamikus">3. Dinamikus modell</a>
+            <ul>
+                <li><a href="#am-bce">3.1 Jegyvásárlás – határ, vezérlő és entitás osztályok</a></li>
+                <li><a href="#am-szekv-auth">3.2 Bejelentkezés és jogosultság</a></li>
+                <li><a href="#am-szekv-ellenorzes">3.3 Jegyellenőrzés a bejáratnál</a></li>
+                <li><a href="#am-szekv-musor">3.4 Új vetítés felvétele (műsortervezés)</a></li>
+                <li><a href="#am-allapot-rendeles">3.5 A rendelés állapotai</a></li>
+                <li><a href="#am-allapot-feladat">3.6 A dolgozói feladat állapotai</a></li>
+            </ul>
+        </li>
+        <li><a href="#am-frontend">4. Frontend terv</a>
+            <ul>
+                <li><a href="#am-fe-technologia">4.1 Technológia és felépítés</a></li>
+                <li><a href="#am-fe-oldalterkep">4.2 Oldaltérkép</a></li>
+                <li><a href="#am-fe-utvonalak">4.3 Oldalak és útvonalak</a></li>
+                <li><a href="#am-fe-komponensek">4.4 Komponensek</a></li>
+                <li><a href="#am-fe-allapot">4.5 Állapotkezelés és kommunikáció</a></li>
+                <li><a href="#am-fe-vazlat">4.6 A teremtérkép vázlata</a></li>
+                <li><a href="#am-fe-mappak">4.7 Mappaszerkezet</a></li>
+            </ul>
+        </li>
+        <li><a href="#am-kovethetoseg">5. Követhetőség (osztályok – követelmények)</a></li>
+        <li><a href="#am-nyitott">6. Nyitott kérdések</a></li>
+    </ul>
+
+<h1 style="margin-bottom: 20px; font-size: 2.2em; border-bottom: 1px solid #555; padding-bottom: 10px;">Analízis Modell</h1>
+
+<!-- 1. BEVEZETÉS -->
+<a name="am-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
+
+<a name="am-cel"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.1 A dokumentum célja</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az SRS-ben (H3) leírtuk, hogy <em>mit</em> kell tudnia a Soft Mozi rendszernek. Az Analízis Modellben azt mutatjuk meg,
+    hogy ezek a követelmények milyen <strong>osztályokra</strong>, <strong>felelősségekre</strong> és <strong>együttműködésekre</strong>
+    bonthatók, még mielőtt eldöntenénk a konkrét technikai megoldásokat. A modell független a programozási nyelvtől:
+    ugyanígy megvalósítható FastAPI-ban és Spring Bootban is.
+    <br><br>
+    A dokumentum három részből áll:
+    <ul style="margin-top: 10px;">
+        <li><strong>Statikus modell:</strong> milyen osztályok vannak, mit tárolnak, és hogyan kapcsolódnak egymáshoz.</li>
+        <li><strong>Dinamikus modell:</strong> hogyan működnek együtt az osztályok a legfontosabb folyamatokban, és milyen állapotokon mennek át.</li>
+        <li><strong>Frontend terv:</strong> milyen oldalakból és komponensekből áll a felület, és hogyan kommunikál a backenddel.</li>
+    </ul>
+</div>
+
+<a name="am-kapcsolat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.2 Kapcsolat a korábbi dokumentumokkal</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Dokumentum</th> <th>Amit innen felhasználtunk</th> </tr>
+        <tr> <td><a href="projekt_terv.html">(H1) Projekt terv</a></td> <td>Technológiák (Next.js, TypeScript, Tailwind, FastAPI / Spring Boot, PostgreSQL), mérföldkövek.</td> </tr>
+        <tr> <td><a href="vizio_dokumentum.html">(H2) Vízió dokumentum</a></td> <td>Felhasználói körök, első ER-diagram.</td> </tr>
+        <tr> <td><a href="srs_dokumentum.html">(H3) SRS dokumentum</a></td> <td>Funkcionális követelmények (FK-01 – FK-39), használati esetek (UC-01 – UC-21), üzleti szabályok (ÜSZ-01 – ÜSZ-10), az adatbázis UML diagramja.</td> </tr>
+        <tr> <td>(H5) Rendszer Tervezés</td> <td>Ide kerülnek majd a technikai részletek: pontos adatbázis séma, teljes API lista, telepítés.</td> </tr>
+    </table>
+</div>
+
+<a name="am-jeloles"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.3 A használt jelölések</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A diagramokat UML jelöléssel, Mermaid segítségével készítettük, így a forrásuk szövegként a repository-ban van, és könnyen módosítható.
+    <ul style="margin-top: 10px;">
+        <li><strong>Sztereotípiák:</strong> <code>«entity»</code> – tárolt adat, <code>«control»</code> – üzleti logika,
+            <code>«boundary»</code> – felület vagy külső rendszer határa, <code>«interface»</code> – csak a szerződést írja le,
+            <code>«enumeration»</code> – rögzített értékkészlet.</li>
+        <li><strong>Láthatóság:</strong> <code>+</code> publikus, <code>-</code> privát, <code>#</code> védett.</li>
+        <li><strong>Kapcsolatok:</strong> ugyanazok, mint az SRS 7.1 pontjában (asszociáció, aggregáció, kompozíció, öröklődés),
+            kiegészítve a <em>függőséggel</em> (szaggatott nyíl) és a <em>megvalósítással</em> (szaggatott vonal üres háromszöggel).</li>
+    </ul>
+</div>
+
+<!-- 2. STATIKUS MODELL -->
+<a name="am-statikus"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">2. Statikus modell</h2>
+
+<a name="am-csoportok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.1 Osztálycsoportok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az osztályokat öt csoportba (csomagba) soroltuk. Egy csoport egy jól körülhatárolható területért felel, és a csoportok között
+    csak a szükséges kapcsolatok vannak meg. A csoportok nagyjából az SRS moduljait követik.
+    <table style="margin-top: 10px;">
+        <tr> <th>Csoport</th> <th>Osztályok</th> <th>Felelősség</th> <th>SRS modul</th> </tr>
+        <tr> <td><strong>Felhasználók</strong></td> <td>Felhasznalo, Vendeg, Dolgozo, Admin, Kedvezmeny, HusegSzamla</td> <td>Fiókok, jogosultságok, kedvezmények, hűségpontok.</td> <td>4.2, 4.6</td> </tr>
+        <tr> <td><strong>Mozihálózat</strong></td> <td>Regio, Mozi, Terem, Szek</td> <td>A fizikai hálózat: régiók, mozik, termek és székek.</td> <td>4.3, 4.7</td> </tr>
+        <tr> <td><strong>Műsor</strong></td> <td>Film, Mufaj, Technologia, Vetites, Ertekeles</td> <td>Mit, hol és mikor vetítünk, és mit gondolnak róla a vendégek.</td> <td>4.3, 4.7</td> </tr>
+        <tr> <td><strong>Értékesítés</strong></td> <td>Rendeles, Jegy, BufeTermek, Ar, BufeTetel, Fizetes</td> <td>Kosár, jegyek, büfé, fizetés.</td> <td>4.4, 4.5, 4.6</td> </tr>
+        <tr> <td><strong>Üzemeltetés</strong></td> <td>Feladat, Ertesites</td> <td>Takarítási és javítási feladatok, értesítések a dolgozóknak.</td> <td>4.8</td> </tr>
+    </table>
+</div>
+
+<a name="am-osztalydiagram"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.2 Analízis osztálydiagram</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az alábbi diagram az SRS 7.1 pontjában lévő adatbázis-terv objektumorientált változata. A különbség az, hogy itt már
+    a <strong>műveletek</strong> (felelősségek) is megjelennek, nem csak az adatok, és a kapcsolótáblák (pl. Filmek-Műfaj)
+    egyszerű több-több asszociációvá váltak. Új osztály a <strong>Rendeles</strong> (a kosár, ami összefogja a jegyeket és a büfét),
+    a <strong>Fizetes</strong>, a <strong>HusegSzamla</strong> és a <strong>Feladat</strong>.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+classDiagram
+direction TB
+namespace Felhasznalok {
+    class Felhasznalo {
+        &lt;&lt;abstract&gt;&gt;
+        +int id
+        +String nev
+        +String email
+        -String jelszoHash
+        +Date szuletesiDatum
+        +Jogosultsag jogosultsag
+        +eletkor() int
+        +jelszoEllenoriz(jelszo) bool
+    }
+    class Vendeg {
+        +String telefon
+        +bool emailMegerositve
+        +kedvezmenytBeallit(k) void
+        +fiokotTorol() void
+    }
+    class Dolgozo {
+        +DolgozoTipus tipus
+        +feladatotLezar(f) void
+        +szekhibatJelent(sz) Feladat
+    }
+    class Admin {
+        +jogosultsagotModosit(f, j) void
+    }
+    class Kedvezmeny {
+        +String tipus
+        +int szazalek
+        +jogosult(f) bool
+    }
+    class HusegSzamla {
+        +int pontok
+        +jovair(osszeg) void
+        +bevalt(pont) int
+        +lejartPontokTorlese() void
+    }
+}
+namespace Mozihalozat {
+    class Regio {
+        +int id
+        +String nev
+    }
+    class Mozi {
+        +int id
+        +String nev
+        +String cim
+        +String varos
+        +buferArlista() List~Ar~
+    }
+    class Terem {
+        +int id
+        +String nev
+        +kapacitas() int
+    }
+    class Szek {
+        +int sor
+        +int szam
+        +SzekAllapot allapot
+        +hibasraAllit() void
+        +megjavit() void
+    }
+}
+namespace Musor {
+    class Film {
+        +int id
+        +String cim
+        +String rendezo
+        +int jatekido
+        +int korhatar
+        +Date bemutato
+        +float imdbErtekeles
+        +atlagErtekeles() float
+    }
+    class Mufaj {
+        +String nev
+    }
+    class Technologia {
+        +String nev
+        +int felar
+    }
+    class Vetites {
+        +int id
+        +DateTime kezdes
+        +String nyelv
+        +int alapar
+        +befejezes() DateTime
+        +telitettseg() float
+        +utkozik(masik) bool
+        +beengedhet(ido) bool
+    }
+    class Ertekeles {
+        +int csillag
+        +String szoveg
+        +Date datum
+    }
+}
+namespace Ertekesites {
+    class Rendeles {
+        +int id
+        +RendelesAllapot allapot
+        +DateTime letrehozva
+        +DateTime zarolasLejar
+        +int beváltottPont
+        +vegosszeg() int
+        +jegyetHozzaad(v, sz) Jegy
+        +lemond() void
+    }
+    class Jegy {
+        +String qrKod
+        +int ar
+        +JegyAllapot allapot
+        +felhasznal() void
+        +lemondhato(most) bool
+    }
+    class BufeTermek {
+        +int id
+        +String nev
+        +String kategoria
+    }
+    class Ar {
+        +int osszeg
+    }
+    class BufeTetel {
+        +int darab
+        +String extra
+        +BufeAllapot allapot
+        +reszosszeg() int
+    }
+    class Fizetes {
+        +String kulsoAzonosito
+        +int osszeg
+        +FizetesAllapot allapot
+        +DateTime idopont
+    }
+}
+namespace Uzemeltetes {
+    class Feladat {
+        +int id
+        +FeladatTipus tipus
+        +FeladatAllapot allapot
+        +DateTime letrehozva
+        +elfogad(d) void
+        +lezar() void
+    }
+    class Ertesites {
+        +String uzenet
+        +bool olvasott
+    }
+}
+
+Felhasznalo <|-- Vendeg
+Felhasznalo <|-- Dolgozo
+Felhasznalo <|-- Admin
+Vendeg "0..*" --> "0..1" Kedvezmeny : igenyel
+Vendeg "1" *-- "1" HusegSzamla
+
+Regio "1" o-- "0..*" Mozi
+Mozi "1" *-- "1..*" Terem
+Terem "1" *-- "1..*" Szek
+Dolgozo "0..*" --> "1" Mozi : dolgozik
+
+Film "0..*" -- "1..*" Mufaj
+Film "1" -- "0..*" Vetites
+Terem "1" -- "0..*" Vetites
+Technologia "1" -- "0..*" Vetites
+Vendeg "1" -- "0..*" Ertekeles : ír
+Film "1" -- "0..*" Ertekeles
+
+Vendeg "1" -- "0..*" Rendeles : lead
+Rendeles "1" *-- "0..10" Jegy
+Rendeles "1" *-- "0..*" BufeTetel
+Rendeles "1" -- "0..1" Fizetes
+Jegy "0..*" --> "1" Vetites
+Jegy "0..*" --> "1" Szek
+Jegy "0..*" --> "0..1" Kedvezmeny
+Mozi "1" *-- "0..*" Ar
+BufeTermek "1" -- "0..*" Ar
+BufeTetel "0..*" --> "1" Ar
+
+Feladat "0..*" --> "1" Terem
+Feladat "0..*" --> "0..1" Szek
+Dolgozo "0..1" -- "0..*" Feladat : elvégzi
+Feladat "1" *-- "1..*" Ertesites
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: A Soft Mozi analízis osztálydiagramja, öt osztálycsoportra bontva</em></div>
+    </div>
+
+    <p style="margin-top: 20px; font-weight: bold;">Felsorolás típusok (enumerációk):</p>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 10px; text-align: center; overflow-x: auto;">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 15px; align-items: start;">
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>Jogosultsag</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">VENDEG = 0<br>DOLGOZO = 1<br>ADMIN = 2</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>DolgozoTipus</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">PENZTAROS<br>JEGYKEZELO<br>TAKARITO<br>SZERELO</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>SzekAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">SZABAD<br>ZAROLT<br>FOGLALT<br>HIBAS</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>JegyAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">ERVENYES<br>FELHASZNALT<br>LEJART<br>VISSZATERITETT</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>RendelesAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">KOSAR<br>FIZETESRE_VAR<br>KIFIZETVE<br>MEGSZAKADT<br>LEMONDVA</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>FeladatAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">UJ<br>FOLYAMATBAN<br>KESZ<br>ESZKALALT</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>FeladatTipus</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">TAKARITAS<br>JAVITAS</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>BufeAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">FUGGOBEN<br>KIFIZETVE<br>KIADVA</div>
+        </div>
+        <div style="border: 1px solid #9ab; border-radius: 4px; background-color: #1f2020; text-align: left; font-size: 0.9em;">
+            <div style="text-align: center; padding: 6px 8px; border-bottom: 1px solid #9ab;"><span style="color: #bbb; font-size: 0.85em;">&laquo;enumeration&raquo;</span><br><strong>FizetesAllapot</strong></div>
+            <div style="padding: 8px 12px; font-family: monospace; line-height: 1.6;">FOLYAMATBAN<br>SIKERES<br>SIKERTELEN<br>VISSZATERITVE</div>
+        </div>
+        </div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: A modellben használt felsorolás típusok</em></div>
+    </div>
+</div>
+
+<a name="am-osztalyleiras"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.3 Az osztályok leírása</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Osztály</th> <th>Csoport</th> <th>Felelősség</th> <th>Fontos szabályok</th> </tr>
+        <tr> <td>Felhasznalo</td> <td>Felhasználók</td> <td>Közös adatok és a bejelentkezés. Absztrakt, csak a leszármazottai példányosíthatók.</td> <td>E-mail egyedi, jelszó bcrypt hash-ként (NFK-06).</td> </tr>
+        <tr> <td>Vendeg</td> <td>Felhasználók</td> <td>Vásárol, értékel, kezeli a profilját és a kedvezményét.</td> <td>Fióktörléskor a rendelései név nélkül megmaradnak (FK-07).</td> </tr>
+        <tr> <td>Dolgozo</td> <td>Felhasználók</td> <td>Jegyet ellenőriz, feladatokat zár le, székhibát jelent.</td> <td>Csak a saját mozijához fér hozzá (ÜSZ-10).</td> </tr>
+        <tr> <td>Admin</td> <td>Felhasználók</td> <td>Törzsadatok, műsor, árak és jogosultságok kezelése.</td> <td>–</td> </tr>
+        <tr> <td>Kedvezmeny</td> <td>Felhasználók</td> <td>Eldönti, hogy egy vendég jogosult-e rá (életkor, diákigazolvány).</td> <td>ÜSZ-01, ÜSZ-02, ÜSZ-03.</td> </tr>
+        <tr> <td>HusegSzamla</td> <td>Felhasználók</td> <td>Pontok jóváírása és beváltása.</td> <td>100 Ft = 1 pont, 100 pont = 500 Ft, 1 évig érvényes (FK-29, ÜSZ-09).</td> </tr>
+        <tr> <td>Regio, Mozi</td> <td>Mozihálózat</td> <td>A hálózat felépítése, keresés régió és város szerint.</td> <td>A régió neve egyedi.</td> </tr>
+        <tr> <td>Terem, Szek</td> <td>Mozihálózat</td> <td>A teremtérkép alapja. A szék tudja magáról, hogy hibás-e.</td> <td>Egy teremben egy sor-szám páros egyszer.</td> </tr>
+        <tr> <td>Film, Mufaj</td> <td>Műsor</td> <td>Filmadatok (IMDB-ből frissítve), saját átlagértékelés.</td> <td>Korhatár: 0, 6, 12, 16, 18 (ÜSZ-04).</td> </tr>
+        <tr> <td>Technologia</td> <td>Műsor</td> <td>2D, 3D, IMAX, 4DX és a hozzá tartozó felár.</td> <td>–</td> </tr>
+        <tr> <td>Vetites</td> <td>Műsor</td> <td>Kiszámolja a befejezést, a telítettséget, és eldönti, hogy ütközik-e egy másikkal.</td> <td>20 perc takarítási idő (ÜSZ-08), beengedés −30 / +20 perc (ÜSZ-07).</td> </tr>
+        <tr> <td>Ertekeles</td> <td>Műsor</td> <td>1-5 csillagos értékelés.</td> <td>Csak felhasznált jeggyel, filmenként egyszer (FK-13).</td> </tr>
+        <tr> <td>Rendeles</td> <td>Értékesítés</td> <td>A kosár: összefogja a jegyeket és a büfé tételeket, kiszámolja a végösszeget.</td> <td>Max. 10 jegy (FK-18), 10 perces zárolás (FK-17).</td> </tr>
+        <tr> <td>Jegy</td> <td>Értékesítés</td> <td>Egy szék egy vetítésre. QR-kódot hordoz.</td> <td>Egy székre egy vetítésre egy érvényes jegy (NFK-08). Lemondás 2 órával előtte (ÜSZ-06).</td> </tr>
+        <tr> <td>BufeTermek, Ar</td> <td>Értékesítés</td> <td>A büfé kínálata és a mozinkénti árak.</td> <td>Büfére nem jár kedvezmény (FK-26).</td> </tr>
+        <tr> <td>BufeTetel</td> <td>Értékesítés</td> <td>Egy kosárba tett büfé termék darabszámmal és extrával.</td> <td>–</td> </tr>
+        <tr> <td>Fizetes</td> <td>Értékesítés</td> <td>A külső fizetési szolgáltató válaszának tárolása.</td> <td>Kártyaadatot nem tárolunk (FK-27).</td> </tr>
+        <tr> <td>Feladat</td> <td>Üzemeltetés</td> <td>Takarítási vagy javítási feladat egy teremhez / székhez.</td> <td>Ha 15 percig senki nem fogadja el, eszkalálódik.</td> </tr>
+        <tr> <td>Ertesites</td> <td>Üzemeltetés</td> <td>A dolgozónak küldött WebSocket üzenet nyoma.</td> <td>–</td> </tr>
+    </table>
+</div>
+
+<a name="am-szolgaltatasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.4 Szolgáltatás (vezérlő) osztályok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az entitás osztályok mellett szükség van olyan osztályokra, amelyek a folyamatokat irányítják. Ezek nem tárolnak adatot,
+    hanem az entitásokat használják. A jegyár számítását (SRS 6.5) <strong>stratégia mintával</strong> bontottuk szét:
+    minden árszabály (technológia felár, napszak, telítettség) külön osztály, így új szabályt a meglévők módosítása nélkül lehet felvenni.
+    A külső rendszereket (fizetés, OpenAI, IMDB, e-mail) interfészek mögé rejtettük, így tesztelésnél könnyen kicserélhetők.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+classDiagram
+direction TB
+namespace Hitelesites {
+    class AuthService {
+        &lt;&lt;control&gt;&gt;
+        +regisztral(adatok) Vendeg
+        +bejelentkezik(email, jelszo) String
+        +jelszoVisszaallit(email) void
+    }
+    class JwtKezelo {
+        &lt;&lt;control&gt;&gt;
+        -String titkosKulcs
+        +tokentKeszit(f) String
+        +ellenoriz(token) Claims
+    }
+    class JogosultsagOr {
+        &lt;&lt;control&gt;&gt;
+        +engedelyez(claims, szerep, moziId) bool
+    }
+}
+namespace Foglalas {
+    class JegyfoglaloService {
+        &lt;&lt;control&gt;&gt;
+        +szeketValaszt(vetites, szek, vendeg) Rendeles
+        +szeketElenged(rendeles, szek) void
+        +fizet(rendeles) Fizetes
+    }
+    class SzekZarolo {
+        &lt;&lt;control&gt;&gt;
+        +zarol(vetites, szek, rendeles) bool
+        +felold(vetites, szek) void
+        +lejartakFelszabaditasa() void
+    }
+    class ArKalkulator {
+        &lt;&lt;control&gt;&gt;
+        -List~ArSzabaly~ szabalyok
+        +jegyAr(vetites, kedvezmeny) int
+        +vegosszeg(rendeles) int
+    }
+    class ArSzabaly {
+        &lt;&lt;interface&gt;&gt;
+        +alkalmaz(ar, vetites) int
+    }
+    class TechnologiaFelar
+    class NapszakSzabaly
+    class TelitettsegSzabaly
+    class ArKorlat {
+        +korlatoz(ar, alapar) int
+    }
+}
+namespace Uzemelteto {
+    class MusorTervezoService {
+        &lt;&lt;control&gt;&gt;
+        +vetitestFelvesz(adatok) Vetites
+        +utkozesek(terem, nap) List~Vetites~
+    }
+    class JegyEllenorzoService {
+        &lt;&lt;control&gt;&gt;
+        +ellenoriz(qrKod, dolgozo) EllenorzesEredmeny
+    }
+    class FeladatService {
+        &lt;&lt;control&gt;&gt;
+        +takaritastIndit(vetites) Feladat
+        +szekhibat(szek, dolgozo) Feladat
+        +eszkalal() void
+    }
+    class ErtesitesKozpont {
+        &lt;&lt;control&gt;&gt;
+        +kuld(csatorna, uzenet) void
+        +feliratkozik(kliens, csatorna) void
+    }
+}
+namespace KulsoRendszerek {
+    class FizetesiSzolgaltato {
+        &lt;&lt;interface&gt;&gt;
+        +fizetestIndit(osszeg, rendelesId) String
+        +statusz(kulsoId) FizetesAllapot
+        +visszateritit(kulsoId) bool
+    }
+    class AjanloMotor {
+        &lt;&lt;interface&gt;&gt;
+        +ajanl(vendeg, vetitesek) List~Vetites~
+    }
+    class FilmAdatForras {
+        &lt;&lt;interface&gt;&gt;
+        +filmAdatok(imdbId) Film
+    }
+    class EmailKuldo {
+        &lt;&lt;interface&gt;&gt;
+        +kuld(cim, sablon, adatok) void
+    }
+    class OpenAIAjanlo
+    class ImdbKliens
+}
+
+ArSzabaly <|.. TechnologiaFelar
+ArSzabaly <|.. NapszakSzabaly
+ArSzabaly <|.. TelitettsegSzabaly
+ArKalkulator o-- "1..*" ArSzabaly
+ArKalkulator --> ArKorlat
+AjanloMotor <|.. OpenAIAjanlo
+FilmAdatForras <|.. ImdbKliens
+
+AuthService --> JwtKezelo
+AuthService ..> EmailKuldo
+JegyfoglaloService --> SzekZarolo
+JegyfoglaloService --> ArKalkulator
+JegyfoglaloService ..> FizetesiSzolgaltato
+JegyfoglaloService ..> EmailKuldo
+SzekZarolo ..> ErtesitesKozpont
+MusorTervezoService ..> FeladatService
+JegyEllenorzoService ..> JogosultsagOr
+FeladatService --> ErtesitesKozpont
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: A szolgáltatás (vezérlő) osztályok és a külső rendszerek interfészei</em></div>
+    </div>
+</div>
+
+<a name="am-csomagok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.5 Csomagdiagram</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A csomagdiagram azt mutatja meg, hogy melyik rész melyiktől függ. A szabály: a függőségek mindig
+    <strong>felülről lefelé</strong> mutatnak (felület → API → modulok → infrastruktúra), visszafelé nem. A modulok egymást csak
+    a szolgáltatásaikon keresztül hívhatják, a másik modul adatbázis tábláihoz közvetlenül nem nyúlnak.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+flowchart TB
+    subgraph FE["Frontend (Next.js)"]
+        direction LR
+        FEV["Vendég felület"]
+        FED["Dolgozói felület"]
+        FEA["Admin felület"]
+    end
+    subgraph API["API réteg"]
+        direction LR
+        REST["REST végpontok"]
+        WS["WebSocket"]
+        MW["JWT ellenőrzés"]
+    end
+    subgraph MOD["Üzleti modulok"]
+        direction LR
+        M1["Felhasználó-<br>kezelés"]
+        M2["Felfedező"]
+        M3["Jegyfoglaló"]
+        M4["Büfé"]
+        M5["Pénzügy"]
+        M6["Admin"]
+        M7["Dolgozói"]
+    end
+    subgraph INF["Infrastruktúra"]
+        direction LR
+        DB[("PostgreSQL")]
+        EXT["Külső adapterek<br>fizetés, OpenAI,<br>IMDB, e-mail"]
+        PUB["Értesítés-<br>központ"]
+    end
+    FEV --> REST
+    FED --> REST
+    FEA --> REST
+    FEV -.-> WS
+    FED -.-> WS
+    REST --> MW
+    MW --> MOD
+    WS --> PUB
+    M3 --> M5
+    M4 --> M5
+    M3 --> M2
+    M6 --> M2
+    M7 --> M3
+    MOD --> DB
+    M5 --> EXT
+    M2 --> EXT
+    M3 --> PUB
+    M7 --> PUB
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: A rendszer csomagjai és a köztük lévő függőségek</em></div>
+    </div>
+</div>
+
+<!-- 3. DINAMIKUS MODELL -->
+<a name="am-dinamikus"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">3. Dinamikus modell</h2>
+<div style="line-height: 1.7; margin-bottom: 15px;">
+    Az SRS 6. pontjában már szerepel a jegyvásárlás és a takarítás szekvenciadiagramja, valamint a szék és a jegy állapotdiagramja.
+    Ezeket itt nem ismételjük meg, hanem a további fontos folyamatokat rajzoltuk le, már a 2. pontban bevezetett osztályokkal.
+</div>
+
+<a name="am-bce"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.1 Jegyvásárlás – határ, vezérlő és entitás osztályok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A BCE (Boundary – Control – Entity) diagram a legfontosabb használati esetet (UC-06, UC-07, UC-08) bontja szét
+    a három osztálytípusra. A szabály: a felhasználó csak határ osztállyal beszél, a határ osztály csak vezérlővel,
+    és csak a vezérlő módosíthat entitást.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+flowchart LR
+    V(["Vendég"])
+    subgraph B["«boundary»"]
+        direction TB
+        B1["Teremtérkép"]
+        B2["Kosár"]
+        B3["Fizetés oldal"]
+        B4["Fizetési szolgáltató"]
+    end
+    subgraph C["«control»"]
+        direction TB
+        C1["JegyfoglaloService"]
+        C2["SzekZarolo"]
+        C3["ArKalkulator"]
+        C4["ErtesitesKozpont"]
+    end
+    subgraph E["«entity»"]
+        direction TB
+        E1[("Vetites")]
+        E2[("Szek")]
+        E3[("Rendeles")]
+        E4[("Jegy")]
+        E5[("BufeTetel")]
+        E6[("Kedvezmeny")]
+        E7[("Fizetes")]
+    end
+    V --> B1
+    V --> B2
+    V --> B3
+    B1 --> C1
+    B2 --> C1
+    B3 --> C1
+    C1 --> C2
+    C1 --> C3
+    C1 --> B4
+    C2 --> C4
+    C2 --> E2
+    C2 --> E1
+    C1 --> E3
+    C1 --> E4
+    C1 --> E5
+    C1 --> E7
+    C3 --> E1
+    C3 --> E6
+    C4 -. "szék zárolva" .-> B1
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>5. ábra: A jegyvásárlás BCE diagramja</em></div>
+    </div>
+</div>
+
+<a name="am-szekv-auth"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.2 Bejelentkezés és jogosultság</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A bejelentkezés után a backend egy JWT tokent ad vissza (SRS 3.5). Minden további kérésnél a <strong>JogosultsagOr</strong>
+    ellenőrzi a token aláírását, a lejáratot, a szerepkört, és dolgozónál azt is, hogy a saját mozijához fér-e hozzá (ÜSZ-10, NFK-07).
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor F as Felhasználó
+    participant UI as Bejelentkezés oldal
+    participant A as AuthService
+    participant J as JwtKezelo
+    participant DB as Felhasználók
+    participant O as JogosultsagOr
+    participant S as Védett végpont
+
+    F->>UI: e-mail + jelszó
+    UI->>A: POST /api/bejelentkezes
+    A->>DB: keres(email)
+    DB-->>A: Felhasznalo
+    A->>A: jelszoEllenoriz(bcrypt)
+    alt hibás adatok
+        A-->>UI: 401 Hibás e-mail vagy jelszó
+        UI-->>F: hibaüzenet
+    else helyes adatok
+        A->>J: tokentKeszit(felhasznalo)
+        J-->>A: token (role, cinema_id, exp)
+        A-->>UI: 200 + token
+        UI-->>F: átirányítás a szerepkör kezdőlapjára
+    end
+    F->>UI: védett művelet
+    UI->>S: kérés + Authorization: Bearer token
+    S->>O: engedelyez(claims, szerep, moziId)
+    alt lejárt token vagy nincs jog
+        O-->>S: false
+        S-->>UI: 401 / 403
+    else van jog
+        O-->>S: true
+        S-->>UI: 200 + adatok
+    end
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>6. ábra: A bejelentkezés és a jogosultság-ellenőrzés szekvenciadiagramja</em></div>
+    </div>
+</div>
+
+<a name="am-szekv-ellenorzes"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.3 Jegyellenőrzés a bejáratnál</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az UC-11 (FK-37) részletes lefutása. A dolgozó tabletjének kamerája olvassa be a QR-kódot. A jegy csak akkor érvényes, ha
+    a dolgozó mozijába szól, a beengedési időablakon belül vagyunk (ÜSZ-07), és még nem használták fel. A felhasználttá
+    jelölés tranzakcióban történik, hogy ugyanazt a jegyet két bejáratnál se lehessen egyszerre beengedni.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor D as Dolgozó
+    participant T as Tablet (QR olvasó)
+    participant E as JegyEllenorzoService
+    participant J as Jegy
+    participant V as Vetites
+
+    D->>T: Beolvasás gomb
+    T->>T: kamera, QR dekódolás
+    T->>E: POST /api/jegyek/ellenorzes (qrKod)
+    E->>J: keres(qrKod) zárolással
+    alt nincs ilyen jegy
+        E-->>T: ÉRVÉNYTELEN (ismeretlen jegy)
+    else van jegy
+        E->>V: moziId, beengedhet(most)
+        alt másik mozi
+            E-->>T: ÉRVÉNYTELEN (másik mozi)
+        else időablakon kívül
+            E-->>T: ÉRVÉNYTELEN (még nem / már nem lehet bemenni)
+        else már felhasznált
+            E-->>T: ÉRVÉNYTELEN (már felhasználták)
+        else minden rendben
+            E->>J: felhasznal()
+            J-->>E: FELHASZNALT
+            E-->>T: ÉRVÉNYES (terem, sor, szék)
+        end
+    end
+    T-->>D: zöld / piros képernyő
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>7. ábra: A jegyellenőrzés szekvenciadiagramja</em></div>
+    </div>
+</div>
+
+<a name="am-szekv-musor"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.4 Új vetítés felvétele (műsortervezés)</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az UC-16 (FK-32) lefutása. Amikor az admin behúz egy filmet az idősávba, a felület már előre jelzi az ütközést,
+    de a végső ellenőrzést mindig a szerver végzi. Mentés után a rendszer a vetítés végére előre ütemezi a takarítási feladatot.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor A as Admin
+    participant UI as Műsortervező
+    participant M as MusorTervezoService
+    participant V as Vetites
+    participant F as FeladatService
+
+    A->>UI: film behúzása az idősávba
+    UI->>UI: előzetes ütközés-ellenőrzés (helyi adatokból)
+    UI-->>A: piros / zöld jelzés
+    A->>UI: Mentés
+    UI->>M: POST /api/admin/vetitesek
+    M->>V: utkozesek(terem, nap)
+    loop minden vetítés a teremben aznap
+        M->>V: utkozik(uj) kezdés, játékidő + 20 perc
+    end
+    alt van ütközés
+        M-->>UI: 409 Ütközés (ütköző vetítések listája)
+        UI-->>A: piros jelzés, a mentés nem történt meg
+    else nincs ütközés
+        M->>V: mentés
+        M->>F: takarítás ütemezése a vetítés végére
+        M-->>UI: 201 Létrehozva
+        UI-->>A: a vetítés megjelenik a műsorban
+    end
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>8. ábra: Az új vetítés felvételének szekvenciadiagramja</em></div>
+    </div>
+</div>
+
+<a name="am-allapot-rendeles"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.5 A rendelés állapotai</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A <strong>Rendeles</strong> az az osztály, ami a kosarat képviseli. Az SRS-ben szereplő jegy- és székállapotok
+    a rendelés állapotától függenek: amíg a rendelés <em>Kosár</em> vagy <em>Fizetésre vár</em> állapotban van, a székek zároltak,
+    kifizetés után foglaltak, megszakadáskor újra szabadok.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+stateDiagram-v2
+    direction LR
+    [*] --> Kosar : első szék kiválasztása
+    Kosar --> Kosar : szék / büfé hozzáadása, törlése
+    Kosar --> Megszakadt : 10 perc lejárt vagy kosár ürítése
+    Kosar --> FizetesreVar : Fizetés gomb
+    FizetesreVar --> Kifizetve : sikeres fizetés
+    FizetesreVar --> Kosar : sikertelen fizetés (van még idő)
+    FizetesreVar --> Megszakadt : 10 perc lejárt
+    Kifizetve --> Lemondva : lemondás (legalább 2 órával előtte)
+    Kifizetve --> [*] : vetítés vége
+    Megszakadt --> [*]
+    Lemondva --> [*]
+
+    Kosar : Kosár
+    FizetesreVar : Fizetésre vár
+    Kifizetve : Kifizetve
+    Megszakadt : Megszakadt
+    Lemondva : Lemondva
+
+    note right of Kifizetve
+        jegyek ERVENYES állapotban,
+        hűségpontok jóváírva,
+        e-jegy elküldve
+    end note
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>9. ábra: A rendelés (kosár) állapotdiagramja</em></div>
+    </div>
+</div>
+
+<a name="am-allapot-feladat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.6 A dolgozói feladat állapotai</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A takarítási és javítási feladatok (FK-38, FK-39) ugyanazon az állapotgépen mennek végig. Ha egy feladatot 15 percig senki nem
+    fogad el, a rendszer eszkalálja (a mozi összes megfelelő dolgozójának és az adminnak is szól).
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+stateDiagram-v2
+    direction LR
+    [*] --> Uj : vetítés vége / székhiba bejelentése
+    Uj --> Folyamatban : dolgozó elfogadja
+    Uj --> Eszkalalt : 15 percig nincs elfogadva
+    Eszkalalt --> Folyamatban : dolgozó elfogadja
+    Folyamatban --> Kesz : Rendben gomb
+    Folyamatban --> Uj : dolgozó visszaadja
+    Kesz --> [*]
+
+    Uj : Új
+    Folyamatban : Folyamatban
+    Eszkalalt : Eszkalált
+    Kesz : Kész
+
+    state Kesz {
+        [*] --> TipusEll
+        TipusEll --> SzekJavitva : JAVITAS
+        TipusEll --> TeremTiszta : TAKARITAS
+        TipusEll : típus?
+        SzekJavitva : a szék újra SZABAD
+        TeremTiszta : a következő vetítés beengedhető
+    }
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>10. ábra: A takarítási / javítási feladat állapotdiagramja</em></div>
+    </div>
+</div>
+
+<!-- 4. FRONTEND TERV -->
+<a name="am-frontend"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">4. Frontend terv</h2>
+
+<a name="am-fe-technologia"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.1 Technológia és felépítés</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A Projekt tervben kiválasztott technológiákat használjuk. Egy alkalmazás lesz, de a három felület (vendég, dolgozó, admin)
+    külön útvonalcsoportban, külön elrendezéssel (layout) készül.
+    <table style="margin-top: 10px;">
+        <tr> <th>Terület</th> <th>Választás</th> <th>Miért</th> </tr>
+        <tr> <td>Keretrendszer</td> <td>Next.js (App Router), TypeScript</td> <td>Szerveroldali renderelés a nyilvános oldalakhoz (gyors betöltés, NFK-02), típusbiztonság.</td> </tr>
+        <tr> <td>Stílus</td> <td>Tailwind CSS</td> <td>Reszponzív felület gyorsan, egységes színek mindhárom felületen.</td> </tr>
+        <tr> <td>Szerver adatok</td> <td>TanStack Query</td> <td>Gyorsítótárazás, újrapróbálás, automatikus frissítés.</td> </tr>
+        <tr> <td>Helyi állapot</td> <td>Zustand</td> <td>Kosár és visszaszámláló egyszerű tárolása.</td> </tr>
+        <tr> <td>Űrlapok</td> <td>React Hook Form + Zod</td> <td>Validáció ugyanazokkal a szabályokkal, mint a backend.</td> </tr>
+        <tr> <td>Valós idő</td> <td>Natív WebSocket, saját hook</td> <td>Székállapotok és dolgozói értesítések (NFK-03).</td> </tr>
+        <tr> <td>QR olvasás</td> <td>Böngészős kamera könyvtár</td> <td>A tableten nem kell külön alkalmazás (SRS 3.2).</td> </tr>
+        <tr> <td>Grafikonok</td> <td>Recharts</td> <td>Admin statisztikák (FK-34).</td> </tr>
+        <tr> <td>Tesztelés</td> <td>Vitest, Playwright</td> <td>Komponens tesztek és végponttól végpontig tesztek a vásárlásra.</td> </tr>
+    </table>
+</div>
+
+<a name="am-fe-oldalterkep"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Oldaltérkép</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az oldaltérkép azt mutatja, hogy a felhasználó milyen oldalak között tud mozogni. A vásárlás négy lépése (SRS 3.1) egymás után következik,
+    vissza lehet lépni, de a zárolás ideje közben is fogy.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
+<pre class="mermaid">
+flowchart LR
+    subgraph PUB["Nyilvános"]
+        H["Főoldal"]
+        MK["Mozikereső"]
+        MD["Mozi műsora"]
+        FA["Filmadatlap"]
+        LG["Bejelentkezés /<br>Regisztráció"]
+    end
+    subgraph VEN["Vendég (role 0)"]
+        S1["1. Székválasztás"]
+        S2["2. Büfé"]
+        S3["3. Összesítő"]
+        S4["4. Fizetés"]
+        OK["Sikeres vásárlás<br>e-jegy"]
+        PR["Profil"]
+        JE["Jegyeim, pontjaim"]
+        AI["AI ajánló"]
+    end
+    subgraph DOL["Dolgozó (role 1)"]
+        DK["Feladataim"]
+        QR["Jegyellenőrzés"]
+        SH["Székhiba bejelentés"]
+        BK["Büfé kiadás"]
+    end
+    subgraph ADM["Admin (role 2)"]
+        AD["Irányítópult"]
+        AM["Mozik, termek"]
+        AF["Filmek"]
+        AMT["Műsortervező"]
+        AA["Árak, kedvezmények"]
+        AU["Felhasználók"]
+        AS["Statisztikák"]
+    end
+    H --> MK --> MD --> FA
+    H --> FA
+    H --> LG
+    MD --> S1 --> S2 --> S3 --> S4 --> OK --> JE
+    FA --> S1
+    LG --> PR
+    PR --> JE
+    H --> AI --> S1
+    LG --> DK
+    DK --> QR
+    DK --> SH
+    DK --> BK
+    LG --> AD
+    AD --> AM
+    AD --> AF
+    AD --> AMT
+    AD --> AA
+    AD --> AU
+    AD --> AS
+</pre>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>11. ábra: A frontend oldaltérképe</em></div>
+    </div>
+</div>
+
+<a name="am-fe-utvonalak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Oldalak és útvonalak</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Útvonal</th> <th>Oldal</th> <th>Jogosultság</th> <th>Használati eset</th> <th>API</th> </tr>
+        <tr> <td><code>/</code></td> <td>Főoldal (kiemelt filmek, régióválasztó)</td> <td>Bárki</td> <td>UC-02</td> <td><code>GET /api/mozik</code></td> </tr>
+        <tr> <td><code>/mozik</code></td> <td>Mozikereső</td> <td>Bárki</td> <td>UC-02</td> <td><code>GET /api/mozik</code></td> </tr>
+        <tr> <td><code>/mozik/[id]</code></td> <td>Egy mozi műsora, szűrők</td> <td>Bárki</td> <td>UC-02</td> <td><code>GET /api/mozik/{id}/musor</code></td> </tr>
+        <tr> <td><code>/filmek/[id]</code></td> <td>Filmadatlap, trailer, értékelések</td> <td>Bárki</td> <td>UC-03, UC-04</td> <td><code>GET /api/filmek/{id}</code></td> </tr>
+        <tr> <td><code>/belepes</code>, <code>/regisztracio</code></td> <td>Bejelentkezés, regisztráció</td> <td>Bárki</td> <td>UC-01</td> <td><code>POST /api/bejelentkezes</code></td> </tr>
+        <tr> <td><code>/vasarlas/[vetitesId]/szekek</code></td> <td>1. lépés: teremtérkép</td> <td>Vendég</td> <td>UC-06</td> <td><code>GET /api/vetitesek/{id}/szekek</code> + WS</td> </tr>
+        <tr> <td><code>/vasarlas/[vetitesId]/bufe</code></td> <td>2. lépés: büfé</td> <td>Vendég</td> <td>UC-07</td> <td><code>GET /api/mozik/{id}/bufe</code></td> </tr>
+        <tr> <td><code>/vasarlas/[vetitesId]/osszesito</code></td> <td>3. lépés: összesítő, kedvezmény, pontok</td> <td>Vendég</td> <td>UC-08</td> <td><code>POST /api/rendelesek/arajanlat</code></td> </tr>
+        <tr> <td><code>/vasarlas/[vetitesId]/fizetes</code></td> <td>4. lépés: átirányítás a fizetési szolgáltatóhoz</td> <td>Vendég</td> <td>UC-08</td> <td><code>POST /api/rendelesek</code></td> </tr>
+        <tr> <td><code>/profil</code></td> <td>Profil, kedvezmény, fiók törlése</td> <td>Vendég</td> <td>UC-10</td> <td><code>PATCH /api/profil</code></td> </tr>
+        <tr> <td><code>/profil/jegyek</code></td> <td>Jegyeim, QR-kódok, pontok, lemondás</td> <td>Vendég</td> <td>UC-09</td> <td><code>GET /api/profil/jegyek</code></td> </tr>
+        <tr> <td><code>/ajanlo</code></td> <td>AI filmajánló</td> <td>Vendég</td> <td>UC-05</td> <td><code>POST /api/ajanlas</code></td> </tr>
+        <tr> <td><code>/dolgozo</code></td> <td>Feladataim (értesítésekkel)</td> <td>Dolgozó</td> <td>UC-13, UC-21</td> <td>WS</td> </tr>
+        <tr> <td><code>/dolgozo/ellenorzes</code></td> <td>QR jegyellenőrzés</td> <td>Dolgozó</td> <td>UC-11</td> <td><code>POST /api/jegyek/ellenorzes</code></td> </tr>
+        <tr> <td><code>/dolgozo/szekhiba</code></td> <td>Székhiba bejelentése</td> <td>Dolgozó</td> <td>UC-14</td> <td><code>POST /api/szekek/{id}/hiba</code></td> </tr>
+        <tr> <td><code>/dolgozo/bufe</code></td> <td>Büfé rendelés kiadása</td> <td>Dolgozó</td> <td>UC-12</td> <td><code>POST /api/bufe/kiadas</code></td> </tr>
+        <tr> <td><code>/admin</code></td> <td>Irányítópult</td> <td>Admin</td> <td>–</td> <td>–</td> </tr>
+        <tr> <td><code>/admin/mozik</code></td> <td>Régiók, mozik, termek, székek</td> <td>Admin</td> <td>UC-15</td> <td><code>/api/admin/mozik</code></td> </tr>
+        <tr> <td><code>/admin/musor</code></td> <td>Műsortervező</td> <td>Admin</td> <td>UC-16</td> <td><code>POST /api/admin/vetitesek</code></td> </tr>
+        <tr> <td><code>/admin/arak</code></td> <td>Büfé árak, kedvezmények, árazás</td> <td>Admin</td> <td>UC-17, UC-18</td> <td><code>/api/admin/arak</code></td> </tr>
+        <tr> <td><code>/admin/felhasznalok</code></td> <td>Jogosultságok, dolgozók mozihoz rendelése</td> <td>Admin</td> <td>UC-20</td> <td><code>/api/admin/felhasznalok</code></td> </tr>
+        <tr> <td><code>/admin/statisztikak</code></td> <td>Statisztikák, CSV export</td> <td>Admin</td> <td>UC-19</td> <td><code>GET /api/admin/statisztikak</code></td> </tr>
+    </table>
+    <p style="margin-top: 15px;">
+        A jogosultságot a frontend is ellenőrzi (egy <em>middleware</em> a token alapján átirányít), de ez csak kényelmi funkció:
+        a valódi ellenőrzést mindig a backend végzi (NFK-07).
+    </p>
+</div>
+
+<a name="am-fe-komponensek"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 Komponensek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table>
+        <tr> <th>Komponens</th> <th>Hol használjuk</th> <th>Felelősség</th> </tr>
+        <tr> <td><code>Fejlec</code></td> <td>Vendég felület</td> <td>Régióválasztó, kereső, kosár ikon darabszámmal, profil menü.</td> </tr>
+        <tr> <td><code>MusorLista</code>, <code>MusorSzuro</code></td> <td>Mozi műsora</td> <td>Vetítések napra bontva, szűrés műfaj, technológia, nyelv, napszak szerint (FK-11).</td> </tr>
+        <tr> <td><code>FilmKartya</code></td> <td>Főoldal, kereső, ajánló</td> <td>Plakát, cím, korhatár jelvény, IMDB és saját értékelés.</td> </tr>
+        <tr> <td><code>Teremterkep</code></td> <td>Vásárlás 1. lépés</td> <td>A székek rácsa, állapot szerinti színek, kattintásra zárolás, WebSocket frissítés.</td> </tr>
+        <tr> <td><code>Szek</code></td> <td>Teremterkep</td> <td>Egy szék gombja: szabad / kiválasztott / foglalt / hibás.</td> </tr>
+        <tr> <td><code>ZarolasVisszaszamlalo</code></td> <td>Vásárlás minden lépése</td> <td>A 10 perces zárolásból hátralévő idő, lejáratkor visszadob az elejére.</td> </tr>
+        <tr> <td><code>VasarlasLepesek</code></td> <td>Vásárlás</td> <td>A 4 lépés jelzése (székek → büfé → összesítő → fizetés).</td> </tr>
+        <tr> <td><code>BufeValaszto</code></td> <td>Vásárlás 2. lépés</td> <td>Termékek a mozi áraival, darabszám, extrák (FK-25).</td> </tr>
+        <tr> <td><code>ArOsszesito</code></td> <td>Vásárlás 3. lépés</td> <td>A szervertől kapott tételes ár: alapár, felárak, kedvezmény, pontok, büfé.</td> </tr>
+        <tr> <td><code>EJegy</code></td> <td>Jegyeim</td> <td>QR-kód, film, terem, szék, lemondás gomb (ha még lehet).</td> </tr>
+        <tr> <td><code>CsillagErtekelo</code></td> <td>Filmadatlap</td> <td>1-5 csillag, csak ha a vendégnek volt felhasznált jegye.</td> </tr>
+        <tr> <td><code>QrOlvaso</code></td> <td>Dolgozói felület</td> <td>Kamera kép, beolvasás, teljes képernyős zöld / piros eredmény.</td> </tr>
+        <tr> <td><code>FeladatKartya</code></td> <td>Dolgozói felület</td> <td>Nagy gombos feladat: terem, idő, Elfogadom / Rendben. Hangjelzés új feladatnál.</td> </tr>
+        <tr> <td><code>Idosav</code></td> <td>Műsortervező</td> <td>Termenként egy napi idősáv, behúzható filmek, ütközés pirosan.</td> </tr>
+        <tr> <td><code>AdatTabla</code></td> <td>Admin felület</td> <td>Közös lista komponens: lapozás, rendezés, szerkesztés, törlés.</td> </tr>
+        <tr> <td><code>StatGrafikon</code></td> <td>Statisztikák</td> <td>Bevétel, eladott jegyek, büfé eladások mozinként / régiónként.</td> </tr>
+    </table>
+</div>
+
+<a name="am-fe-allapot"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.5 Állapotkezelés és kommunikáció</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <ul style="margin-top: 5px;">
+        <li style="margin-bottom: 10px;"><strong>Szerverről jövő adatok</strong> (mozik, műsor, filmek, jegyek): TanStack Query tárolja, a kulcsok
+            pl. <code>["musor", moziId, nap]</code>. A műsor 5 percig érvényes a gyorsítótárban.</li>
+        <li style="margin-bottom: 10px;"><strong>Kosár:</strong> egy Zustand tárolóban van (rendelés azonosító, kiválasztott székek, büfé tételek,
+            zárolás lejárata). Az <em>árat soha nem a böngésző számolja</em>, mindig a szervertől kérjük (SRS 6.5).</li>
+        <li style="margin-bottom: 10px;"><strong>WebSocket:</strong> egy <code>useWebSocket(csatorna)</code> hook. A teremtérkép a
+            <code>vetites:{id}</code> csatornára iratkozik fel, a dolgozói felület a <code>mozi:{id}:feladatok</code> csatornára.
+            Ha a kapcsolat megszakad, újracsatlakozik, és újratölti a székállapotokat.</li>
+        <li style="margin-bottom: 10px;"><strong>Token:</strong> a JWT-t <em>httpOnly</em> sütiben tároljuk, nem a böngésző tárolójában, így
+            JavaScriptből nem lopható el.</li>
+        <li style="margin-bottom: 10px;"><strong>Hibakezelés:</strong> 401 esetén átirányítás a bejelentkezéshez, 409 (a széket közben más vette meg)
+            esetén figyelmeztetés és a teremtérkép frissítése.</li>
+    </ul>
+</div>
+
+<a name="am-fe-vazlat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.6 A teremtérkép vázlata</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Egy egyszerű vázlat a vásárlás első lépéséről, az SRS 3.1 pontjában megadott színekkel.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 8px; margin-top: 15px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; font-size: 0.95em;">
+            <div><strong>Dűne: Harmadik rész</strong> · 2D · szinkronos · 18:30 · 3-as terem</div>
+            <div style="color: #4facfe;">Zárolás: 08:42</div>
+        </div>
+        <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; font-size: 0.85em; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; border: 1px solid #555; border-radius: 4px;">1. Székek</span>
+            <span style="padding: 4px 10px; border: 1px solid #555; border-radius: 4px; color: #888;">2. Büfé</span>
+            <span style="padding: 4px 10px; border: 1px solid #555; border-radius: 4px; color: #888;">3. Összesítő</span>
+            <span style="padding: 4px 10px; border: 1px solid #555; border-radius: 4px; color: #888;">4. Fizetés</span>
+        </div>
+        <div style="margin: 0 auto 20px; max-width: 420px; text-align: center; border-top: 4px solid #bbb; border-radius: 50% 50% 0 0 / 20px 20px 0 0; padding-top: 6px; font-size: 0.8em; color: #bbb;">VÁSZON</div>
+        <div id="am-terem" style="display: grid; grid-template-columns: repeat(11, minmax(16px, 28px)); gap: 6px; justify-content: center;"></div>
+        <div style="display: flex; gap: 18px; justify-content: center; margin-top: 20px; font-size: 0.85em; flex-wrap: wrap;">
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: #888; border-radius: 3px; vertical-align: middle;"></span> szabad</span>
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: #4facfe; border-radius: 3px; vertical-align: middle;"></span> kiválasztott</span>
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: #e55; border-radius: 3px; vertical-align: middle;"></span> foglalt</span>
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: repeating-linear-gradient(45deg, #666, #666 3px, #333 3px, #333 6px); border-radius: 3px; vertical-align: middle;"></span> hibás</span>
+        </div>
+        <div style="text-align: right; margin-top: 15px;">
+            2 jegy kiválasztva &nbsp;
+            <span style="padding: 6px 14px; background: #4facfe; color: #222; border-radius: 4px; font-weight: bold;">Tovább a büféhez →</span>
+        </div>
+    </div>
+    <div style="font-size: 0.9em; color: #bbb; margin-top: 10px; text-align: center;"><em>A teremtérkép képernyővázlata (nem végleges design)</em></div>
+    <script>
+        (function () {
+            var foglalt = ["A3","A4","B5","B6","B7","C2","D8","D9","E5","E6"];
+            var valasztott = ["C5","C6"];
+            var hibas = ["B10","E1"];
+            var sorok = "ABCDEF";
+            var t = document.getElementById("am-terem");
+            for (var i = 0; i < sorok.length; i++) {
+                for (var j = 1; j <= 11; j++) {
+                    var k = sorok[i] + j;
+                    var d = document.createElement("div");
+                    d.title = k;
+                    d.style.cssText = "aspect-ratio:1;border-radius:4px 4px 2px 2px;background:#888;";
+                    if (j === 6 && i < 2) { d.style.visibility = "hidden"; }
+                    if (foglalt.indexOf(k) > -1) d.style.background = "#e55";
+                    if (valasztott.indexOf(k) > -1) d.style.background = "#4facfe";
+                    if (hibas.indexOf(k) > -1) d.style.background = "repeating-linear-gradient(45deg,#666,#666 3px,#333 3px,#333 6px)";
+                    t.appendChild(d);
+                }
+            }
+        })();
+    </script>
+</div>
+
+<a name="am-fe-mappak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.7 Mappaszerkezet</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A tervezett mappaszerkezet. A zárójeles mappák (pl. <code>(vendeg)</code>) a Next.js útvonalcsoportjai: nem jelennek meg
+    az URL-ben, csak a közös elrendezést és jogosultság-ellenőrzést fogják össze.
+<pre style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.5;"><code>frontend/
+├── app/
+│   ├── (nyilvanos)/           főoldal, mozik, filmek, belépés
+│   │   ├── page.tsx
+│   │   ├── mozik/[id]/page.tsx
+│   │   └── filmek/[id]/page.tsx
+│   ├── (vendeg)/              layout: bejelentkezés kötelező, role 0
+│   │   ├── vasarlas/[vetitesId]/{szekek,bufe,osszesito,fizetes}/page.tsx
+│   │   ├── profil/
+│   │   └── ajanlo/
+│   ├── (dolgozo)/dolgozo/     layout: tablet nézet, role 1
+│   ├── (admin)/admin/         layout: oldalsó menü, role 2
+│   └── middleware.ts          átirányítás a token szerepköre alapján
+├── components/
+│   ├── kozos/                 Gomb, Modal, AdatTabla, Fejlec
+│   ├── vasarlas/              Teremterkep, Szek, ZarolasVisszaszamlalo, ArOsszesito
+│   ├── dolgozo/               QrOlvaso, FeladatKartya
+│   └── admin/                 Idosav, StatGrafikon
+├── lib/
+│   ├── api.ts                 fetch wrapper, hibakezelés, token
+│   ├── ws.ts                  useWebSocket hook, újracsatlakozás
+│   └── tipusok.ts             a backend modell TypeScript típusai
+├── store/
+│   └── kosar.ts               Zustand: rendelés, székek, büfé, lejárat
+└── tests/
+    ├── unit/                  Vitest
+    └── e2e/                   Playwright: teljes vásárlás</code></pre>
+</div>
+
+<!-- 5. KÖVETHETŐSÉG -->
+<a name="am-kovethetoseg"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">5. Követhetőség (osztályok – követelmények)</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A táblázat megmutatja, hogy az SRS használati esetei melyik osztályokban valósulnak meg. Így ha egy követelmény megváltozik,
+    tudjuk, hogy melyik osztályokat kell átnézni.
+    <table style="margin-top: 10px;">
+        <tr> <th>Használati eset</th> <th>Követelmények</th> <th>Entitás osztályok</th> <th>Vezérlő osztályok</th> <th>Frontend</th> </tr>
+        <tr> <td>UC-01 Regisztráció, bejelentkezés</td> <td>FK-01 – FK-03, FK-06</td> <td>Felhasznalo, Vendeg</td> <td>AuthService, JwtKezelo</td> <td><code>/belepes</code></td> </tr>
+        <tr> <td>UC-02 Mozi keresése</td> <td>FK-08, FK-09, FK-11</td> <td>Regio, Mozi, Vetites</td> <td>–</td> <td><code>/mozik</code></td> </tr>
+        <tr> <td>UC-03 / UC-04 Filmadatlap, értékelés</td> <td>FK-10, FK-12 – FK-14</td> <td>Film, Mufaj, Ertekeles</td> <td>FilmAdatForras</td> <td><code>/filmek/[id]</code></td> </tr>
+        <tr> <td>UC-05 AI filmajánló</td> <td>FK-21</td> <td>Vendeg, Vetites, Jegy</td> <td>AjanloMotor</td> <td><code>/ajanlo</code></td> </tr>
+        <tr> <td>UC-06 Székválasztás</td> <td>FK-15 – FK-18</td> <td>Szek, Vetites, Rendeles</td> <td>JegyfoglaloService, SzekZarolo</td> <td><code>Teremterkep</code></td> </tr>
+        <tr> <td>UC-07 Büfé kosárba</td> <td>FK-22, FK-23, FK-25</td> <td>BufeTermek, Ar, BufeTetel</td> <td>JegyfoglaloService</td> <td><code>BufeValaszto</code></td> </tr>
+        <tr> <td>UC-08 Fizetés, kedvezmény</td> <td>FK-19, FK-26 – FK-29</td> <td>Rendeles, Jegy, Fizetes, Kedvezmeny, HusegSzamla</td> <td>ArKalkulator, FizetesiSzolgaltato</td> <td><code>ArOsszesito</code></td> </tr>
+        <tr> <td>UC-09 Jegyeim</td> <td>FK-20, FK-30</td> <td>Jegy, Rendeles</td> <td>JegyfoglaloService</td> <td><code>/profil/jegyek</code></td> </tr>
+        <tr> <td>UC-11 Jegyellenőrzés</td> <td>FK-37</td> <td>Jegy, Vetites</td> <td>JegyEllenorzoService</td> <td><code>QrOlvaso</code></td> </tr>
+        <tr> <td>UC-13 / UC-21 Takarítás</td> <td>FK-38</td> <td>Feladat, Terem</td> <td>FeladatService, ErtesitesKozpont</td> <td><code>FeladatKartya</code></td> </tr>
+        <tr> <td>UC-14 Székhiba</td> <td>FK-39</td> <td>Feladat, Szek</td> <td>FeladatService</td> <td><code>/dolgozo/szekhiba</code></td> </tr>
+        <tr> <td>UC-16 Műsortervezés</td> <td>FK-32</td> <td>Vetites, Terem</td> <td>MusorTervezoService</td> <td><code>Idosav</code></td> </tr>
+        <tr> <td>UC-19 Statisztikák</td> <td>FK-34, FK-36</td> <td>Rendeles, Jegy, BufeTetel</td> <td>–</td> <td><code>StatGrafikon</code></td> </tr>
+        <tr> <td>UC-20 Jogosultságok</td> <td>FK-06, FK-35</td> <td>Felhasznalo, Dolgozo</td> <td>JogosultsagOr</td> <td><code>/admin/felhasznalok</code></td> </tr>
+    </table>
+</div>
+
+<!-- 6. NYITOTT KÉRDÉSEK -->
+<a name="am-nyitott"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Nyitott kérdések</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Ezeket a kérdéseket a következő konzultáción szeretnénk tisztázni, a válaszok a Rendszer Tervezésbe (H5) kerülnek.
+    <ul style="margin-top: 10px;">
+        <li style="margin-bottom: 10px;">A szék zárolását az adatbázisban vagy egy gyorsítótárban (pl. Redis) tároljuk? Az utóbbi gyorsabb premierkor (NFK-04),
+            de egy újabb komponens.</li>
+        <li style="margin-bottom: 10px;">A Filmkereső tábla (SRS 7.2) kell-e külön, vagy elég a Vetítések táblából lekérdezni? Az analízis modellben nem vettük fel külön osztályként.</li>
+        <li style="margin-bottom: 10px;">Kell-e a dolgozóknak több mozihoz is tartozniuk (pl. beugró dolgozó)? Most 1 mozihoz tartoznak.</li>
+        <li style="margin-bottom: 10px;">A pénztári (helyszíni) vásárlás ugyanazt a Rendeles osztályt használja-e, vagy külön folyamat?</li>
+    </ul>
+</div>
+
+    <div class="footer"></div>
+</body>
+</html>
