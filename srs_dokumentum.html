@@ -174,7 +174,8 @@
     Ebben a dokumentumban leírjuk, hogy pontosan mit kell tudnia a Soft Mozi rendszernek. A Vízió dokumentumban
     azt írtuk le, hogy mit szeretnénk és miért, itt pedig azt, hogy a rendszernek konkrétan milyen funkciói legyenek
     és ezeknek hogyan kell működniük. Minden követelmény kap egy azonosítót (pl. FK-01), így később az Analízis Modellben (H4),
-    a Rendszer Tervezésben (H5) és a tesztelésnél is könnyen hivatkozni tudunk rájuk.
+    a Rendszer Tervezésben (H5) és a tesztelésnél is könnyen hivatkozni tudunk rájuk. A projekt feladata az, hogy egy Mozis felületet nyújtson a felhasznáűlónak, ami jobb és kényelmesebb élményt nyújt neki.
+    A h3-ban leírjuk a rendszer működését, funkcióit, szerkezetét.
     <br><br>
     A dokumentumot elsősorban magunknak (a fejlesztőcsapatnak) és a gyakorlatvezetőnek írtuk, hogy mindenki ugyanazt értse
     a rendszer alatt, és a fejlesztés közben legyen mihez igazodni.
@@ -425,7 +426,10 @@
         <tr> <td>POST</td> <td><code>/api/admin/vetitesek</code></td> <td>Új vetítés felvétele</td> <td>Admin</td> </tr>
         <tr> <td>GET</td> <td><code>/api/admin/statisztikak</code></td> <td>Statisztikák</td> <td>Admin</td> </tr>
     </table>
-
+    Vannak olyan funkciók, amit bárki tud használni. Ilyen a regisztráció, a bejelentkezés, a mozik listája régiónként, egy mozi músora, a filmadatlap illetve a terem székei.
+    Van viszont kettő olyan funkció, amit csak a vendég használhat. Ez a Kosár elküldése, fizetés és a saját jegyek és pontok.
+    Egy funkciót csak a Dolgozó használhat, ami a jegy ellenörzés a bejáratnál.
+    Végül két funkció van még, amit csak az admin használhat, amik az új vetítés felvétele és a statisztikák.
     <p style="margin-top: 20px;">
         A WebSocket kapcsolatot arra használjuk, hogy a szerver azonnal szólni tudjon a böngészőnek, például ha valaki lefoglalt egy széket,
         vagy ha egy takarítónak új feladata van. A fontosabb üzenetek:
