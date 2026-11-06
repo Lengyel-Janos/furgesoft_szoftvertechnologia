@@ -359,6 +359,7 @@
         <li><strong>OpenAI API:</strong> az AI ajánlóhoz kell. Ha nem működik, egyszerűen a legnépszerűbb filmeket ajánljuk.</li>
         <li><strong>Fizetési szolgáltató:</strong> ha nem működik, nem lehet online fizetni, erről üzenetet írunk ki.</li>
         <li><strong>E-mail küldő szolgáltatás:</strong> ha nem működik, a jegy a profilban akkor is megtalálható.</li>
+        <li><strong>QR kód beolvasása:</strong> ha nem működik a QR kód leolvasó, akkor a jegyek beolvasása és ellenörzése nem hajtható végre.</li>
     </ul>
 </div>
 
@@ -392,7 +393,8 @@
 <div style="line-height: 1.7; margin-bottom: 20px;">
     <ul style="margin-top: 5px;">
         <li><strong>Tablet kamera:</strong> a dolgozók ezzel olvassák be a jegyek QR-kódját, közvetlenül a böngészőben.</li>
-        <li><strong>QR-kód olvasó:</strong> a pénztáraknál sima USB-s olvasó is használható.</li>
+        <li><strong>QR-kód olvasó:</strong> a pénztáraknál sima USB-s olvasó is használható. A QR-kód olvasó egy külsős géphez van csatlakoztatva</li>
+        <li><strong>Terminál:</strong> a pénztáraknál bankkártyával is lehet fizetni a terminál-on keresztül.</li>
     </ul>
 </div>
 
@@ -426,10 +428,12 @@
         <tr> <td>POST</td> <td><code>/api/admin/vetitesek</code></td> <td>Új vetítés felvétele</td> <td>Admin</td> </tr>
         <tr> <td>GET</td> <td><code>/api/admin/statisztikak</code></td> <td>Statisztikák</td> <td>Admin</td> </tr>
     </table>
+    <p style="margin-top: 20px;">
     Vannak olyan funkciók, amit bárki tud használni. Ilyen a regisztráció, a bejelentkezés, a mozik listája régiónként, egy mozi músora, a filmadatlap illetve a terem székei.
     Van viszont kettő olyan funkció, amit csak a vendég használhat. Ez a Kosár elküldése, fizetés és a saját jegyek és pontok.
     Egy funkciót csak a Dolgozó használhat, ami a jegy ellenörzés a bejáratnál.
     Végül két funkció van még, amit csak az admin használhat, amik az új vetítés felvétele és a statisztikák.
+    </p>
     <p style="margin-top: 20px;">
         A WebSocket kapcsolatot arra használjuk, hogy a szerver azonnal szólni tudjon a böngészőnek, például ha valaki lefoglalt egy széket,
         vagy ha egy takarítónak új feladata van. A fontosabb üzenetek:
