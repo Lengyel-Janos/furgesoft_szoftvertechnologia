@@ -80,6 +80,12 @@
                 A dokumentum átnézése, hibák javítása, szótár kiegészítése.</td>
             <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
         </tr>
+        <tr>
+            <td>2026-11-06</td>
+            <td>1.7</td>
+            <td>A Dokumentum kibővítése az egyeztetésen megbeszélt hiányzó elemekkel.</td>
+            <td>Kecskés Gábor<br>Ujfalussy Kristóf<br>Lengyel János<br>Laczkó Norbert<br>Padányi Milán</td>
+        </tr>
     </table>
 
 
@@ -111,6 +117,7 @@
             <li><a href="#srs-hardver">3.2 Hardver</a></li>
             <li><a href="#srs-szoftver">3.3 Külső szoftverek</a></li>
             <li><a href="#srs-kommunikacio">3.4 Kommunikáció (API és WebSocket)</a></li>
+            <li><a href="#srs-kommunikacio">3.5 JWT jogosultságkezelés</a></li>
         </ul>
     </li>
 
@@ -447,6 +454,89 @@
     </ul>
 </div>
 
+
+<a name="srs-kommunikacio"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.5 JWT jogosultságkezelés</h3>
+
+<p>
+A rendszer JWT (JSON Web Token) alapú autentikációt használ.
+A token tartalmazza a felhasználó azonosítóját, e-mail-címét,
+jogosultsági szintjét, valamint érvényességi idejét.
+</p>
+
+<h4>1. Vendég (role = 0)</h4>
+
+<pre><code>{
+  "sub": "125",
+  "email": "vendeg@softmozi.hu",
+  "role": 0,
+  "iat": 1793962440,
+  "exp": 1793966040
+}</code></pre>
+
+<h4>2. Dolgozó (role = 1)</h4>
+
+<pre><code>{
+  "sub": "126",
+  "email": "dolgozo@softmozi.hu",
+  "role": 1,
+  "cinema_id": 3,
+  "iat": 1793962440,
+  "exp": 1793966040
+}</code></pre>
+
+<h4>3. Admin (role = 2)</h4>
+
+<pre><code>{
+  "sub": "127",
+  "email": "admin@softmozi.hu",
+  "role": 2,
+  "iat": 1793962440,
+  "exp": 1793966040
+}</code></pre>
+
+<h4>4. A JWT mezőinek jelentése</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mező</th>
+      <th>Jelentés</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sub</code></td>
+      <td>Felhasználó egyedi azonosítója.</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>Felhasználó e-mail-címe.</td>
+    </tr>
+    <tr>
+      <td><code>role</code></td>
+      <td>Jogosultsági szint (0: Vendég, 1: Dolgozó, 2: Admin).</td>
+    </tr>
+    <tr>
+      <td><code>cinema_id</code></td>
+      <td>A dolgozóhoz rendelt mozi azonosítója.</td>
+    </tr>
+    <tr>
+      <td><code>iat</code></td>
+      <td>A token létrehozásának időpontja (Unix timestamp).</td>
+    </tr>
+    <tr>
+      <td><code>exp</code></td>
+      <td>A token lejárati időpontja (Unix timestamp).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+<strong>Fontos:</strong> A cinema_id elsősorban a dolgozók esetében
+hasznos, mivel az SRS alapján minden dolgozó csak a saját mozijának
+adataihoz férhet hozzá. Ezt a backend ellenőrzi.
+</p>
+    
 <!-- 4. FUNKCIONÁLIS KÖVETELMÉNYEK -->
 <a name="srs-funkcionalis"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">4. Funkcionális követelmények</h2>
 
