@@ -165,7 +165,7 @@
         <tr> <td>(H5) Rendszer Tervezés</td> <td>Ide kerülnek majd a technikai részletek: pontos adatbázis séma, teljes API lista, telepítés.</td> </tr>
     </table>
 </div>
-<h2>Táblázat, amiben felsoroljuk az elemeket, amiket az előzőleg elkészített dokumentumokból felhasználtunk.</h2>
+<h4>Táblázat, amiben felsoroljuk az elemeket, amiket az előzőleg elkészített dokumentumokból felhasználtunk.</h4>
 
 <a name="am-jeloles"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.3 A használt jelölések</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
@@ -465,7 +465,7 @@ Feladat "1" *-- "1..*" Ertesites
         <tr> <td>Feladat</td> <td>Üzemeltetés</td> <td>Takarítási vagy javítási feladat egy teremhez / székhez.</td> <td>Ha 15 percig senki nem fogadja el, eszkalálódik.</td> </tr>
         <tr> <td>Ertesites</td> <td>Üzemeltetés</td> <td>A dolgozónak küldött WebSocket üzenet nyoma.</td> <td>–</td> </tr>
     </table>
-     <h2>Az osztályok csoportjainak, felelősségeinek és szabályainak leírásaa.</h2>
+     <h4>Az osztályok csoportjainak, felelősségeinek és szabályainak leírásaa.</h4>
 </div>
 
 <a name="am-szolgaltatasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.4 Szolgáltatás (vezérlő) osztályok</h3>
@@ -930,7 +930,7 @@ stateDiagram-v2
         <tr> <td>Grafikonok</td> <td>Recharts</td> <td>Admin statisztikák (FK-34).</td> </tr>
         <tr> <td>Tesztelés</td> <td>Vitest, Playwright</td> <td>Komponens tesztek és végponttól végpontig tesztek a vásárlásra.</td> </tr>
     </table>
-    <h2>A táblázat felsorolja a használt technológiákat, azoknak területeit és a választások indoklását.</h2>
+    <h4>A táblázat felsorolja a használt technológiákat, azoknak területeit és a választások indoklását.</h4>
 </div>
 
 <a name="am-fe-oldalterkep"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Oldaltérkép</h3>
@@ -1023,7 +1023,7 @@ flowchart LR
         <tr> <td><code>/admin/felhasznalok</code></td> <td>Jogosultságok, dolgozók mozihoz rendelése</td> <td>Admin</td> <td>UC-20</td> <td><code>/api/admin/felhasznalok</code></td> </tr>
         <tr> <td><code>/admin/statisztikak</code></td> <td>Statisztikák, CSV export</td> <td>Admin</td> <td>UC-19</td> <td><code>GET /api/admin/statisztikak</code></td> </tr>
     </table>
-    <h2> Itt található az oldalak útvonalai, kik használhatják őket, Az API útvonaluk és hogy mi a hazsnálati esetük </h2>
+    <h4> Itt található az oldalak útvonalai, kik használhatják őket, Az API útvonaluk és hogy mi a hazsnálati esetük </h4>
     
     <p style="margin-top: 15px;">
         A jogosultságot a frontend is ellenőrzi (egy <em>middleware</em> a token alapján átirányít), de ez csak kényelmi funkció:
@@ -1052,7 +1052,7 @@ flowchart LR
         <tr> <td><code>AdatTabla</code></td> <td>Admin felület</td> <td>Közös lista komponens: lapozás, rendezés, szerkesztés, törlés.</td> </tr>
         <tr> <td><code>StatGrafikon</code></td> <td>Statisztikák</td> <td>Bevétel, eladott jegyek, büfé eladások mozinként / régiónként.</td> </tr>
     </table>
-    <h2> A táblázat felsorolja a használt komponensek neveit, hogy hol lettek felhasználva és mik a felelősségük.</h2>
+    <h4> A táblázat felsorolja a használt komponensek neveit, hogy hol lettek felhasználva és mik a felelősségük.</h4>
 </div>
 
 <a name="am-fe-allapot"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.5 Állapotkezelés és kommunikáció</h3>
@@ -1179,6 +1179,7 @@ flowchart LR
         <tr> <td>UC-19 Statisztikák</td> <td>FK-34, FK-36</td> <td>Rendeles, Jegy, BufeTetel</td> <td>–</td> <td><code>StatGrafikon</code></td> </tr>
         <tr> <td>UC-20 Jogosultságok</td> <td>FK-06, FK-35</td> <td>Felhasznalo, Dolgozo</td> <td>JogosultsagOr</td> <td><code>/admin/felhasznalok</code></td> </tr>
     </table>
+    <h4> A használati esetek elérésének követelményei, entitás osztályai, osztályok<, amelyek vezérlik az eseményeket és a felhasznált frontendek./h4>
 </div>
 
 <!-- 6. NYITOTT KÉRDÉSEK -->
