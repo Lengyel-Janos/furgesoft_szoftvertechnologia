@@ -471,8 +471,11 @@ Feladat "1" *-- "1..*" Ertesites
     </table>
      <h4>Az osztályok csoportjainak, felelősségeinek és szabályainak leírása.</h4>
 </div>
-    <h5>Ez a táblázat magyarra fordítja az előző ábrát: pontosan leírja, melyik rendszerelemnek mi a dolga, és milyen szigorú üzleti szabályokat kell betartania.
-    A Felhasználóknál rögzíti, hogy a jelszavakat titkosítva (bcrypt) tároljuk, a dolgozók pedig csak a saját mozijuk adatait látják. A hűségpontoknál minden 100 Ft után 1 pont jár, és 100 pont 500 Ft-ot ér.</h5>
+    Ez a táblázat magyarra fordítja az előző ábrát: pontosan leírja, melyik rendszerelemnek mi a dolga, és milyen szigorú üzleti szabályokat kell betartania.
+    A Felhasználóknál rögzíti, hogy a jelszavakat titkosítva (bcrypt) tároljuk, a dolgozók pedig csak a saját mozijuk adatait látják. A hűségpontoknál minden 100 Ft után 1 pont jár, és 100 pont 500 Ft-ot ér.
+    A Műsornál a rendszer automatikusan figyel rá, hogy két vetítés ne ütközzön, és hagy köztük 20 perc takarítási időt. 
+Az Értékesítésnél leírja, hogy egy kosárba maximum 10 jegy tehető, amiket a rendszer 10 percig tart lefoglalva a fizetésig. Fontos biztonsági szabály, hogy bankkártyaadatokat egyáltalán nem tárolunk.   
+Az Üzemeltetésnél a takarítási vagy székjavítási feladatokat figyeli: ha 15 percig senki nem fogadja el a munkát, a rendszer riasztást (eszkalációt) küld. 
 
 <a name="am-szolgaltatasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.4 Szolgáltatás (vezérlő) osztályok</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
@@ -480,6 +483,10 @@ Feladat "1" *-- "1..*" Ertesites
     hanem az entitásokat használják. A jegyár számítását (SRS 6.5) <strong>stratégia mintával</strong> bontottuk szét:
     minden árszabály (technológia felár, napszak, telítettség) külön osztály, így új szabályt a meglévők módosítása nélkül lehet felvenni.
     A külső rendszereket (fizetés, OpenAI, IMDB, e-mail) interfészek mögé rejtettük, így tesztelésnél könnyen kicserélhetők.
+    <p>Míg az előző osztályok csak „dobozok” voltak az adatoknak, ezek a vezérlő osztályok a „motorok”, amelyek irányítják a folyamatokat és elvégzik a számításokat.   
+    A jegyárak kiszámítását úgynevezett stratégia mintával oldottuk meg: ez azt jelenti, hogy minden felár (például 3D, IMAX, napszak vagy telítettség) egy külön kis szabályként működik. Így ha később új kedvezményt vagy felárat akarunk bevezetni,
+    nem kell átírni az egész programot, csak hozzáadunk egy új szabályt. A külső rendszereket (bankkártyás fizetés, e-mail küldés, IMDB, OpenAI) külön „csatlakozók” 
+    (interfészek) mögé rejtettük, így fejlesztéskor könnyen tesztelhetők vagy cserélhetők.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 classDiagram
@@ -605,6 +612,18 @@ FeladatService --> ErtesitesKozpont
     A csomagdiagram azt mutatja meg, hogy melyik rész melyiktől függ. A szabály: a függőségek mindig
     <strong>felülről lefelé</strong> mutatnak (felület → API → modulok → infrastruktúra), visszafelé nem. A modulok egymást csak
     a szolgáltatásaikon keresztül hívhatják, a másik modul adatbázis tábláihoz közvetlenül nem nyúlnak.
+    <p> Ez a diagram a rendszer emeleteit és a köztük lévő „egyirányú utcákat” (függőségeket) mutatja meg.   
+
+A kommunikáció szigorúan felülről lefelé halad:   
+
+Legfelül van a Frontend (Next.js), amit a felhasználó lát a képernyőn (Vendég, Dolgozó, Admin felület).   
+
+Ez szól le az API rétegnek, ami ellenőrzi a jogosultságot (JWT token).   
+
+Az API továbbadja a kérést az Üzleti moduloknak (Jegyfoglaló, Büfé, Pénzügy stb.).   
+
+Legalul pedig az Infrastruktúra (PostgreSQL adatbázis, külső fizetési rendszerek) tárolja az adatokat.
+A szabály az, hogy az alsóbb szintek sosem szólhatnak vissza felfelé, és a modulok sem turkálhatnak közvetlenül egymás adatbázisában.  </p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 flowchart TB
@@ -727,6 +746,10 @@ flowchart LR
 <div style="line-height: 1.7; margin-bottom: 20px;">
     A bejelentkezés után a backend egy JWT tokent ad vissza (SRS 3.5). Minden további kérésnél a <strong>JogosultsagOr</strong>
     ellenőrzi a token aláírását, a lejáratot, a szerepkört, és dolgozónál azt is, hogy a saját mozijához fér-e hozzá (ÜSZ-10, NFK-07).
+    <p>Ez egy időrendi folyamatábra (szekvenciadiagram), ami lépésről lépésre bemutatja, mi történik a háttérben, amikor valaki belép a fiókjába. 
+A felhasználó beírja az e-mail címét és jelszavát, a rendszer pedig ellenőrzi, hogy helyesek-e. Ha nem, hibaüzenetet (401) küld. Ha minden stimmel, a szerver kiállít egy digitális „belépőkártyát”
+        (JWT tokent), amiben benne van, hogy ki ő, és mi a szerepköre. Innentől kezdve minden egyes kattintásnál a JogosultsagOr ellenőrzi ezt a kártyát – például azt is figyeli,
+        hogy egy dolgozó nehogy egy másik város mozijának adatait nézegesse.   </p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 sequenceDiagram
