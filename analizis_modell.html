@@ -156,6 +156,7 @@
                 <li><a href="#am-fe-vazlat">4.6 A teremtérkép vázlata</a></li>
                 <li><a href="#am-fe-mappak">4.7 Mappaszerkezet</a></li>
                 <li><a href="#am-fe-mogotte">4.8 Mi van a felület mögött</a></li>
+                <li><a href="#am-fe-userInt">4.8 Felhasználói interface</a></li>
             </ul>
         </li>
         <li><a href="#am-kovethetoseg">5. Követhetőség (osztályok – követelmények)</a></li>
@@ -1408,6 +1409,20 @@ tests/ (Automata tesztek): Itt találhatók a programot ellenőrző tesztek (Vit
         (fizetés, IMDB, OpenAI, e-mail) is mindig a szerver hívja, a böngésző soha, így a titkos kulcsok nem kerülnek ki a felhasználókhoz.</p>
 </div>
 
+<a name="am-fe-userInt"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.9 Felhasználói interface</h3>
+    <div style="line-height: 1.7; margin-bottom: 30px;"> 
+        A felhasználó egy felületet (interface) lát és azon keresztül használja a szolgáltatást. A legjobb, ha az interface megfelelően kommunikál a 
+        felhasználóval, mert akkor a aki használja az oldalt tudja, hogy az oldal működik, illetve hogy megfelelően használja e a szolgáltatást.  
+        <table style="margin-top: 10px;">
+        <tr> <th>Mit csinál a felhasználó?</th> <th>Mi a visszajelzés neki?</th> </tr>
+        <tr> <td>Helyesen adja meg a belépési adatait belépésnél.</td> <td>Vissza vezeti a főoldalra és jelzi, hogy sikeresen belépett</td> </tr>
+        <tr> <td>Helytelenül adja meg a belépési adatait belépésnél.</td> <td>Nem engedi tovább a belépő felületről és megkéri a felhasználót, hogy adja meg az adatait újra</td></tr>
+        <tr> <td>Foglalt széket próbál lefoglalni </td> <td>Vissza vezeti a Székválasztóra és közli, hogy a szék foglalt.</td> </tr>
+        <tr> <td>A jegyvásárlásnál sikeresen kifizette a jegyezt</td> <td>Átviszi egy olyan weboldalra, ami jelzi neki, hogy a vásárlása sikeres volt</td> </tr>
+        <tr> <td>A jegyvásárlásnál nem sikerült kifizetnie a jegyezt</td> <td>Átviszi egy olyan weboldalra, ami jelzi neki, hogy a vásárlása sikertelen volt</td> </tr>
+        
+    </table>
+    </div>
 <!-- 5. KÖVETHETŐSÉG -->
 <a name="am-kovethetoseg"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">5. Követhetőség (osztályok – követelmények)</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
