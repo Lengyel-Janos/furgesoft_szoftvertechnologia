@@ -470,12 +470,13 @@ Feladat "1" *-- "1..*" Ertesites
         <tr> <td>Ertesites</td> <td>Üzemeltetés</td> <td>A dolgozónak küldött WebSocket üzenet nyoma.</td> <td>–</td> </tr>
     </table>
      <h4>Az osztályok csoportjainak, felelősségeinek és szabályainak leírása.</h4>
-</div>
-    Ez a táblázat magyarra fordítja az előző ábrát: pontosan leírja, melyik rendszerelemnek mi a dolga, és milyen szigorú üzleti szabályokat kell betartania.
+  <p> Ez a táblázat magyarra fordítja az előző ábrát: pontosan leírja, melyik rendszerelemnek mi a dolga, és milyen szigorú üzleti szabályokat kell betartania.
     A Felhasználóknál rögzíti, hogy a jelszavakat titkosítva (bcrypt) tároljuk, a dolgozók pedig csak a saját mozijuk adatait látják. A hűségpontoknál minden 100 Ft után 1 pont jár, és 100 pont 500 Ft-ot ér.
     A Műsornál a rendszer automatikusan figyel rá, hogy két vetítés ne ütközzön, és hagy köztük 20 perc takarítási időt. 
 Az Értékesítésnél leírja, hogy egy kosárba maximum 10 jegy tehető, amiket a rendszer 10 percig tart lefoglalva a fizetésig. Fontos biztonsági szabály, hogy bankkártyaadatokat egyáltalán nem tárolunk.   
-Az Üzemeltetésnél a takarítási vagy székjavítási feladatokat figyeli: ha 15 percig senki nem fogadja el a munkát, a rendszer riasztást (eszkalációt) küld. 
+Az Üzemeltetésnél a takarítási vagy székjavítási feladatokat figyeli: ha 15 percig senki nem fogadja el a munkát, a rendszer riasztást (eszkalációt) küld. </p>
+</div>
+   
 
 <a name="am-szolgaltatasok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.4 Szolgáltatás (vezérlő) osztályok</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
@@ -796,6 +797,14 @@ sequenceDiagram
     Az UC-11 (FK-37) részletes lefutása. A dolgozó tabletjének kamerája olvassa be a QR-kódot. A jegy csak akkor érvényes, ha
     a dolgozó mozijába szól, a beengedési időablakon belül vagyunk (ÜSZ-07), és még nem használták fel. A felhasználttá
     jelölés tranzakcióban történik, hogy ugyanazt a jegyet két bejáratnál se lehessen egyszerre beengedni.
+    <p>Ez az ábra azt mutatja meg, hogyan zajlik a jegyek csippantása a mozi bejáratánál.   
+A dolgozó a tablet kamerájával beolvassa a vendég QR-kódját. A szerver azonnal lefuttat egy négyes ellenőrzést:   
+Létezik-e egyáltalán ilyen jegy?   
+Ehhez a mozihoz szól-e?   
+Jó időpontban vagyunk-e (nem túl korán vagy túl későn)? 
+Nem használták-e már fel korábban?
+Ha bármelyik nem stimmel, a tablet pirosra vált és kiírja a hiba okát. Ha minden rendben van, a rendszer a másodperc törtrésze alatt
+        „felhasználtra” állítja a jegyet (hogy ugyanazzal a kóddal ne lehessen kétszer bemenni), és zöld jelzést küld a dolgozónak. </p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 sequenceDiagram
@@ -836,6 +845,10 @@ sequenceDiagram
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Az UC-16 (FK-32) lefutása. Amikor az admin behúz egy filmet az idősávba, a felület már előre jelzi az ütközést,
     de a végső ellenőrzést mindig a szerver végzi. Mentés után a rendszer a vetítés végére előre ütemezi a takarítási feladatot.
+    <p>Azt a folyamatot írja le, amikor az adminisztrátor összeállítja a mozi műsorát.   
+Amikor az admin behúz egy filmet az időrendbe, a weboldal azonnal előre jelzi, ha ütközne egy másik filmmel. Amikor rányom a Mentés gombra, a szerver is leellenőrzi a teljes napi műsort 
+        (beleszámítva a film hosszát és a 20 perces takarítási szünetet). Ha ütközés van, visszautasítja a mentést (409-es hiba). Ha szabad az időpont, elmenti a vetítést,
+        és automatikusan beír a rendszerbe egy takarítási feladatot a vetítés végére. </p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 sequenceDiagram
@@ -960,12 +973,25 @@ stateDiagram-v2
         <tr> <td>Tesztelés</td> <td>Vitest, Playwright</td> <td>Komponens tesztek és végponttól végpontig tesztek a vásárlásra.</td> </tr>
     </table>
     <h4>A táblázat felsorolja a használt technológiákat, azoknak területeit és a választások indoklását.</h4>
+      <p>  Összefoglalja, milyen modern szoftveres eszközöket és programnyelveket használunk a weboldal (frontend) megépítéséhez, és miért pont ezeket választottuk.   
+ Az alap a Next.js és TypeScript, amitől villámgyors és hibamentes lesz az oldal. A kinézetért a Tailwind CSS felel, hogy mobilon és gépen is jól mutasson. 
+    A kosár tartalmát és a visszaszámlálót a Zustand jegyzi meg, a valós idejű székfoglalást 
+    és értesítéseket pedig WebSocket biztosítja (így azonnal látod, ha valaki más lefoglalt egy széket előtted). A jegyellenőrzéshez beépített böngészős kamerát használunk, így a dolgozóknak nem kell külön applikációt telepíteniük a tabletre. </p>
 </div>
+  
 
 <a name="am-fe-oldalterkep"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Oldaltérkép</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Az oldaltérkép azt mutatja, hogy a felhasználó milyen oldalak között tud mozogni. A vásárlás négy lépése (SRS 3.1) egymás után következik,
     vissza lehet lépni, de a zárolás ideje közben is fogy.
+    <p>
+        Ez a weboldal „térképe”, ami megmutatja, milyen menüpontok és aloldalak vannak, és ki hova tud kattintani.   
+Az oldal 4 fő részre van osztva:
+Nyilvános rész: Bárki elérheti (Főoldal, Mozikereső, Filmek adatlapja, Bejelentkezés).   
+Vendég rész: Bejelentkezés után érhető el (Profil, Jegyeim, AI filmajánló, és a 4 lépéses jegyvásárlási folyamat, ahol végig ketyeg a 10 perces visszaszámláló).   
+Dolgozói rész: Külön felület a jegyellenőrzéshez, székhiba jelentéshez és a büfé kiadáshoz.   
+Admin rész: Az irányítópult, ahol a mozik, filmek, árak és statisztikák kezelhetők. 
+    </p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 flowchart LR
@@ -1058,6 +1084,12 @@ flowchart LR
         A jogosultságot a frontend is ellenőrzi (egy <em>middleware</em> a token alapján átirányít), de ez csak kényelmi funkció:
         a valódi ellenőrzést mindig a backend végzi (NFK-07).
     </p>
+    <p>
+        Ez a táblázat az előző oldaltérkép pontos „címjegyzéke”.   
+IMG_0448.jpg
+Hogyan működik (kibővítve)? Soronként megmutatja az egyes aloldalak pontos webcímét (URL útvonalát, például /mozik, /profil/jegyek, /admin/statisztikak), azt, hogy ki léphet be oda (Bárki, Vendég, Dolgozó vagy Admin), melyik követelményhez kapcsolódik,
+        és milyen háttér-adatcsatornán (API) keresztül tölti be az információkat. Kiemeli azt is, hogy bár a weboldal automatikusan átirányítja az illetéktelen látogatókat, a valódi, feltörhetetlen védelmet mindig a szerver (backend) végzi
+    </p>
 </div>
 
 <a name="am-fe-komponensek"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.4 Komponensek</h3>
@@ -1082,6 +1114,13 @@ flowchart LR
         <tr> <td><code>StatGrafikon</code></td> <td>Statisztikák</td> <td>Bevétel, eladott jegyek, büfé eladások mozinként / régiónként.</td> </tr>
     </table>
     <h4> A táblázat felsorolja a használt komponensek neveit, hogy hol lettek felhasználva és mik a felelősségük.</h4>
+    <p> Ez a táblázat a weboldal „legókockáit” (újrafelhasználható felületi elemeit) sorolja fel. Megmutatja, hogy az egyes képernyőelemek hol jelennek meg az oldalon, és mi a pontos feladatuk.   
+
+Vendég felület elemei: Ilyen a Fejlec (régióválasztóval, keresővel és kosárral), a FilmKartya (plakáttal és értékeléssel),
+        valamint a 4 lépéses jegyvásárlás elemei. A Teremterkep és a Szek komponensek valós időben (WebSocketen) frissítik a székek színét (szabad, foglalt, hibás), miközben a ZarolasVisszaszamlalo 
+        számolja vissza a 10 perces foglalási időt (ha lejár, visszadob az elejére). Az ArOsszesito tételesen lebontja a szervertől kapott árat (alapár, felárak, kedvezmény, büfé), az EJegy pedig megjeleníti a QR-kódot és a lemondás gombot. 
+    Dolgozói felület elemei: A QrOlvaso a tablet kamerájával olvassa be a jegyeket és teljes képernyős zöld vagy piros jelzéssel válaszol, a FeladatKartya pedig hangjelzéssel értesít az új takarítási vagy karbantartási munkákról.
+Admin felület elemei: Az Idosav teszi lehetővé a filmek egérrel történő behúzását a műsorrendbe (pirossal jelezve az ütközést), a StatGrafikon pedig a mozik és régiók bevételeit ábrázolja. </p>
 </div>
 
 <a name="am-fe-allapot"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.5 Állapotkezelés és kommunikáció</h3>
@@ -1157,6 +1196,14 @@ flowchart LR
 <div style="line-height: 1.7; margin-bottom: 30px;">
     A tervezett mappaszerkezet. A zárójeles mappák (pl. <code>(vendeg)</code>) a Next.js útvonalcsoportjai: nem jelennek meg
     az URL-ben, csak a közös elrendezést és jogosultság-ellenőrzést fogják össze.
+    <p>Ez a programkód „irattartó szekrénye”: megmutatja, hogyan vannak rendszerezve a fejlesztői fájlok, hogy a csapattagok könnyen megtalálják, hol mi található.   
+A projekt a Next.js logikáját követve fő mappákra van osztva:   
+
+app/ (Oldalak és jogosultságok): A zárójeles mappák – (nyilvanos), (vendeg), (dolgozo), (admin) – nem jelennek meg a webcímben, hanem csoportosítják az oldalakat kinézet (layout) és jogosultsági szint (role 0, 1, 2) szerint.
+        A middleware.ts fájl pedig egy „portásként” működik: ránéz a felhasználó belépőkártyájára (tokenjére), és automatikusan a megfelelő felületre irányítja.   
+components/ (Építőelemek): Itt vannak elmentve az előző táblázatban bemutatott gombok, kártyák és táblázatok, feladatkörök szerint szétválogatva.   
+lib/ és store/ (Háttérlogika és memória): Az api.ts és ws.ts intézi a szerverrel való kommunikációt és a valós idejű kapcsolatot, a kosar.ts (Zustand) pedig megjegyzi a kiválasztott székeket és büfétermékeket vásárlás közben. 
+tests/ (Automata tesztek): Itt találhatók a programot ellenőrző tesztek (Vitest az apró elemekhez, Playwright a teljes vásárlási folyamat szimulálásához). </p>
 <pre style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.5;"><code>frontend/
 ├── app/
 │   ├── (nyilvanos)/           főoldal, mozik, filmek, belépés
@@ -1209,6 +1256,12 @@ flowchart LR
         <tr> <td>UC-20 Jogosultságok</td> <td>FK-06, FK-35</td> <td>Felhasznalo, Dolgozo</td> <td>JogosultsagOr</td> <td><code>/admin/felhasznalok</code></td> </tr>
     </table>
     <h4> A használati esetek elérésének követelményei, entitás osztályai, osztályok<, amelyek vezérlik az eseményeket és a felhasznált frontendek.</h4>
+    <p>Ez a táblázat egy „összekötő térkép”, amely összekapcsolja az üzleti elvárásokat a konkrét programkóddal. 
+        Megmutatja, hogy az egyes használati esetek (funkciók) pontosan melyik követelményből erednek, és a rendszer melyik részei valósítják meg őket.  
+    Minden sor egy-egy konkrét funkció útját követi végig a háttértől a képernyőig (például a regisztrációtól a jegyellenőrzésig vagy a statisztikákig). 
+        Felsorolja, hogy az adott művelethez milyen adatbázis-elemek (Entitás osztályok, pl. Szek, Jegy), milyen háttérmotorok (Vezérlő osztályok, pl. JegyfoglaloService, ArKalkulator) és milyen
+        képernyőelemek (Frontend, pl. Teremterkep, /admin/felhasznalok) kellenek. Ennek óriási haszna van karbantartáskor: ha a jövőben megváltozik egy szabály vagy követelmény, azonnal látszik,
+        hogy pontosan melyik fájlokhoz és osztályokhoz kell hozzányúlni.</p>
 </div>
 
 <!-- 6. NYITOTT KÉRDÉSEK -->
