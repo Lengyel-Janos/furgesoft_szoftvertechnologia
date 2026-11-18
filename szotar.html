@@ -221,6 +221,36 @@
 
     <p style="margin-bottom: 10px;"><strong><u>Gantt-diagram:</u></strong> Ütemtervet mutató diagram, ahol a feladatok csíkokként 
         látszanak egy időtengelyen.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Osztálydiagram (Class Diagram):</u></strong> UML diagram, amely a szoftver belső felépítését mutatja meg:
+        milyen építőelemekből (osztályokból) áll a rendszer, azok milyen adatokat tárolnak, milyen műveleteket végeznek, és hogyan kapcsolódnak egymáshoz.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Csomagdiagram (Package Diagram):</u></strong> UML diagram, amely a program nagyobb egységeinek (csomagjainak)
+        egymásra épülését és függőségi irányait ábrázolja (pl. felület → API → modulok → adatbázis).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Entitás és Vezérlő (Service) osztályok:</u></strong> Az entitás osztályok az adatok tárolásáért felelnek 
+        (pl. Jegy, Szék), míg a vezérlő (service) osztályok a folyamatokat irányítják és az üzleti számításokat végzik (pl. Jegyfoglaló vagy Árkalkulátor).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Stratégia minta (Strategy Pattern):</u></strong> Szoftvertervezési minta, amellyel egy feladat 
+        különböző megoldási szabályait külön osztályokba szervezzük. Nálunk például minden jegyárfelár (3D, IMAX, napszak) külön szabályként működik, így újak könnyen hozzáadhatók.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Interfész (Interface):</u></strong> Egy szabványos „csatlakozó” a programkódban,
+        amely elválasztja a belső logikát a külső rendszerektől (pl. bankkártyás fizetés, e-mail küldés), így azok teszteléskor könnyen helyettesíthetők vagy cserélhetők.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Middleware (Köztesréteg):</u></strong> Olyan programrész, amely a felhasználói kérés és
+        a tényleges oldalbetöltés között fut le. Nálunk ez ellenőrzi a belépőkártyát (tokent), és átirányítja a felhasználót a jogosultságának megfelelő felületre.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Komponens (Frontend):</u></strong> A weboldal önálló, újrafelhasználható vizuális építőeleme 
+        (pl. Teremtérkép, FilmKártya vagy Kosár visszaszámláló), amely saját megjelenéssel és működéssel rendelkezik.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Követhetőségi mátrix (Traceability):</u></strong> Olyan összekötő táblázat, amely megmutatja, hogy az egyes üzleti követelmények 
+        és használati esetek pontosan melyik programkódbeli osztályokban és felületi elemekben valósulnak meg.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Bcrypt (Jelszó hashelés):</u></strong> Biztonságos titkosítási eljárás, amely a felhasználók 
+        jelszavait olvashatatlan karaktersorozattá (hash-sé) alakítja az adatbázisban, így azok még adatszivárgás esetén sem fejthetők vissza.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>End-to-End (E2E) tesztelés:</u></strong> Olyan automatizált tesztelési forma (nálunk a Playwright segítségével),
+        amely egy valódi felhasználó kattintásait szimulálva végigvisz egy teljes folyamatot a böngészőben (pl. a székválasztástól a fizetésig).</p>
 </div>
 
     <div class="footer"></div>
