@@ -167,12 +167,34 @@
     hogy ezek a követelmények milyen <strong>osztályokra</strong>, <strong>felelősségekre</strong> és <strong>együttműködésekre</strong>
     bonthatók, még mielőtt eldöntenénk a konkrét technikai megoldásokat. A modell független a programozási nyelvtől:
     ugyanígy megvalósítható FastAPI-ban és Spring Bootban is.
+    <p>Ez a dokumentum a Soft Mozi – egy több régióra és több mozira kiterjedő, modern moziüzemeltetési és jegyértékesítési rendszer – belső működésének
+        részletes tervrajza. Megmutatja, hogyan szolgálja ki a szoftver a három fő felhasználói kört: a vendégeket (online székfoglalás, 
+        jegyvásárlás, büférendelés, hűségpontok, AI filmajánló), a mozi dolgozóit (tabletes QR-kódos jegyellenőrzés, takarítási és karbantartási
+        feladatok kezelése), valamint az adminisztrátorokat (műsortervezés, árazás, statisztikák).</p>
+    <p>Míg az előző fázisban (SRS – H3) azt gyűjtöttük össze, hogy mit kell tudnia a rendszernek, addig az Analízis Modell 
+        azt mutatja be, hogyan épül fel a program logikája még a tényleges kódolás megkezdése előtt. Kisebb, jól átlátható építőelemekre (osztályokra)
+        bontjuk a feladatokat, és meghatározzuk, 
+        kinek mi a felelőssége és hogyan dolgoznak együtt. A terv független a konkrét programozási nyelvtől, így ugyanúgy megvalósítható FastAPI-ban, 
+        mint Spring Bootban.</p>
     <br><br>
-    A dokumentum három részből áll:
+    A dokumentum a következő részekből áll:
     <ul style="margin-top: 10px;">
-        <li><strong>Statikus modell:</strong> milyen osztályok vannak, mit tárolnak, és hogyan kapcsolódnak egymáshoz.</li>
-        <li><strong>Dinamikus modell:</strong> hogyan működnek együtt az osztályok a legfontosabb folyamatokban, és milyen állapotokon mennek át.</li>
-        <li><strong>Frontend terv:</strong> milyen oldalakból és komponensekből áll a felület, és hogyan kommunikál a backenddel.</li>
+        <li><strong>Bevezetés és jelölések: </strong> Megmutatja, hogyan épülnek egymásra a korábbi dokumentumaink (Projekt terv, Vízió, SRS), 
+            és elmagyarázza az ábrákon használt alapvető szimbólumokat és nyilakat, hogy bárki könnyen tudja olvasni a diagramokat. </li>
+        <li><strong>Statikus modell (A rendszer építőkövei): </strong> Bemutatja a program „állóképét”. Felsorolja, milyen fő adatelemekből
+            (pl. Felhasználó, Film, Vetítés, Rendelés, Jegy) és háttérmotorokból áll a rendszer, milyen szigorú üzleti szabályokat kell betartaniuk 
+            (pl. 20 perces takarítási szünet, 10 perces székfoglalás), és hogyan épülnek egymásra a szoftver különböző rétegei. </li>
+        <li><strong>Dinamikus modell (A rendszer működés közben): </strong> Lépésről lépésre, időrendben lejátssza a legfontosabb folyamatokat. 
+            Megmutatja, mi történik a háttérben bejelentkezéskor, jegyvásárláskor, 
+            a beléptetéskori QR-kód csippantásnál vagy új vetítés felvételekor, 
+            és hogyan változik például egy szék vagy egy rendelés állapota (szabad → zárolt → foglalt). </li>
+        <li><strong>Frontend terv (A látható weboldal): </strong> Bemutatja mindazt, amit a felhasználók a képernyőn látnak. Tartalmazza a weboldal térképét 
+            (melyik menüpont hova visz), 
+            az egyes képernyőelemeket (pl. teremtérkép, visszaszámláló, QR-olvasó), a programfájlok mappaszerkezetét, 
+            valamint a felülethez választott modern technológiákat. </li>
+        <li><strong>Követhetőség és nyitott kérdések: </strong> Egy összekötő táblázatban bizonyítja,
+            hogy minden egyes üzleti elvárásnak és használati esetnek megvan a pontos helye a programkódban,
+            a végén pedig összegyűjti a következő tervezési lépéshez tisztázandó technikai kérdéseket.</li>
     </ul>
 </div>
 
