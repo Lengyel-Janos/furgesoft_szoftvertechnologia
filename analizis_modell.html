@@ -102,6 +102,13 @@
             <td>H4 kibővítése, ellenőrzés, hibák kijavítása.</td>
             <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
         </tr>
+         <tr>
+            <td>2026-11-18</td>
+            <td>1.9</td>
+            <td>Magyarázó szövegek kiegészítése. Az osztályok attribútumainak leírása (2.3 pont), kapcsolat az adatbázissal (2.6 pont),
+                mi van a felület mögött (4.8 pont).</td>
+            <td>(név)</td>
+        </tr>
     </table>
 
     <h2>Tartalomjegyzék: </h2>
@@ -120,6 +127,7 @@
                 <li><a href="#am-osztalyleiras">2.3 Az osztályok leírása</a></li>
                 <li><a href="#am-szolgaltatasok">2.4 Szolgáltatás (vezérlő) osztályok</a></li>
                 <li><a href="#am-csomagok">2.5 Csomagdiagram</a></li>
+                <li><a href="#am-adatbazis">2.6 Kapcsolat az adatbázissal</a></li>
             </ul>
         </li>
         <li><a href="#am-dinamikus">3. Dinamikus modell</a>
@@ -141,6 +149,7 @@
                 <li><a href="#am-fe-allapot">4.5 Állapotkezelés és kommunikáció</a></li>
                 <li><a href="#am-fe-vazlat">4.6 A teremtérkép vázlata</a></li>
                 <li><a href="#am-fe-mappak">4.7 Mappaszerkezet</a></li>
+                <li><a href="#am-fe-mogotte">4.8 Mi van a felület mögött</a></li>
             </ul>
         </li>
         <li><a href="#am-kovethetoseg">5. Követhetőség (osztályok – követelmények)</a></li>
@@ -208,6 +217,10 @@
         <tr> <td><strong>Üzemeltetés</strong></td> <td>Feladat, Ertesites</td> <td>Takarítási és javítási feladatok, értesítések a dolgozóknak.</td> <td>4.8</td> </tr>
     </table>
     <h4> Az alábbi csoportokban szereplő osztályok, azoknak a felelőssége, és hogy milyen SRS modult követnek. </h4>
+    <p>A rendszert öt „fiókra” osztottuk, hogy minden résznek egyértelmű gazdája legyen. A Felhasználók csoport tudja, ki kicsoda és mihez van joga,
+        a Mozihálózat a fizikai épületeket és székeket írja le, a Műsor azt, hogy mit és mikor vetítünk, az Értékesítés a pénzzel kapcsolatos dolgokat
+        (kosár, jegy, büfé, fizetés), az Üzemeltetés pedig a dolgozók napi munkáját. Ha például a büfé árazása megváltozik, csak az Értékesítés csoporthoz
+        kell hozzányúlni, a többi rész változatlan marad.</p>
 </div>
 
 
@@ -487,6 +500,47 @@ Feladat "1" *-- "1..*" Ertesites
     A Műsornál a rendszer automatikusan figyel rá, hogy két vetítés ne ütközzön, és hagy köztük 20 perc takarítási időt. 
 Az Értékesítésnél leírja, hogy egy kosárba maximum 10 jegy tehető, amiket a rendszer 10 percig tart lefoglalva a fizetésig. Fontos biztonsági szabály, hogy bankkártyaadatokat egyáltalán nem tárolunk.   
 Az Üzemeltetésnél a takarítási vagy székjavítási feladatokat figyeli: ha 15 percig senki nem fogadja el a munkát, a rendszer riasztást (eszkalációt) küld. </p>
+
+    <p style="margin-top: 20px; font-weight: bold;">Az osztályok fontosabb attribútumai:</p>
+    <table style="margin-top: 10px;">
+        <tr> <th>Osztály</th> <th>Attribútum</th> <th>Típus</th> <th>Jelentés</th> </tr>
+        <tr> <td rowspan="6">Felhasznalo</td> <td><code>id</code></td> <td>int</td> <td>Egyedi azonosító, ez kerül a token <code>sub</code> mezőjébe.</td> </tr>
+        <tr> <td><code>nev</code></td> <td>String</td> <td>A felhasználó teljes neve.</td> </tr>
+        <tr> <td><code>email</code></td> <td>String</td> <td>Egyedi, ezzel lehet bejelentkezni.</td> </tr>
+        <tr> <td><code>jelszoHash</code></td> <td>String</td> <td>A jelszó bcrypt hash-e. Privát, kívülről nem olvasható (NFK-06).</td> </tr>
+        <tr> <td><code>szuletesiDatum</code></td> <td>Date</td> <td>Ebből számoljuk az életkort a kedvezményhez és a korhatárhoz (ÜSZ-02, ÜSZ-04).</td> </tr>
+        <tr> <td><code>jogosultsag</code></td> <td>Jogosultsag</td> <td>0 = vendég, 1 = dolgozó, 2 = admin.</td> </tr>
+        <tr> <td>Vendeg</td> <td><code>telefon</code>, <code>emailMegerositve</code></td> <td>String, bool</td> <td>Elérhetőség; vásárolni csak megerősített e-mail címmel lehet (FK-01).</td> </tr>
+        <tr> <td>Dolgozo</td> <td><code>tipus</code></td> <td>DolgozoTipus</td> <td>Pénztáros, jegykezelő, takarító vagy szerelő; ez dönti el, milyen feladatot kap.</td> </tr>
+        <tr> <td>Kedvezmeny</td> <td><code>tipus</code>, <code>szazalek</code></td> <td>String, int</td> <td>Diák / nyugdíjas / gyerek, és hány százalék jár (FK-26).</td> </tr>
+        <tr> <td>HusegSzamla</td> <td><code>pontok</code></td> <td>int</td> <td>Az összegyűjtött, még érvényes hűségpontok száma.</td> </tr>
+        <tr> <td>Regio, Mozi</td> <td><code>nev</code>, <code>cim</code>, <code>varos</code></td> <td>String</td> <td>A régió neve egyedi; a mozinál a város alapján is lehet keresni (FK-08).</td> </tr>
+        <tr> <td>Szek</td> <td><code>sor</code>, <code>szam</code>, <code>allapot</code></td> <td>int, int, SzekAllapot</td> <td>A szék helye a teremben, és hogy szabad, zárolt, foglalt vagy hibás.</td> </tr>
+        <tr> <td rowspan="3">Film</td> <td><code>jatekido</code></td> <td>int</td> <td>Percben; ebből számoljuk a vetítés végét.</td> </tr>
+        <tr> <td><code>korhatar</code></td> <td>int</td> <td>0, 6, 12, 16 vagy 18 (ÜSZ-04).</td> </tr>
+        <tr> <td><code>imdbErtekeles</code></td> <td>float</td> <td>Az IMDB-ről naponta frissített értékelés (FK-12).</td> </tr>
+        <tr> <td>Technologia</td> <td><code>nev</code>, <code>felar</code></td> <td>String, int</td> <td>2D, 3D, IMAX, 4DX, és a hozzá tartozó felár forintban.</td> </tr>
+        <tr> <td rowspan="3">Vetites</td> <td><code>kezdes</code></td> <td>DateTime</td> <td>A vetítés kezdete; ebből számoljuk a beengedési időablakot (ÜSZ-07).</td> </tr>
+        <tr> <td><code>nyelv</code></td> <td>String</td> <td>Szinkronos vagy feliratos (FK-11).</td> </tr>
+        <tr> <td><code>alapar</code></td> <td>int</td> <td>A jegy alapára forintban, erre jönnek a felárak és a kedvezmény.</td> </tr>
+        <tr> <td>Ertekeles</td> <td><code>csillag</code>, <code>szoveg</code>, <code>datum</code></td> <td>int, String, Date</td> <td>1-5 csillag, opcionális szöveges vélemény és a dátum.</td> </tr>
+        <tr> <td rowspan="3">Rendeles</td> <td><code>allapot</code></td> <td>RendelesAllapot</td> <td>Kosár, fizetésre vár, kifizetve, megszakadt vagy lemondva (3.5 pont).</td> </tr>
+        <tr> <td><code>zarolasLejar</code></td> <td>DateTime</td> <td>A létrehozás + 10 perc; eddig vannak a székek zárolva (FK-17).</td> </tr>
+        <tr> <td><code>beváltottPont</code></td> <td>int</td> <td>A rendelésnél felhasznált hűségpontok, lemondáskor ezeket visszaadjuk.</td> </tr>
+        <tr> <td rowspan="3">Jegy</td> <td><code>qrKod</code></td> <td>String</td> <td>Egyedi, kitalálhatatlan kód; ezt olvassa be a dolgozó.</td> </tr>
+        <tr> <td><code>ar</code></td> <td>int</td> <td>A vásárláskor kiszámolt végleges ár. Rögzítjük, mert az árak később változhatnak.</td> </tr>
+        <tr> <td><code>allapot</code></td> <td>JegyAllapot</td> <td>Érvényes, felhasznált, lejárt vagy visszatérített.</td> </tr>
+        <tr> <td>BufeTetel</td> <td><code>darab</code>, <code>extra</code>, <code>allapot</code></td> <td>int, String, BufeAllapot</td> <td>Hány darab, milyen extrával (FK-25), és hogy kiadták-e már.</td> </tr>
+        <tr> <td>Ar</td> <td><code>osszeg</code></td> <td>int</td> <td>Egy büfé termék ára egy adott moziban.</td> </tr>
+        <tr> <td>Fizetes</td> <td><code>kulsoAzonosito</code>, <code>osszeg</code>, <code>allapot</code></td> <td>String, int, FizetesAllapot</td> <td>A fizetési szolgáltatótól kapott azonosító; kártyaadatot nem tárolunk (FK-27).</td> </tr>
+        <tr> <td>Feladat</td> <td><code>tipus</code>, <code>allapot</code>, <code>letrehozva</code></td> <td>FeladatTipus, FeladatAllapot, DateTime</td> <td>Takarítás vagy javítás; a létrehozástól mérjük a 15 perces eszkalációt.</td> </tr>
+        <tr> <td>Ertesites</td> <td><code>uzenet</code>, <code>olvasott</code></td> <td>String, bool</td> <td>Az elküldött üzenet szövege, és hogy a dolgozó megnézte-e.</td> </tr>
+    </table>
+    <h4>Az osztályok legfontosabb attribútumai, azok típusa és jelentése.</h4>
+    <p>Ez a táblázat azt mutatja meg, hogy az egyes osztályok pontosan milyen adatokat tárolnak. Néhány érték szándékosan nincs eltárolva, hanem
+        mindig kiszámoljuk: ilyen a felhasználó életkora (a születési dátumból), a terem kapacitása (a székek számából), a vetítés vége (kezdés + játékidő),
+        a telítettség és a rendelés végösszege. Így ezek sosem lehetnek „elavultak”. Ezzel szemben a jegy árát a vásárláskor rögzítjük,
+        mert ha az admin később árat emel, a már megvett jegyek ára nem változhat meg.</p>
 </div>
    
 
@@ -691,6 +745,46 @@ flowchart TB
     </div>
 </div>
 
+<a name="am-adatbazis"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.6 Kapcsolat az adatbázissal</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Az entitás osztályok adatai a PostgreSQL adatbázisban tárolódnak, az SRS 7.1 pontjában lévő adatbázis-terv szerint. Az osztályok és a táblák
+    között ezek a szabályok érvényesek:
+    <ul style="margin-top: 10px;">
+        <li><strong>Hozzáférés:</strong> az adatbázist csak a backend éri el, egy ORM-en keresztül (FastAPI esetén pl. SQLAlchemy, Spring Boot esetén JPA).
+            A frontend soha nem kapcsolódik közvetlenül az adatbázishoz. A pontos választás a Rendszer Tervezésbe (H5) kerül.</li>
+        <li><strong>Öröklődés:</strong> a Vendeg, a Dolgozo és az Admin nem külön tábla: mind a <em>Felhasználók</em> táblában vannak, a <code>jogosultsag</code> mező dönti el, melyik.</li>
+        <li><strong>Több-több kapcsolat:</strong> a Film – Mufaj kapcsolatot a <em>Filmek-Műfaj</em> kapcsolótábla tárolja.</li>
+        <li><strong>Kompozíció:</strong> a rész a tulajdonos azonosítóját kapja idegen kulcsként (pl. <code>terem_id</code> a Székek táblában).</li>
+        <li><strong>Felsorolás típusok:</strong> szöveges mezőként tároljuk őket, és az adatbázis csak a megengedett értékeket fogadja el.</li>
+        <li><strong>Tranzakciók:</strong> a fizetés, a jegyellenőrzés és a lemondás egy tranzakcióban fut, így nem maradhat félkész adat, és egy széket
+            nem lehet kétszer eladni (NFK-08). A Jegyek táblában a (vetítés, szék) pár az érvényes jegyekre egyedi.</li>
+    </ul>
+    <table style="margin-top: 10px;">
+        <tr> <th>Osztály</th> <th>Tábla (SRS 7.1)</th> <th>Megjegyzés, szükséges változtatás</th> </tr>
+        <tr> <td>Felhasznalo, Vendeg, Dolgozo, Admin</td> <td>Felhasználók</td> <td>A dolgozóhoz egy új <code>mozi_id</code> mező kell (ÜSZ-10), ebből lesz a token <code>cinema_id</code> mezője.</td> </tr>
+        <tr> <td>Kedvezmeny</td> <td>Kedvezmények</td> <td>Változatlan.</td> </tr>
+        <tr> <td>HusegSzamla</td> <td>Felhasználók (<code>pontszam</code>)</td> <td>A pontok lejáratához (ÜSZ-09) a jóváírás dátumát is tárolni kell.</td> </tr>
+        <tr> <td>Regio, Mozi</td> <td>Régiók, Mozik</td> <td>A Mozik tábla <code>hely</code> mezője a modellben <code>cim</code> és <code>varos</code>.</td> </tr>
+        <tr> <td>Terem, Szek</td> <td>Termek, Székek</td> <td>A kapacitást a modell a székekből számolja.</td> </tr>
+        <tr> <td>Film, Mufaj</td> <td>Filmek, Műfaj, Filmek-Műfaj</td> <td>Az <code>ertekeles</code> mező a modellben <code>imdbErtekeles</code>.</td> </tr>
+        <tr> <td>Technologia</td> <td>Technológiák</td> <td>Új <code>felar</code> mező kell (SRS 7.2).</td> </tr>
+        <tr> <td>Vetites</td> <td>Vetítések</td> <td>Új <code>alapar</code> mező kell.</td> </tr>
+        <tr> <td>Ertekeles</td> <td>Értékelések</td> <td>Új <code>szoveg</code> és <code>datum</code> mező.</td> </tr>
+        <tr> <td>Jegy</td> <td>Jegyek</td> <td>A <code>kedvezmenyes</code> mező helyett <code>kedvezmeny_id</code>, új <code>qr_kod</code> és <code>rendeles_id</code> mező.</td> </tr>
+        <tr> <td>BufeTermek, Ar</td> <td>Büfé, Árak</td> <td>Változatlan.</td> </tr>
+        <tr> <td>BufeTetel</td> <td>Büfé rendelések</td> <td>A <code>felhasznalo_id</code> helyett <code>rendeles_id</code>, új <code>extra</code> mező.</td> </tr>
+        <tr> <td>Rendeles, Fizetes</td> <td>– (új tábla)</td> <td>Új <em>Rendelések</em> és <em>Fizetések</em> tábla kell.</td> </tr>
+        <tr> <td>Feladat, Ertesites</td> <td>– (új tábla)</td> <td>Új <em>Feladatok</em> és <em>Értesítések</em> tábla kell.</td> </tr>
+        <tr> <td>–</td> <td>Filmkereső</td> <td>Nincs külön osztály, a Vetítésekből kérdezzük le (lásd 6. pont).</td> </tr>
+    </table>
+    <h4>Az osztályok és az adatbázis táblái közötti megfeleltetés, és a táblákon szükséges változtatások.</h4>
+    <p>Ez a rész összeköti a „tervrajzot” (osztályokat) az adatbázissal, ahol az adatok ténylegesen tárolódnak. A legtöbb osztálynak megvan
+        a saját táblája, de vannak kivételek: a vendég, a dolgozó és az admin például egy közös felhasználói táblában van, csak a jogosultság különbözteti
+        meg őket. Az elemzés közben kiderült, hogy néhány dolog még hiányzik az SRS-ben lévő adatbázisból (például a rendelések, a fizetések és a dolgozói
+        feladatok táblája, vagy a technológia felára). Ezeket a táblázat utolsó oszlopa sorolja fel, és a Rendszer Tervezésben (H5) kerülnek be a végleges
+        adatbázis sémába.</p>
+</div>
+
 <!-- 3. DINAMIKUS MODELL -->
 <a name="am-dinamikus"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">3. Dinamikus modell</h2>
 <div style="line-height: 1.7; margin-bottom: 15px;">
@@ -703,6 +797,10 @@ flowchart TB
     A BCE (Boundary – Control – Entity) diagram a legfontosabb használati esetet (UC-06, UC-07, UC-08) bontja szét
     a három osztálytípusra. A szabály: a felhasználó csak határ osztállyal beszél, a határ osztály csak vezérlővel,
     és csak a vezérlő módosíthat entitást.
+    <p>Az ábra a jegyvásárlás három „szintjét” mutatja. Bal oldalt van az, amit a vendég lát (teremtérkép, kosár, fizetés oldal),
+        középen a „motorok”, amelyek döntenek (szabad-e a szék, mennyibe kerül a jegy), jobb oldalt pedig a tárolt adatok. A vendég sosem
+        írhat közvetlenül az adatokba: ha rákattint egy székre, azt a JegyfoglaloService ellenőrzi, és csak utána zárolja a széket. Így nem lehet
+        például a böngészőben átírni a jegy árát.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 flowchart LR
@@ -899,6 +997,10 @@ sequenceDiagram
     A <strong>Rendeles</strong> az az osztály, ami a kosarat képviseli. Az SRS-ben szereplő jegy- és székállapotok
     a rendelés állapotától függenek: amíg a rendelés <em>Kosár</em> vagy <em>Fizetésre vár</em> állapotban van, a székek zároltak,
     kifizetés után foglaltak, megszakadáskor újra szabadok.
+    <p>Ez az ábra a kosár „életútját” mutatja. Az első szék kiválasztásakor létrejön a kosár, és indul a 10 perces óra. Ha a vendég időben
+        fizet, a rendelés kifizetett lesz, és megkapja a jegyeit. Ha lejár az idő, vagy kiüríti a kosarat, a rendelés megszakad, és a székek
+        visszakerülnek a többi vendéghez. Sikertelen fizetésnél nem vész el minden: ha van még idő, a vendég újra próbálkozhat.
+        Kifizetett rendelést a vetítés előtt legalább 2 órával még le lehet mondani.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 stateDiagram-v2
@@ -935,6 +1037,10 @@ stateDiagram-v2
 <div style="line-height: 1.7; margin-bottom: 30px;">
     A takarítási és javítási feladatok (FK-38, FK-39) ugyanazon az állapotgépen mennek végig. Ha egy feladatot 15 percig senki nem
     fogad el, a rendszer eszkalálja (a mozi összes megfelelő dolgozójának és az adminnak is szól).
+    <p>Egy takarítási vagy javítási feladat négy állapoton megy át. Amikor létrejön, <em>Új</em>. Ha egy dolgozó elfogadja, <em>Folyamatban</em> lesz,
+        és a többiek tudják, hogy már valaki foglalkozik vele. Ha 15 percig senki sem fogadja el, a rendszer „hangosabban” szól: mindenkinek és az adminnak
+        is jelez. A munka végén a dolgozó megnyomja a Rendben gombot, ekkor a feladat <em>Kész</em>: javításnál a szék újra eladható,
+        takarításnál pedig be lehet engedni a következő vetítés nézőit.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 stateDiagram-v2
@@ -1150,11 +1256,18 @@ Admin felület elemei: Az Idosav teszi lehetővé a filmek egérrel történő b
         <li style="margin-bottom: 10px;"><strong>Hibakezelés:</strong> 401 esetén átirányítás a bejelentkezéshez, 409 (a széket közben más vette meg)
             esetén figyelmeztetés és a teremtérkép frissítése.</li>
     </ul>
+    <p>Ez a rész azt írja le, hogy a weboldal hol „jegyzi meg” az adatokat, és hogyan beszélget a szerverrel. A műsort és a filmeket egy gyorsítótár
+        őrzi pár percig, így nem kell minden kattintásnál újra letölteni. A kosár a böngészőben van, de az árat mindig a szerver mondja meg, hogy ne
+        lehessen csalni. A székek színe élőben frissül, és ha megszakad az internet, a teremtérkép visszacsatlakozás után magától frissül.
+        A belépési „kártyát” (tokent) olyan sütiben tároljuk, amelyhez a böngészőben futó programok nem férnek hozzá.</p>
 </div>
 
 <a name="am-fe-vazlat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.6 A teremtérkép vázlata</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Egy egyszerű vázlat a vásárlás első lépéséről, az SRS 3.1 pontjában megadott színekkel.
+    <p>Így fog kinézni nagyjából a székválasztás. Felül látszik a film, a terem és a visszaszámláló, alatta a négy vásárlási lépés.
+        A szürke székek szabadok, a kékek azok, amelyeket a vendég épp kiválasztott, a pirosak már foglaltak, a csíkosak pedig hibásak, ezekre nem lehet
+        kattintani. A jobb alsó sarokban látszik, hány jegyet választott a vendég, és innen léphet tovább a büféhez.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 8px; margin-top: 15px;">
         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; font-size: 0.95em;">
             <div><strong>Dűne: Harmadik rész</strong> · 2D · szinkronos · 18:30 · 3-as terem</div>
@@ -1243,6 +1356,28 @@ tests/ (Automata tesztek): Itt találhatók a programot ellenőrző tesztek (Vit
 └── tests/
     ├── unit/                  Vitest
     └── e2e/                   Playwright: teljes vásárlás</code></pre>
+</div>
+
+<a name="am-fe-mogotte"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.8 Mi van a felület mögött</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A felület csak megjeleníti az adatokat és továbbítja a felhasználó kéréseit, döntést nem hoz. Minden kattintás ugyanazokon a rétegeken
+    megy végig, amelyeket a csomagdiagram (4. ábra) mutat. Az alábbi táblázat ezt egy példán, a szék kiválasztásán mutatja be.
+    <table style="margin-top: 10px;">
+        <tr> <th>Lépés</th> <th>Réteg</th> <th>Mi történik</th> <th>Érintett elemek</th> </tr>
+        <tr> <td>1.</td> <td>Felület</td> <td>A vendég rákattint egy szabad székre a teremtérképen.</td> <td><code>Teremterkep</code>, <code>Szek</code></td> </tr>
+        <tr> <td>2.</td> <td>Kommunikáció</td> <td>A kérés HTTPS-en megy a backendhez, a tokent a süti viszi.</td> <td><code>lib/api.ts</code>, REST</td> </tr>
+        <tr> <td>3.</td> <td>API réteg</td> <td>A backend ellenőrzi a tokent és a jogosultságot.</td> <td>JwtKezelo, JogosultsagOr</td> </tr>
+        <tr> <td>4.</td> <td>Vezérlő</td> <td>Ellenőrzi a korhatárt és a 10 jegyes korlátot, majd zárolja a széket.</td> <td>JegyfoglaloService, SzekZarolo</td> </tr>
+        <tr> <td>5.</td> <td>Entitás, adatbázis</td> <td>A rendelés és a zárolás egy tranzakcióban elmentődik.</td> <td>Rendeles, Szek, PostgreSQL</td> </tr>
+        <tr> <td>6.</td> <td>Értesítés</td> <td>A szerver WebSocketen szól a többi böngészőnek, hogy a szék zárolva van.</td> <td>ErtesitesKozpont, <code>vetites:{id}</code> csatorna</td> </tr>
+        <tr> <td>7.</td> <td>Felület</td> <td>A vendégnél a szék kék lesz és indul a visszaszámláló, a többieknél a szék foglalt lesz.</td> <td><code>ZarolasVisszaszamlalo</code>, <code>useWebSocket</code></td> </tr>
+    </table>
+    <h4>Egy kattintás útja a felülettől az adatbázisig és vissza.</h4>
+    <p>Amit a felhasználó a képernyőn lát, az csak a „kirakat”: a valódi munka a háttérben, a szerveren történik. Amikor a vendég rákattint egy székre,
+        a weboldal nem dönti el magától, hogy megkaphatja-e, hanem megkérdezi a szervert. A szerver először megnézi, hogy be van-e jelentkezve és van-e joga
+        vásárolni, aztán a JegyfoglaloService ellenőrzi a szabályokat (például hogy a szék szabad-e, nincs-e már 10 jegy a kosárban), végül elmenti a foglalást
+        az adatbázisba. Ugyanígy működik minden más funkció is: a jegyellenőrzés, a műsortervezés vagy a statisztikák. A külső szolgáltatásokat
+        (fizetés, IMDB, OpenAI, e-mail) is mindig a szerver hívja, a böngésző soha, így a titkos kulcsok nem kerülnek ki a felhasználókhoz.</p>
 </div>
 
 <!-- 5. KÖVETHETŐSÉG -->
