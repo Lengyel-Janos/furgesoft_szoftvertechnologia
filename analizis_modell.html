@@ -205,9 +205,10 @@
     Az alábbi diagram az SRS 7.1 pontjában lévő adatbázis-terv objektumorientált változata. A különbség az, hogy itt már
     a <strong>műveletek</strong> (felelősségek) is megjelennek, nem csak az adatok, és a kapcsolótáblák (pl. Filmek-Műfaj)
     egyszerű több-több asszociációvá váltak. Új osztály a <strong>Rendeles</strong> (a kosár, ami összefogja a jegyeket és a büfét),
-    a <strong>Fizetes</strong>, a <strong>HusegSzamla</strong> és a <strong>Feladat</strong>. Ez a rendszer „tervrajza”, amely megmutatja, milyen fő építőelemekből (osztályokból) áll a program,
-    és ezek hogyan kapcsolódnak egymáshoz. Míg a sima adatbázis csak az adatokat tárolja, itt már az is látszik, ki mit tud csinálni (műveletek/felelősségek). A diagram 5 nagy csoportra osztja a rendszert: Felhasználók (Vendég, Dolgozó, Admin), Mozihálózat (Régiók, Mozik, Termek, Székek), Műsor (Filmek, Vetítések), Értékesítés (Rendelés, Jegy, Büfé, Fizetés)
-    és Üzemeltetés (Feladatok). Új elemként jelenik meg például a Rendelés, ami egy digitális bevásárlókosárként fogja össze a jegyeket és a büfés termékeket, valamint a HusegSzamla, ami a gyűjtött pontokat kezeli.
+    a <strong>Fizetes</strong>, a <strong>HusegSzamla</strong> és a <strong>Feladat</strong>. <p>Ez a rendszer „tervrajza”, amely megmutatja, milyen fő építőelemekből (osztályokból) áll a program,
+    és ezek hogyan kapcsolódnak egymáshoz. Míg a sima adatbázis csak az adatokat tárolja, itt már az is látszik, ki mit tud csinálni (műveletek/felelősségek). A diagram 5 nagy csoportra osztja a rendszert: 
+        Felhasználók (Vendég, Dolgozó, Admin), Mozihálózat (Régiók, Mozik, Termek, Székek), Műsor (Filmek, Vetítések), Értékesítés (Rendelés, Jegy, Büfé, Fizetés)
+    és Üzemeltetés (Feladatok). Új elemként jelenik meg például a Rendelés, ami egy digitális bevásárlókosárként fogja össze a jegyeket és a büfés termékeket, valamint a HusegSzamla, ami a gyűjtött pontokat kezeli.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
 <pre class="mermaid">
 classDiagram
