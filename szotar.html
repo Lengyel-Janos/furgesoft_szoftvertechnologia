@@ -251,6 +251,49 @@
 
     <p style="margin-bottom: 10px;"><strong><u>End-to-End (E2E) tesztelés:</u></strong> Olyan automatizált tesztelési forma (nálunk a Playwright segítségével),
         amely egy valódi felhasználó kattintásait szimulálva végigvisz egy teljes folyamatot a böngészőben (pl. a székválasztástól a fizetésig).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Analízis Modell:</u></strong> A szoftvertervezés egyik kulcsfontosságú dokumentuma, amely a követelményeket (SRS) fordítja le osztályokra, 
+        felelősségekre és folyamatokra még azelőtt, hogy kiválasztanánk a konkrét programozási nyelvet vagy adatbázis-motort.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>BCE minta (Boundary – Control – Entity):</u></strong> Olyan szoftverarchitektúra-felosztás, 
+        amely három rétegre bontja a rendszert: Határ (Boundary – felhasználói felület és külső rendszerek), Vezérlő (Control – üzleti logika) és
+        Entitás (Entity – tárolt adatok). Szabálya, hogy a felhasználó csak a határral, az pedig csak a vezérlővel kommunikálhat.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Enumeráció (Felsorolás típus):</u></strong> Olyan speciális adattípus a programozásban és az UML modellekben, 
+        amely egy előre rögzített, zárt értékkészletet határoz meg (pl. egy szék állapota csak SZABAD, ZAROLT, FOGLALT vagy HIBAS lehet).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Sztereotípia (UML):</u></strong> Az UML diagramokon a kettős kacsacsőr (« ») közé írt címke (pl. «entity»,
+        «control», «interface», «enumeration»), amely pontosítja, hogy az adott elem milyen szerepet tölt be a rendszerben.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Absztrakt osztály:</u></strong> Olyan általános ősosztály (nálunk például a Felhasznalo), amelyből közvetlenül
+        nem hozható létre példány, csak a belőle leszármazó konkrét osztályokból (Vendeg, Dolgozo, Admin), amelyek megöröklik a közös tulajdonságait.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Láthatóság (+, –, #):</u></strong> Az UML osztálydiagramokon az adatok és műveletek elérhetőségét jelző szimbólumok:
+        a <strong>+</strong> (publikus) bárhonnan elérhető, a <strong>–</strong> (privát) csak az adott osztályon belül használható, a <strong>#</strong> (védett) pedig az osztályon és annak leszármazottain belül.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Mermaid:</u></strong> Egy modern, szöveges leírónyelv és eszköz, amellyel programkódszerű szövegből lehet automatikusan
+        UML és folyamatábrákat generálni, így a diagramok könnyen tárolhatók és verziókövethetők a Git repository-ban.</p>
+Kristóf
+<p style="margin-bottom: 10px;"><strong><u>httpOnly süti (Cookie):</u></strong> Egy fokozottan biztonságos böngészős adattároló, amelybe a
+    belépési tokent (JWT) mentjük. Előnye, hogy kliensoldali JavaScript kódból egyáltalán nem olvasható ki, így megvédi a felhasználót a tokenlopásos (XSS) támadásoktól.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Gyorsítótár (Cache / pl. Redis, TanStack Query):</u></strong> Olyan ideiglenes, 
+        villámgyors adattároló, amely elmenti a gyakran lekért információkat (pl. az aktuális moziműsort vagy a zárolt székeket), így nem kell minden egyes kattintásnál újra és újra megterhelni a fő adatbázist.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Állapotkezelés (State Management / Zustand):</u></strong> Az a módszer,
+        ahogyan a weboldal megjegyzi és frissíti az aktuális adatokat a képernyőn (pl. mi van éppen a kosárban, vagy mennyi idő van hátra a székfoglalásból), miközben a felhasználó az oldalak között lépked.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>HTTP státuszkódok (200, 201, 401, 403, 409):</u></strong> A szerver szabványos számkódokkal jelzi a 
+        kérések eredményét: a <strong>200/201</strong> a sikert jelenti, a <strong>401/403</strong> a hibás belépést vagy jogosultsághiányt, a <strong>409 (Ütközés)</strong> pedig azt, ha például két vetítés időpontja fedi egymást, vagy egy széket közben más megvett.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Drótváz (Wireframe / Képernyővázlat):</u></strong> Egy weboldal vagy alkalmazás egyszerűsített, 
+        szürkeárnyalatos vizuális vázlata (nálunk ilyen a teremtérkép elrendezése), amely még a végleges színek és dizájn előtt megmutatja a gombok, feliratok és elemek pontos helyét.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Eszkaláció:</u></strong> Olyan automatikus riasztási folyamat, amely akkor lép életbe,
+        ha egy feladatot nem végeznek el határidőn belül (nálunk például ha egy takarítási vagy székjavítási feladatot 15 percig senki nem fogad el, a rendszer az összes dolgozónak és az adminnak is riasztást küld).</p>
+Kristóf
+<p style="margin-bottom: 10px;"><strong><u>Redis:</u></strong> Egy rendkívül gyors, memóriában (RAM-ban) működő kulcs-érték 
+    alapú adattároló és gyorsítótár. Ideális olyan ideiglenes adatok tárolására, amelyeknek villámgyorsan kell frissülniük, például a kosárba tett székek 10 perces zárolásának kezelésére nagy terhelés (premier) idején.</p>
 </div>
 
     <div class="footer"></div>
