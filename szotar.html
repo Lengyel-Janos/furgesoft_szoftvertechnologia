@@ -56,6 +56,12 @@
             <td>Szótár kiegészítése az SRS dokumentumban megjelenő új fogalmakkal (pl. használati eset, MoSCoW, szekvenciadiagram, multiplicitás).</td>
             <td>Kecskés Gábor<br>Ujfalussy Kristóf</td>
         </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>1.4</td>
+            <td>Szótár kiegészítése a Rendszer Tervezésben (H5) megjelenő új fogalmakkal (pl. tesztelési terv, pozitív és negatív teszt, fake osztály, repository).</td>
+            <td>Kecskés Gábor</td>
+        </tr>
     </table>
 
     <h2>Szótár: </h2>
@@ -295,6 +301,32 @@
     
 <p style="margin-bottom: 10px;"><strong><u>Redis:</u></strong> Egy rendkívül gyors, memóriában (RAM-ban) működő kulcs-érték 
     alapú adattároló és gyorsítótár. Ideális olyan ideiglenes adatok tárolására, amelyeknek villámgyorsan kell frissülniük, például a kosárba tett székek 10 perces zárolásának kezelésére nagy terhelés (premier) idején.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Tesztelési terv:</u></strong> A dokumentum azon része, amely leírja, hogy a rendszer mely részeit, milyen módon (automatikusan vagy kézzel), milyen eszközökkel és milyen teszt esetekkel ellenőrizzük.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Teszt eset:</u></strong> Egy konkrét ellenőrzés leírása: milyen előfeltétel mellett mit csinál a tesztelő, mi a várt eredmény, és mi történt valójában.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Pozitív és negatív teszt:</u></strong> A <strong>pozitív</strong> teszt azt ellenőrzi, hogy helyes adatokra a rendszer jól működik (pl. sikeres bejelentkezés), a <strong>negatív</strong> azt, hogy hibás adatokra elutasít és érthető hibaüzenetet ad (pl. rossz jelszó).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Határérték-vizsgálat:</u></strong> Olyan tesztelési módszer, amely a szabályok határain próbálja ki a rendszert, mert a hibák jellemzően itt vannak (pl. a 20 perces takarítási szünetnél 19, 20 és 21 perccel).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Teszt osztály:</u></strong> Az a programosztály, amely egy másik osztály tesztjeit tartalmazza. Nálunk a neve <code>Test</code> + a tesztelt osztály neve (pl. <code>TestArKalkulator</code>).</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>pytest / Vitest / Playwright:</u></strong> Automatikus tesztelő eszközök: a <strong>pytest</strong> a Python backend, a <strong>Vitest</strong> a TypeScript frontend egységtesztjeihez, a <strong>Playwright</strong> a böngészőben futó végponttól végpontig tesztekhez.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Fake (helyettesítő) osztály:</u></strong> Egy valódi komponens (pl. fizetési szolgáltató, e-mail küldő, óra) egyszerű, kiszámítható változata, amelyet csak a tesztekben használunk, hogy azok gyorsak és megismételhetők legyenek.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Repository:</u></strong> Olyan osztály, amely egy adott fajta adat (pl. rendelések) adatbázisba mentését és lekérdezését végzi. A többi osztály csak rajta keresztül éri el az adatbázist, így a tesztekben könnyen kicserélhető.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>ORM (pl. SQLAlchemy):</u></strong> Object-Relational Mapping: olyan eszköz, amely a program osztályait automatikusan az adatbázis tábláihoz rendeli, így nem kell kézzel SQL-t írni.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Migráció (Alembic):</u></strong> Az adatbázis séma egy változtatásának leírása fájlban. A migrációk sorban lefuttatva bármelyik gépen ugyanazt az adatbázis szerkezetet hozzák létre.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Függőség-befecskendezés (Dependency Injection):</u></strong> Az a módszer, amikor egy osztály nem maga hozza létre a használt objektumokat, hanem kívülről kapja meg őket. Így a tesztekben a valódi objektumok helyére fake osztály adható.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Aktív és passzív objektum:</u></strong> Az <strong>aktív</strong> objektum magától, időzítve is dolgozik (pl. 30 másodpercenként felszabadítja a lejárt zárolásokat), a <strong>passzív</strong> csak akkor, ha valaki meghívja.</p>
+
+    <p style="margin-bottom: 10px;"><strong><u>Skeleton (váz):</u></strong> A program kezdeti, még nem működő változata: megvan a mappaszerkezet, az osztályok és a metódusok fejléce, de a metódusok törzse még nincs (vagy csak mintaadatot ad vissza).</p>
 </div>
 
     <div class="footer"></div>

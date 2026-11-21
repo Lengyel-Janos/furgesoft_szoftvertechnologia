@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Felhasználói Kézikönyv</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { fontFamily: 'Arial, sans-serif' } });
-    </script>
 </head>
 <body>
     <h1>Csoport neve: Fü(r)ge Soft</h1>
@@ -46,6 +42,20 @@
             <td>2026-11-06</td>
             <td>0.2</td>
             <td>Minta képernyőképek (tervek) hozzáadása: mozi műsora, székválasztás, e-jegy telefonon, jegyellenőrzés a dolgozói tableten, műsortervező.</td>
+            <td>Ujfalussy Kristóf<br>Laczkó Norbert</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>0.3</td>
+            <td>Frissítés a Rendszer Tervezés (H5) tesztelési tervével összhangban: a bejelentkezés, a jegyellenőrzés és a dolgozói feladatok
+                folyamatábrái, a felület visszajelzései (zöld és piros sáv), a tesztekben elvárt hibaüzenetek, új gyakori kérdések, az ábrák újraszámozása.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>0.4</td>
+            <td>Új minta képernyőképek (tervek): regisztráció, hibás belépés, AI ajánló, teremszerkesztő, statisztikák.
+                Az AI ajánló, a büfé kiadás, a teremszerkesztő és a segítség fejezet kidolgozása, a hibaüzenetek kiegészítése.</td>
             <td>Ujfalussy Kristóf<br>Laczkó Norbert</td>
         </tr>
     </table>
@@ -136,16 +146,31 @@
     <ol style="margin-top: 5px;">
         <li>Kattintson a jobb felső sarokban a <strong>Regisztráció</strong> gombra.</li>
         <li>Adja meg a nevét, e-mail címét, jelszavát és születési dátumát.</li>
-        <li>Nyissa meg a kapott e-mailt, és kattintson a megerősítő linkre.</li>
+        <li>Fogadja el az adatkezelési tájékoztatót, és kattintson a <strong>Regisztráció</strong> gombra.</li>
+        <li>Nyissa meg a kapott e-mailt, és kattintson a megerősítő linkre. Jegyet csak megerősített fiókkal vásárolhat.</li>
     </ol>
-    <em style="color: #bbb;">TODO: képernyőkép a regisztrációs űrlapról.</em>
+    A jelszó legalább 8 karakter legyen, és legyen benne szám. Ha az e-mail címmel már regisztráltak, a rendszer ezt kiírja: ilyenkor
+    jelentkezzen be, vagy használja az <strong>Elfelejtett jelszó</strong> linket.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_06_regisztracio.png" alt="Regisztrációs űrlap" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: A regisztrációs űrlap (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
 </div>
 
 <a name="fk-belepes"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.2 Bejelentkezés és elfelejtett jelszó</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Bejelentkezni e-mail címmel és jelszóval lehet. Bejelentkezés után a rendszer a szerepkörének megfelelő kezdőlapra viszi.
     Ha elfelejtette a jelszavát, kattintson az <strong>Elfelejtett jelszó</strong> linkre, és kövesse az e-mailben kapott utasításokat.
-    <br><em style="color: #bbb;">TODO: képernyőkép.</em>
+    <p>A rendszer minden műveletnél visszajelez a képernyő tetején: <span style="color: #6c6;">zöld sáv</span> jelzi, ha a művelet sikerült,
+        <span style="color: #e55;">piros sáv</span>, ha nem, és a sávban az is olvasható, mi a teendő.</p>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/16_kk_bejelentkezes.png" alt="Bejelentkezés és a felület visszajelzései" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: Bejelentkezés és a felület visszajelzései</em></div>
+    </div>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_07_belepes.png" alt="Hibás belépés" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: Hibás jelszó után: a piros sáv a képernyő tetején, a mezők pirosan keretezve (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
 </div>
 
 <a name="fk-profil"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">2.3 Profil és kedvezmények</h3>
@@ -168,34 +193,29 @@
     nyelv és napszak szerint szűrhet. Egy filmre kattintva megnyílik a filmadatlap a leírással, az előzetessel és az értékelésekkel.
 <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
         <img src="kepek/kezikonyv_01_musor.png" alt="A mozi műsora szűrőkkel" style="width: 100%; max-width: 1280px;">
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: Egy mozi napi műsora a szűrőkkel (tervezet, a végleges felület eltérhet)</em></div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: Egy mozi napi műsora a szűrőkkel (tervezet, a végleges felület eltérhet)</em></div>
     </div>
 </div>
 
 <a name="fk-vasarlas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.2 Jegyvásárlás lépésről lépésre</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
-    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; overflow-x: auto;">
-<pre class="mermaid">
-flowchart LR
-    A["Vetítés<br>kiválasztása"] --> B["1. Székek"]
-    B --> C["2. Büfé<br>(nem kötelező)"]
-    C --> D["3. Összesítő"]
-    D --> E["4. Fizetés"]
-    E --> F["E-jegy<br>e-mailben és<br>a profilban"]
-</pre>
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: A jegyvásárlás lépései</em></div>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/17_kk_jegyvasarlas.png" alt="A jegyvásárlás lépései" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>5. ábra: A jegyvásárlás lépései</em></div>
     </div>
     <ol style="margin-top: 15px;">
-        <li><strong>Székek:</strong> kattintson a szabad (szürke) székekre, legfeljebb 10-et választhat. A kiválasztott székeket
-            10 percig fenntartjuk Önnek, a hátralévő idő a jobb felső sarokban látszik.</li>
+        <li><strong>Székek:</strong> kattintson a szabad (szürke) székekre, legfeljebb 10-et választhat. A kiválasztott székek kékre váltanak, és
+            10 percig fenntartjuk őket Önnek, a hátralévő idő a jobb felső sarokban látszik. Ha egy széket közben valaki más választott ki,
+            az szürkén foglalt lesz, és piros sávban értesítjük.</li>
         <li><strong>Büfé:</strong> ha szeretne, tegyen a kosárba üdítőt, popcornt, extrákat.</li>
         <li><strong>Összesítő:</strong> ellenőrizze a tételeket. Itt látja a kedvezményt, és itt válthatja be a hűségpontjait.</li>
-        <li><strong>Fizetés:</strong> a rendszer átirányítja a fizetési oldalra. Sikeres fizetés után megkapja az e-jegyet.</li>
+        <li><strong>Fizetés:</strong> a rendszer átirányítja a fizetési oldalra. Sikeres fizetés után megkapja az e-jegyet.
+            Ha a fizetés nem sikerül, visszakerül az összesítőre, a székei a 10 perc végéig a kosárban maradnak, így újra próbálkozhat.</li>
     </ol>
     <p style="margin-top: 10px;"><strong>Fontos:</strong> ha a 10 perc lejár, a székek felszabadulnak, és elölről kell kezdeni.</p>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
         <img src="kepek/kezikonyv_02_szekek.png" alt="Székválasztás a teremtérképen" style="width: 100%; max-width: 1280px;">
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: Az 1. lépés: székválasztás a teremtérképen, jobb oldalon a hátralévő idő és a kosár (tervezet, a végleges felület eltérhet)</em></div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>6. ábra: Az 1. lépés: székválasztás a teremtérképen, jobb oldalon a hátralévő idő és a kosár (tervezet, a végleges felület eltérhet)</em></div>
     </div>
 </div>
 
@@ -209,7 +229,7 @@ flowchart LR
     </ul>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
         <img src="kepek/kezikonyv_03_ejegy.png" alt="E-jegy telefonon" style="width: 100%; max-width: 390px;">
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: Az e-jegy QR-kóddal és a hűségpontok telefonon (tervezet, a végleges felület eltérhet)</em></div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>7. ábra: Az e-jegy QR-kóddal és a hűségpontok telefonon (tervezet, a végleges felület eltérhet)</em></div>
     </div>
 </div>
 
@@ -217,7 +237,17 @@ flowchart LR
 <div style="line-height: 1.7; margin-bottom: 30px;">
     Ha megnézett egy filmet, a filmadatlapon 1-5 csillaggal értékelheti. Az <strong>AI ajánló</strong> a korábbi vásárlásai és
     értékelései alapján javasol filmeket és vetítéseket.
-    <br><em style="color: #bbb;">TODO: kidolgozni, amikor az ajánló felülete elkészül.</em>
+    <ul style="margin-top: 5px;">
+        <li>Az ajánlót a felső menü <strong>Ajánlott Önnek</strong> pontjában éri el (bejelentkezés szükséges).</li>
+        <li>Minden ajánlás alatt olvasható, miért kapta (pl. mert egy hasonló filmet 5 csillagra értékelt), és a következő 7 nap vetítései a választott régióban.</li>
+        <li>Egy időpontra kattintva rögtön a székválasztásra jut.</li>
+        <li>Ha egy ajánlás nem tetszik, a <strong>Nem érdekel</strong> lehetőséggel elrejtheti, és ezt az ajánló a következő alkalommal figyelembe veszi.</li>
+        <li>Csak olyan filmet ajánlunk, amelyet a korhatár alapján megnézhet. Ha még nem vásárolt, a legnépszerűbb filmek jelennek meg.</li>
+    </ul>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_08_ajanlo.png" alt="AI ajánló" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>8. ábra: Az AI ajánló oldala az ajánlások indoklásával (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
 </div>
 
 <!-- 4. DOLGOZÓ -->
@@ -232,8 +262,12 @@ flowchart LR
     </ol>
     A beengedés a vetítés előtt 30 perccel kezdődik, és a kezdés után 20 percig tart.
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/18_kk_jegyellenorzes.png" alt="A QR-kód ellenőrzése" style="width: 100%; max-width: 582px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>9. ábra: Mit ellenőriz a rendszer a QR-kód beolvasásakor</em></div>
+    </div>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
         <img src="kepek/kezikonyv_04_dolgozo.png" alt="Érvényes jegy a dolgozói tableten" style="width: 100%; max-width: 1024px;">
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>5. ábra: Érvényes jegy beolvasása után a dolgozói tableten (tervezet, a végleges felület eltérhet)</em></div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>10. ábra: Érvényes jegy beolvasása után a dolgozói tableten (tervezet, a végleges felület eltérhet)</em></div>
     </div>
 </div>
 
@@ -246,13 +280,23 @@ flowchart LR
             amíg a szerelő meg nem javítja.</li>
         <li>Ha egy feladatot 15 percig senki nem fogad el, a rendszer mindenkinek és az adminnak is szól.</li>
     </ul>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/19_kk_feladat_allapotok.png" alt="Egy feladat állapotai" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>11. ábra: Egy feladat útja a Feladataim oldalon</em></div>
+    </div>
 </div>
 
 <a name="fk-bufe-kiadas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Büfé rendelés kiadása</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
     Olvassa be a vendég QR-kódját a <strong>Büfé kiadás</strong> oldalon. Megjelenik az előre kifizetett rendelés, a kiadás után
     nyomja meg a <strong>Kiadva</strong> gombot.
-    <br><em style="color: #bbb;">TODO: kidolgozni (ha marad idő funkció, FK-24).</em>
+    <ul style="margin-top: 5px;">
+        <li>A rendelés csak abban a moziban adható ki, ahová a jegy szól, és csak a vetítés napján.</li>
+        <li>Ha a rendelésben extra is van (pl. sajtszósz, nagyobb méret), az kiemelve látszik a tétel mellett.</li>
+        <li>Egy rendelést csak egyszer lehet kiadni. Ha a vendég újra mutatja a kódot, a képernyőn a „Már kiadva” felirat és a kiadás időpontja jelenik meg.</li>
+        <li>Ha egy termék elfogyott, cserélje egy azonos árú termékre a vendég beleegyezésével, vagy küldje a pénztárba visszatérítésért.</li>
+    </ul>
+    Ez a funkció a fejlesztés utolsó szakaszában készül el (SRS FK-24, „ha marad idő” követelmény).
 </div>
 
 <!-- 5. ADMIN -->
@@ -261,7 +305,19 @@ flowchart LR
 <a name="fk-torzsadatok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.1 Régiók, mozik, termek</h3>
 <div style="line-height: 1.7; margin-bottom: 20px;">
     Az oldalsó menü <strong>Mozik</strong> pontjában lehet régiókat, mozikat, termeket és a termek székeit felvenni, módosítani, törölni.
-    <br><em style="color: #bbb;">TODO: a teremszerkesztő leírása (sorok, székek száma, kihagyott helyek).</em>
+    <p>Új teremnél a <strong>Teremszerkesztő</strong> nyílik meg:</p>
+    <ol style="margin-top: 5px;">
+        <li>Adja meg a terem nevét, a sorok számát és a soronkénti székek számát. A sorok betűt (A, B, …), a székek számot kapnak.</li>
+        <li>A <strong>Folyosó a szék után</strong> mezőben adja meg, hányadik szék után legyen folyosó (pl. „4, 8”).</li>
+        <li>Kattintson egy székre, ha azt a helyet ki kell hagyni (pl. oszlop vagy kerekesszékes hely miatt): a hely szaggatottan jelenik meg.</li>
+        <li>A kapacitás a ténylegesen meglévő székekből számolódik. Mentés után a terem megjelenik a műsortervezőben.</li>
+    </ol>
+    A pirosan jelölt székeket a dolgozók jelentették hibásnak (4.2 pont), ezeket a rendszer nem adja el, amíg a szerelő meg nem javítja őket.
+    Olyan termet vagy széket nem lehet törölni, amelyre már van eladott jegy.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_09_teremszerkeszto.png" alt="Teremszerkesztő" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>12. ábra: A teremszerkesztő: folyosók, kihagyott helyek és egy hibás szék (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
 </div>
 
 <a name="fk-musor"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.2 Műsortervezés</h3>
@@ -273,7 +329,7 @@ flowchart LR
     </ol>
     <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
         <img src="kepek/kezikonyv_05_musor_admin.png" alt="Műsortervező ütközéssel" style="width: 100%; max-width: 1280px;">
-        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>6. ábra: A műsortervező egy ütköző vetítéssel a 2-es teremben (tervezet, a végleges felület eltérhet)</em></div>
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>13. ábra: A műsortervező egy ütköző vetítéssel a 2-es teremben (tervezet, a végleges felület eltérhet)</em></div>
     </div>
 </div>
 
@@ -290,20 +346,35 @@ flowchart LR
 
 <a name="fk-statisztikak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">5.5 Statisztikák</h3>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    Bevétel, eladott jegyek és büfé eladások mozinként és régiónként, grafikonokkal. A táblázat CSV-ként letölthető.
-    <br><em style="color: #bbb;">TODO: képernyőkép.</em>
+    Bevétel, eladott jegyek és büfé eladások mozinként és régiónként, grafikonokkal. A felső szűrőkkel választható ki a régió, a mozi és a hónap.
+    A táblázat a <strong>CSV letöltése</strong> gombbal letölthető, és Excelben megnyitható.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="kepek/kezikonyv_10_statisztika.png" alt="Statisztikák" style="width: 100%; max-width: 1280px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>14. ábra: A statisztikák oldal egy régió havi adataival (tervezet, a végleges felület eltérhet)</em></div>
+    </div>
 </div>
 
 <!-- 6. HIBAÜZENETEK -->
 <a name="fk-hibak"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Hibaüzenetek és megoldásuk</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
-    <table>
+    A hibaüzenetek a képernyő tetején, piros sávban jelennek meg (a dolgozói tableten a jegyellenőrzésnél a teljes képernyő piros).
+    <table style="margin-top: 10px;">
         <tr> <th>Üzenet</th> <th>Mit jelent</th> <th>Mit tegyen</th> </tr>
+        <tr> <td>„Hibás e-mail cím vagy jelszó.”</td> <td>A megadott adatokkal nincs fiók.</td> <td>Ellenőrizze az adatokat, vagy használja az Elfelejtett jelszó linket.</td> </tr>
+        <tr> <td>„Ezzel az e-mail címmel már regisztráltak.”</td> <td>Már van fiókja ezzel a címmel.</td> <td>Jelentkezzen be, vagy kérjen új jelszót.</td> </tr>
+        <tr> <td>„Ehhez a művelethez nincs jogosultsága.”</td> <td>Olyan oldalt nyitott meg, amely nem az Ön szerepköréhez tartozik.</td> <td>Ha úgy gondolja, hogy Önnek ehhez joga van, keresse az adminisztrátort.</td> </tr>
         <tr> <td>„Ezt a széket közben valaki más választotta.”</td> <td>Egy másik vendég gyorsabb volt.</td> <td>Válasszon másik széket.</td> </tr>
+        <tr> <td>„Egyszerre legfeljebb 10 széket választhat.”</td> <td>Elérte a 10 széket egy vásárlásban.</td> <td>Fejezze be a vásárlást, és indítson egy újat.</td> </tr>
         <tr> <td>„Lejárt a foglalási idő.”</td> <td>Eltelt a 10 perc fizetés nélkül.</td> <td>Kezdje újra a vásárlást.</td> </tr>
         <tr> <td>„Sikertelen fizetés.”</td> <td>A bank elutasította a fizetést.</td> <td>Próbálja újra, vagy használjon másik kártyát.</td> </tr>
+        <tr> <td>„A jegyet a vetítés előtt 2 órán belül már nem lehet lemondani.”</td> <td>Túl késő a lemondáshoz.</td> <td>–</td> </tr>
         <tr> <td>„Erre a filmre nem vásárolhat jegyet.”</td> <td>A korhatár miatt.</td> <td>–</td> </tr>
         <tr> <td>„A munkamenet lejárt.”</td> <td>Régen jelentkezett be.</td> <td>Jelentkezzen be újra.</td> </tr>
+        <tr> <td>„A jegyet már felhasználták.” (dolgozó)</td> <td>A QR-kódot már beolvasták, az időpont is látszik.</td> <td>Ne engedje be a vendéget, szükség esetén hívja a műszakvezetőt.</td> </tr>
+        <tr> <td>„Ismeretlen jegy.” (dolgozó)</td> <td>A QR-kód nem olvasható, vagy nem a Soft Mozi jegye.</td> <td>Próbálja újra, vagy írja be kézzel a jegy alatti kódot.</td> </tr>
+        <tr> <td>„Nincs kapcsolat.” (dolgozó)</td> <td>A tablet nem éri el a szervert.</td> <td>Ellenőrizze a Wi-Fi-t; addig a jegyet a pénztárban ellenőriztesse.</td> </tr>
+        <tr> <td>„A jegy másik moziba szól.” (dolgozó)</td> <td>A vendég rossz moziba jött.</td> <td>Mondja meg a vendégnek, melyik moziba szól a jegye.</td> </tr>
+        <tr> <td>„A beengedés még nem kezdődött el.” / „A beengedés már lezárult.” (dolgozó)</td> <td>30 percnél korábban, vagy a kezdés után 20 percnél később.</td> <td>Kérje meg a vendéget, hogy várjon, illetve irányítsa a pénztárhoz.</td> </tr>
         <tr> <td>„A vetítés ütközik egy másikkal.” (admin)</td> <td>Ugyanabban a teremben átfedés van.</td> <td>Válasszon másik időpontot vagy termet.</td> </tr>
     </table>
 </div>
@@ -315,7 +386,12 @@ flowchart LR
         <li style="margin-bottom: 10px;"><strong>Nem kaptam meg az e-jegyet.</strong> Nézze meg a levélszemét mappát. A jegy a profiljában a Jegyeim oldalon is megtalálható.</li>
         <li style="margin-bottom: 10px;"><strong>Kinyomtassam a jegyet?</strong> Nem kell, elég a telefonon felmutatni a QR-kódot.</li>
         <li style="margin-bottom: 10px;"><strong>Használhatok két kedvezményt egyszerre?</strong> Nem, egy jegyre egy kedvezmény jár, de a hűségpontok mellette is beválthatók.</li>
-        <li style="margin-bottom: 10px;"><em style="color: #bbb;">TODO: bővíteni a tesztelés során felmerülő kérdésekkel.</em></li>
+        <li style="margin-bottom: 10px;"><strong>Mi történik, ha valaki más is ugyanarra a székre kattint?</strong> Az kapja meg, aki előbb kattintott. A másik vendégnél a szék azonnal foglaltra vált, és piros sávban értesítjük.</li>
+        <li style="margin-bottom: 10px;"><strong>Elutasították a kártyámat. Elvesztek a székeim?</strong> Nem, a 10 perc végéig a kosárban maradnak, közben újra próbálkozhat vagy másik kártyát adhat meg.</li>
+        <li style="margin-bottom: 10px;"><strong>Bezártam a böngészőt vásárlás közben.</strong> Ha a 10 perc még nem telt le, a vetítést újra megnyitva folytathatja, utána a székek felszabadulnak.</li>
+        <li style="margin-bottom: 10px;"><strong>Lemondtam a jegyet. Mikor kapom vissza a pénzt?</strong> A visszatérítést azonnal elindítjuk, a bankjától függően 3–5 munkanapon belül érkezik meg. A vásárlásért kapott hűségpontokat levonjuk.</li>
+        <li style="margin-bottom: 10px;"><strong>Miért nem látok egy filmet az ajánlóban?</strong> Csak olyan filmet ajánlunk, amelyre a korhatár alapján vehet jegyet, és amelyet nem rejtett el a Nem érdekel lehetőséggel.</li>
+        <li style="margin-bottom: 10px;"><strong>(Dolgozóknak) Másik moziban helyettesítek. Miért kapok „másik moziba szól” hibát?</strong> Az admin állítja át, melyik moziban dolgozik. Az átállítás után jelentkezzen ki, majd be.</li>
     </ul>
 </div>
 
@@ -323,7 +399,13 @@ flowchart LR
 <a name="fk-kapcsolat"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">8. Segítség és kapcsolat</h2>
 <div style="line-height: 1.7; margin-bottom: 30px;">
     Ha a kézikönyvben nem talál választ, írjon az ügyfélszolgálatnak.
-    <br><em style="color: #bbb;">TODO: ügyfélszolgálati elérhetőség.</em>
+    <ul style="margin-top: 5px;">
+        <li><strong>Vendégek:</strong> a profil menü <strong>Segítség</strong> pontjában található űrlapon, vagy az
+            <code>ugyfelszolgalat@softmozi.hu</code> címen. Munkanapokon 1 napon belül válaszolunk. Jegyvásárlással kapcsolatos kérdésnél
+            írja meg a rendelés számát is (a Jegyeim oldalon és az e-jegyen található).</li>
+        <li><strong>A moziban:</strong> a pénztárban a munkatársak segítenek a jegyekkel és a lemondással kapcsolatban.</li>
+        <li><strong>Dolgozók:</strong> műszak közben a műszakvezetőhöz forduljanak; technikai hibát (pl. a tablet nem olvassa a QR-kódot) az admin felé jelezzenek.</li>
+    </ul>
 </div>
 
     <div class="footer"></div>

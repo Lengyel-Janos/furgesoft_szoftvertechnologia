@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>(H5) Rendszer Tervezés</title>
+</head>
+<body>
+    <h1>Csoport neve: Fü(r)ge Soft</h1>
+    <h1>Feladat sorszáma: 5</h1>
+    <h1>Feladat címe: Soft Mozi</h1>
+
+    <h1 class="center spaced">(H5) Rendszer Tervezés</h1>
+
+    <div class="center">
+        Gyakorlatvezető:
+        <h2>Árvai László</h2>
+    </div>
+
+    <h2>Csoport tagok: </h2>
+    <table>
+        <tr> <td>Padányi Milán    </td> <td>FMUL84</td> <td>mpadanyi09@gmail.com</td> </tr>
+        <tr> <td>Ujfalussy Kristóf</td> <td>ZZORDN</td> <td>kristof.ujfalussy@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Kecskés Gábor    </td> <td>QDY6TL</td> <td>gabor.kecskes@student.uni-miskolc.hu</td> </tr>
+        <tr> <td>Lengyel János    </td> <td>N9XZKQ</td> <td>lengyeljanos2004@gmail.com</td> </tr>
+        <tr> <td>Laczkó Norbert   </td> <td>SLIIKD</td> <td>laczkonorbert4@gmail.com</td> </tr>
+    </table>
+
+    <div class="right spaced">2026-11-21</div>
+
+    <h2>Történet: </h2>
+    <table>
+        <tr> <th>Dátum</th> <th>Verzió</th> <th>Leírás</th> <th>Szerző</th> </tr>
+        <tr>
+            <td>2026-11-20</td>
+            <td>1.0</td>
+            <td>Létrejött a dokumentum. Fejléc, történet táblázat, tartalomjegyzék és a fejezetek váza a tárgy Rendszertervezés sablonja
+                és a H5 követelményei alapján. A főoldalon a link beállítása.</td>
+            <td>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-11-20</td>
+            <td>1.1</td>
+            <td>Bevezetés (1. pont), a felület egységes hibakódjai (2. pont), az adatbázis kezelő és az eszközök kiválasztásának indoklása (3.1 pont).</td>
+            <td>Ujfalussy Kristóf</td>
+        </tr>
+        <tr>
+            <td>2026-11-20</td>
+            <td>1.2</td>
+            <td>Adatmodellek (3.2–3.4 pont): az új táblák ER-diagramja, a teljes relációs séma, a repository osztályok és diagramjuk.</td>
+            <td>Padányi Milán</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>1.3</td>
+            <td>Objektumtervezés (4. pont): aktív objektumok és az ütemező, a kapcsolatok megvalósítása, modulok és felelőseik.
+                A funkcionális modell kiegészítése (5. pont), a váz tervezett tartalma és futtatása (6. pont).</td>
+            <td>Laczkó Norbert</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>1.4</td>
+            <td>Tesztelési terv (7.1–7.4 pont): tesztelési szintek, 10 automatikus teszt, integrációs tesztek, segédosztályok, minta teszt osztály.</td>
+            <td>Kecskés Gábor<br>Lengyel János</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>1.5</td>
+            <td>Manuális tesztek (7.6 pont): 10 teszt eset megtervezése a Felhasználói Kézikönyv lépései alapján, a hibák rögzítésének módja (7.7 pont).</td>
+            <td>Padányi Milán<br>Ujfalussy Kristóf</td>
+        </tr>
+        <tr>
+            <td>2026-11-21</td>
+            <td>1.6</td>
+            <td>Döntések a H4 nyitott kérdéseiről (8. pont), kockázatok (9. pont). A dokumentum átnézése, a hivatkozások ellenőrzése.</td>
+            <td>Kecskés Gábor</td>
+        </tr>
+    </table>
+
+    <h2>Tartalomjegyzék: </h2>
+    <ul>
+        <li><a href="#rt-bevezetes">1. Bevezetés</a>
+            <ul>
+                <li><a href="#rt-cel">1.1 A dokumentum célja</a></li>
+                <li><a href="#rt-kapcsolat">1.2 Kapcsolat a korábbi dokumentumokkal</a></li>
+            </ul>
+        </li>
+        <li><a href="#rt-felulet">2. Felhasználói felület</a></li>
+        <li><a href="#rt-adatmodell">3. Adatmodellek</a>
+            <ul>
+                <li><a href="#rt-dbms">3.1 Adatbázis kezelő kiválasztása</a></li>
+                <li><a href="#rt-szemantikai">3.2 Szemantikai adatmodell</a></li>
+                <li><a href="#rt-relacios">3.3 Relációs adatmodell</a></li>
+                <li><a href="#rt-db-osztalyok">3.4 Az adatbázis kezelővel kapcsolatot tartó osztályok</a></li>
+            </ul>
+        </li>
+        <li><a href="#rt-objektumterv">4. Objektumtervezés</a>
+            <ul>
+                <li><a href="#rt-vezerles">4.1 A rendszer vezérlése: aktív és passzív objektumok</a></li>
+                <li><a href="#rt-kapcsolatok">4.2 Az osztályok közötti kapcsolatok megvalósítása</a></li>
+                <li><a href="#rt-modulok">4.3 Modulok (implementációs egységek)</a></li>
+            </ul>
+        </li>
+        <li><a href="#rt-funkcionalis">5. A funkcionális modell kiegészítése</a></li>
+        <li><a href="#rt-implementacio">6. Implementáció (váz)</a>
+            <ul>
+                <li><a href="#rt-allapot">6.1 A váz tervezett tartalma</a></li>
+                <li><a href="#rt-futtatas">6.2 Futtatás</a></li>
+            </ul>
+        </li>
+        <li><a href="#rt-teszteles">7. Tesztelési terv</a>
+            <ul>
+                <li><a href="#rt-strategia">7.1 Tesztelési szintek és eszközök</a></li>
+                <li><a href="#rt-automatikus">7.2 Automatikus tesztek</a></li>
+                <li><a href="#rt-integracios">7.3 Integrációs és E2E tesztek</a></li>
+                <li><a href="#rt-segedosztalyok">7.4 Teszteléshez használható implementációs elemek</a></li>
+                <li><a href="#rt-minta">7.5 Minta teszt osztály</a></li>
+                <li><a href="#rt-manualis">7.6 Manuális tesztek</a></li>
+                <li><a href="#rt-hibak">7.7 A hibák rögzítése</a></li>
+            </ul>
+        </li>
+        <li><a href="#rt-dontesek">8. Döntések a H4 nyitott kérdéseiről</a></li>
+        <li><a href="#rt-kockazatok">9. Kockázatok</a></li>
+    </ul>
+
+<h1 style="margin-bottom: 20px; font-size: 2.2em; border-bottom: 1px solid #555; padding-bottom: 10px;">Rendszer Tervezés</h1>
+
+<!-- 1. BEVEZETÉS -->
+<a name="rt-bevezetes"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">1. Bevezetés</h2>
+
+<a name="rt-cel"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.1 A dokumentum célja</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az Analízis Modellben (H4) megmutattuk, hogy a Soft Mozi milyen osztályokból áll, és azok hogyan dolgoznak együtt. A Rendszer Tervezésben
+    ezt a modellt <strong>technikai döntésekkel</strong> egészítjük ki: kiválasztjuk az adatbázis kezelőt és a hozzá kapcsolódó eszközöket,
+    véglegesítjük az adatbázis sémát, eldöntjük, hogyan valósítjuk meg az osztályok közötti kapcsolatokat, és hogyan bontjuk a kódot modulokra.
+    A dokumentum második fele a <strong>tesztelési terv</strong>: felsorolja, melyik osztályokhoz írnánk automatikus teszteket, és milyen
+    kézi teszteket végeznénk el a felületen.
+    <p>A H5-ben még nincs implementáció: a dokumentum a rendszer <strong>vázának</strong> (skeleton) és tesztelésének a <strong>terve</strong>.
+        A tesztek ezért még nem futottak le; a dokumentum azt írja le, hogy mit, hogyan és milyen elvárt eredménnyel tesztelnénk.</p>
+    <br>
+    A dokumentum a következő részekből áll:
+    <ul style="margin-top: 10px;">
+        <li><strong>Felhasználói felület:</strong> hogyan jelzi vissza a rendszer a sikert és a hibát, és melyik hibához milyen üzenet tartozik.</li>
+        <li><strong>Adatmodellek:</strong> melyik adatbázis kezelőt és eszközöket használjuk, és hogyan néz ki a végleges adatbázis: minden tábla,
+            minden mező, valamint azok az osztályok, amelyeken keresztül a program az adatbázist eléri.</li>
+        <li><strong>Objektumtervezés:</strong> mely részek dolgoznak „maguktól”, időzítve (pl. a lejárt foglalások felszabadítása), hogyan lesz
+            a H4 diagramjainak nyilaiból valódi kód, és hogyan osztjuk a programot modulokra (ki melyiket fejleszti).</li>
+        <li><strong>A funkcionális modell kiegészítése:</strong> mi történik, ha valami nem a terv szerint megy (pl. elutasított fizetés, késői lemondás).</li>
+        <li><strong>Implementáció:</strong> mi kerülne a rendszer első, vázszerű változatába, mi maradna későbbre, és hogyan lehetne elindítani.</li>
+        <li><strong>Tesztelési terv:</strong> melyik osztályokat ellenőriznénk automatikus tesztekkel és hogyan, a felületen kézzel elvégzendő tesztek
+            a várt eredményekkel, és hogy a talált hibákat hogyan rögzítenénk.</li>
+        <li><strong>Döntések és kockázatok:</strong> a H4-ben nyitva maradt kérdések lezárása, és a projekt legnagyobb kockázatai.</li>
+    </ul>
+</div>
+
+<a name="rt-kapcsolat"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">1.2 Kapcsolat a korábbi dokumentumokkal</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Dokumentum</th> <th>Amit innen felhasználtunk</th> </tr>
+        <tr> <td><a href="projekt_terv.html">(H1) Projekt terv</a></td> <td>Technológiák, tesztelési követelmények (5. pont).</td> </tr>
+        <tr> <td><a href="srs_dokumentum.html">(H3) SRS dokumentum</a></td> <td>Funkcionális követelmények (FK-01 – FK-39), üzleti szabályok (ÜSZ-01 – ÜSZ-10), nem funkcionális követelmények és ellenőrzési módjuk (NFK-01 – NFK-12), adatbázis-terv.</td> </tr>
+        <tr> <td><a href="analizis_modell.html">(H4) Analízis Modell</a></td> <td>Entitás és vezérlő osztályok, csomagdiagram, az adatbázis szükséges változtatásai (2.6 pont), felhasználói visszajelzések (4.9 pont), nyitott kérdések (6. pont).</td> </tr>
+        <tr> <td><a href="felhasznaloi_kezikonyv.html">Felhasználói Kézikönyv</a></td> <td>A manuális tesztek a kézikönyv lépéseit követik; a tesztekben elvárt hibaüzeneteket a kézikönyvbe is felvettük.</td> </tr>
+    </table>
+    <h4>A korábbi dokumentumok, amelyekre a Rendszer Tervezés épül.</h4>
+</div>
+
+<!-- 2. FELHASZNÁLÓI FELÜLET -->
+<a name="rt-felulet"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">2. Felhasználói felület</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A felület tervét az Analízis Modell 4. pontja (oldaltérkép, útvonalak, komponensek, teremtérkép vázlata) és a
+    <a href="felhasznaloi_kezikonyv.html">Felhasználói Kézikönyv</a> képernyőképei tartalmazzák, ezeket itt nem ismételjük meg.
+    A H5-ben hozzáadott döntések:
+    <ul style="margin-top: 10px;">
+        <li><strong>Egységes hibaüzenetek:</strong> a backend minden hibánál egy hibakódot ad vissza (pl. <code>SZEK_FOGLALT</code>), a frontend ebből
+            írja ki a magyar szöveget. Így a kézikönyv 6. pontjában lévő üzenetek mindenhol ugyanúgy jelennek meg.</li>
+        <li><strong>Visszajelzés minden műveletnél:</strong> sikeres műveletnél zöld, hibánál piros értesítő sáv jelenik meg a képernyő tetején (H4 4.9).</li>
+        <li><strong>Betöltés jelzése:</strong> ha egy kérés 300 ms-nál tovább tart, a gomb helyén töltésjelző jelenik meg, és a gomb nem nyomható meg újra.</li>
+    </ul>
+    <table style="margin-top: 10px;">
+        <tr> <th>Hibakód</th> <th>HTTP státusz</th> <th>Megjelenő szöveg</th> <th>Hol fordul elő</th> </tr>
+        <tr> <td><code>HIBAS_BELEPES</code></td> <td>401</td> <td>„Hibás e-mail cím vagy jelszó.”</td> <td>Bejelentkezés</td> </tr>
+        <tr> <td><code>LEJART_MUNKAMENET</code></td> <td>401</td> <td>„A munkamenet lejárt. Jelentkezzen be újra.”</td> <td>Bármely bejelentkezést igénylő oldal</td> </tr>
+        <tr> <td><code>NINCS_JOGOSULTSAG</code></td> <td>403</td> <td>„Ehhez a művelethez nincs jogosultsága.”</td> <td>Dolgozói és admin oldalak</td> </tr>
+        <tr> <td><code>EMAIL_FOGLALT</code></td> <td>409</td> <td>„Ezzel az e-mail címmel már regisztráltak.”</td> <td>Regisztráció</td> </tr>
+        <tr> <td><code>SZEK_FOGLALT</code></td> <td>409</td> <td>„Ezt a széket közben valaki más választotta.”</td> <td>Székválasztás</td> </tr>
+        <tr> <td><code>SZEK_LIMIT</code></td> <td>422</td> <td>„Egyszerre legfeljebb 10 széket választhat.”</td> <td>Székválasztás</td> </tr>
+        <tr> <td><code>KORHATAR</code></td> <td>403</td> <td>„Erre a filmre nem vásárolhat jegyet.”</td> <td>Székválasztás</td> </tr>
+        <tr> <td><code>LEJART_FOGLALAS</code></td> <td>410</td> <td>„Lejárt a foglalási idő.”</td> <td>Büfé, összesítő, fizetés</td> </tr>
+        <tr> <td><code>SIKERTELEN_FIZETES</code></td> <td>402</td> <td>„Sikertelen fizetés.”</td> <td>Fizetés</td> </tr>
+        <tr> <td><code>LEMONDAS_KESO</code></td> <td>422</td> <td>„A jegyet a vetítés előtt 2 órán belül már nem lehet lemondani.”</td> <td>Jegyeim</td> </tr>
+        <tr> <td><code>JEGY_FELHASZNALT</code></td> <td>409</td> <td>„A jegyet már felhasználták.”</td> <td>Jegyellenőrzés</td> </tr>
+        <tr> <td><code>JEGY_MASIK_MOZI</code></td> <td>422</td> <td>„A jegy másik moziba szól.”</td> <td>Jegyellenőrzés</td> </tr>
+        <tr> <td><code>BEENGEDES_IDON_KIVUL</code></td> <td>422</td> <td>„A beengedés még nem kezdődött el.” / „A beengedés már lezárult.”</td> <td>Jegyellenőrzés</td> </tr>
+        <tr> <td><code>VETITES_UTKOZIK</code></td> <td>409</td> <td>„A vetítés ütközik egy másikkal.”</td> <td>Műsortervezés</td> </tr>
+    </table>
+    <h4>A backend hibakódjai és a felületen megjelenő szövegek.</h4>
+    <p>A hibakódok egy helyen, a backend <code>kozos/hibak.py</code> fájljában vannak felsorolva, a magyar szövegek pedig a frontend
+        <code>lib/hibauzenetek.ts</code> fájljában. Ha új hiba kerül a rendszerbe, mindkét helyre fel kell venni, és a
+        <a href="felhasznaloi_kezikonyv.html#fk-hibak">Felhasználói Kézikönyv</a> hibaüzenet táblázatába is.</p>
+</div>
+
+<!-- 3. ADATMODELLEK -->
+<a name="rt-adatmodell"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">3. Adatmodellek</h2>
+
+<a name="rt-dbms"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.1 Adatbázis kezelő kiválasztása</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Terület</th> <th>Választás</th> <th>Miért</th> </tr>
+        <tr> <td>Adatbázis kezelő</td> <td>PostgreSQL 16</td> <td>Már a Projekt tervben kiválasztottuk. Tranzakciók (NFK-08), egyedi index feltétellel a dupla eladás ellen.</td> </tr>
+        <tr> <td>Backend keretrendszer</td> <td>Python, FastAPI</td> <td>A H1-ben két lehetőség volt (FastAPI vagy Spring Boot). A FastAPI-t választottuk az AI ajánló könnyebb bekötése miatt.</td> </tr>
+        <tr> <td>Kapcsolat az adatbázissal</td> <td>SQLAlchemy 2 (ORM)</td> <td>Az entitás osztályokat Python osztályként írjuk le, az SQL-t az ORM készíti el.</td> </tr>
+        <tr> <td>Séma változások</td> <td>Alembic migrációk</td> <td>Az adatbázis séma változásai a Git-ben, verziózva vannak.</td> </tr>
+        <tr> <td>Bemeneti adatok ellenőrzése</td> <td>Pydantic</td> <td>A kérések és válaszok formáját leíró osztályok (DTO), automatikus Swagger leírás.</td> </tr>
+        <tr> <td>Tesztadatbázis</td> <td>PostgreSQL Docker konténerben</td> <td>Az integrációs tesztek ugyanazon az adatbázis kezelőn futnak, mint az éles rendszer.</td> </tr>
+    </table>
+    <h4>A technikai döntések az adatok tárolásához.</h4>
+    <p>A Projekt tervben a backendhez két lehetőséget hagytunk nyitva. A FastAPI mellett döntöttünk, mert a csapat több tagja ismeri a Pythont,
+        az OpenAI és a QR-kód könyvtárak Pythonban egyszerűen használhatók, és a FastAPI a végpontok leírásából automatikusan elkészíti a
+        Swagger dokumentációt, amit a frontend fejlesztésénél használunk. Az adatbázist nem kézzel írt SQL-lel, hanem az SQLAlchemy ORM-mel érjük el:
+        így a H4 entitás osztályai szinte egy az egyben átírhatók Python osztályokká. A séma minden változása egy Alembic migrációs fájlba kerül,
+        így bármelyik csapattag gépén egy paranccsal ugyanaz az adatbázis jön létre. A teszteléshez is PostgreSQL-t használunk (nem pl. SQLite-ot),
+        mert a dupla eladást kizáró feltételes egyedi index és a tranzakciók viselkedése adatbázisonként eltér.</p>
+</div>
+
+<a name="rt-szemantikai"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.2 Szemantikai adatmodell</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A szemantikai adatmodell az SRS 7.1 pontjában lévő ER-diagram (<a href="srs_dokumentum.html">SRS</a>), az Analízis Modell 2.6 pontjában
+    összegyűjtött változtatásokkal. Az alábbi ábra csak az <strong>új és megváltozott</strong> táblákat mutatja.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/13_rt_uj_tablak.png" alt="Az új és megváltozott táblák kapcsolatai" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>1. ábra: Az új és megváltozott táblák kapcsolatai (a többi tábla az SRS 7.1 pontja szerint)</em></div>
+    </div>
+</div>
+
+<a name="rt-relacios"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.3 Relációs adatmodell</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Az átalakítás szabályai: minden entitásból tábla lesz, az 1–N kapcsolatból idegen kulcs az N oldalon, az N–M kapcsolatból kapcsolótábla,
+    az öröklődésből (Vendeg, Dolgozo, Admin) egy közös tábla a <code>jogosultsag</code> mezővel (H4 2.6). Minden tábla elsődleges kulcsa
+    egy automatikusan növekvő <code>id</code> (ezt a táblázatban nem ismételjük). A <strong>vastagon</strong> szedett táblák és mezők újak az SRS-hez képest.
+    <table style="margin-top: 10px;">
+        <tr> <th>Tábla</th> <th>Mezők (típus)</th> <th>Kulcsok, megszorítások</th> </tr>
+        <tr> <td>regiok</td> <td>nev (text)</td> <td><code>nev</code> egyedi.</td> </tr>
+        <tr> <td>mozik</td> <td>regio_id (int), nev (text), cim (text), varos (text), telefon (text)</td> <td>FK <code>regio_id</code>.</td> </tr>
+        <tr> <td>termek</td> <td>mozi_id (int), nev (text)</td> <td>FK <code>mozi_id</code>; (<code>mozi_id</code>, <code>nev</code>) egyedi.</td> </tr>
+        <tr> <td>szekek</td> <td>terem_id (int), sor (text), szam (int), tipus (text), <strong>hibas (bool)</strong></td> <td>FK <code>terem_id</code>, törléskor kaszkád; (<code>terem_id</code>, <code>sor</code>, <code>szam</code>) egyedi.</td> </tr>
+        <tr> <td>filmek</td> <td>cim (text), rendezo (text), jatekido_perc (int), korhatar (int), bemutato (date), leiras (text), trailer_url (text), imdb_id (text), imdb_ertekeles (numeric)</td> <td><code>korhatar</code> ∈ {0, 6, 12, 16, 18}; <code>imdb_id</code> egyedi.</td> </tr>
+        <tr> <td>mufajok</td> <td>nev (text)</td> <td><code>nev</code> egyedi.</td> </tr>
+        <tr> <td>filmek_mufajok</td> <td>film_id (int), mufaj_id (int)</td> <td>Összetett PK (<code>film_id</code>, <code>mufaj_id</code>).</td> </tr>
+        <tr> <td>technologiak</td> <td>nev (text), <strong>felar (int)</strong></td> <td><code>felar</code> ≥ 0.</td> </tr>
+        <tr> <td>vetitesek</td> <td>film_id (int), terem_id (int), technologia_id (int), kezdes (timestamp), nyelv (text), <strong>alapar (int)</strong></td> <td>FK-k; <code>alapar</code> &gt; 0; az ütközést (ÜSZ-08) a MusorTervezoService ellenőrzi.</td> </tr>
+        <tr> <td>felhasznalok</td> <td>nev (text), email (text), jelszo_hash (text), szuletesi_datum (date), telefon (text), jogosultsag (int), kedvezmeny_id (int), <strong>mozi_id (int)</strong>, megerositve (bool)</td> <td><code>email</code> egyedi; <code>jogosultsag</code> ∈ {0, 1, 2}; <code>mozi_id</code> csak dolgozónál nem üres.</td> </tr>
+        <tr> <td>kedvezmenyek</td> <td>tipus (text), szazalek (int)</td> <td><code>szazalek</code> 0–100 között.</td> </tr>
+        <tr> <td><strong>husegpontok</strong></td> <td>felhasznalo_id (int), rendeles_id (int), pont (int), jovairva (timestamp)</td> <td>A beváltás negatív pontként kerül be; az 1 évnél régebbi sorok nem számítanak (ÜSZ-09).</td> </tr>
+        <tr> <td><strong>rendelesek</strong></td> <td>felhasznalo_id (int), allapot (text), csatorna (text), letrehozva (timestamp), lejarat (timestamp), vegosszeg (int)</td> <td><code>allapot</code> ∈ {KOSAR, FIZETESRE_VAR, FIZETVE, LEJART, LEMONDVA}; <code>csatorna</code> ∈ {ONLINE, PENZTAR}.</td> </tr>
+        <tr> <td>jegyek</td> <td><strong>rendeles_id (int)</strong>, vetites_id (int), szek_id (int), <strong>kedvezmeny_id (int)</strong>, ar (int), <strong>qr_kod (text)</strong>, allapot (text), felhasznalva (timestamp)</td> <td><code>allapot</code> ∈ {ZAROLT, ERVENYES, FELHASZNALT, LEMONDOTT}; egyedi index (<code>vetites_id</code>, <code>szek_id</code>), ahol az állapot nem LEMONDOTT (NFK-08); <code>qr_kod</code> egyedi.</td> </tr>
+        <tr> <td><strong>fizetesek</strong></td> <td>rendeles_id (int), kulso_id (text), allapot (text), osszeg (int), idopont (timestamp)</td> <td><code>kulso_id</code> egyedi.</td> </tr>
+        <tr> <td>ertekelesek</td> <td>felhasznalo_id (int), film_id (int), csillag (int), <strong>szoveg (text)</strong>, <strong>datum (timestamp)</strong></td> <td><code>csillag</code> 1–5; (<code>felhasznalo_id</code>, <code>film_id</code>) egyedi.</td> </tr>
+        <tr> <td>bufe_termekek</td> <td>nev (text), kategoria (text)</td> <td>–</td> </tr>
+        <tr> <td>arak</td> <td>bufe_termek_id (int), mozi_id (int), ar (int)</td> <td>(<code>bufe_termek_id</code>, <code>mozi_id</code>) egyedi.</td> </tr>
+        <tr> <td>bufe_rendelesek</td> <td><strong>rendeles_id (int)</strong>, bufe_termek_id (int), darab (int), <strong>extra (text)</strong>, allapot (text)</td> <td><code>allapot</code> ∈ {FUGGOBEN, KIFIZETVE, KIADVA}.</td> </tr>
+        <tr> <td><strong>feladatok</strong></td> <td>tipus (text), terem_id (int), szek_id (int), dolgozo_id (int), allapot (text), letrehozva (timestamp)</td> <td><code>tipus</code> ∈ {TAKARITAS, JAVITAS}; <code>allapot</code> ∈ {UJ, ELFOGADVA, KESZ, ESZKALALVA}.</td> </tr>
+        <tr> <td><strong>ertesitesek</strong></td> <td>felhasznalo_id (int), csatorna (text), uzenet (text), olvasott (bool), letrehozva (timestamp)</td> <td>FK <code>felhasznalo_id</code>.</td> </tr>
+    </table>
+    <h4>A végleges adatbázis séma: minden tábla a mezőivel és a fontos megszorításokkal.</h4>
+    <p>A szék zárolása nem külön tábla: zároláskor a jegy <code>ZAROLT</code> állapottal azonnal létrejön, a rendelés <code>lejarat</code> mezője pedig
+        megmondja, meddig érvényes. Mivel az egyedi index a zárolt jegyekre is vonatkozik, két vendég még a fizetés előtt sem tudja ugyanazt a széket
+        a kosarába tenni. A <em>Filmkereső</em> tábla elmarad (8. pont).</p>
+</div>
+
+<a name="rt-db-osztalyok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">3.4 Az adatbázis kezelővel kapcsolatot tartó osztályok</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A szolgáltatás osztályok nem írnak közvetlenül SQL-t: minden adatbázis műveletet egy <strong>repository</strong> osztályon keresztül végeznek.
+    Ennek az az előnye, hogy a teszteknél a repository helyére egy memóriában dolgozó változat tehető (7.3 pont).
+    <table style="margin-top: 10px;">
+        <tr> <th>Osztály</th> <th>Feladata</th> <th>Használja</th> </tr>
+        <tr> <td>AdatbazisMunkamenet</td> <td>Megnyitja a kapcsolatot, kezeli a tranzakciót (commit / rollback) egy kérés idejére.</td> <td>Minden repository</td> </tr>
+        <tr> <td>FelhasznaloRepository</td> <td>Felhasználó keresése e-mail és azonosító szerint, mentés.</td> <td>AuthService, JogosultsagOr</td> </tr>
+        <tr> <td>VetitesRepository</td> <td>Vetítések lekérdezése teremre és napra, mentés.</td> <td>MusorTervezoService, JegyfoglaloService</td> </tr>
+        <tr> <td>RendelesRepository</td> <td>Rendelések, jegyek és büfé tételek mentése, lejárt rendelések keresése.</td> <td>JegyfoglaloService, SzekZarolo</td> </tr>
+        <tr> <td>JegyRepository</td> <td>Jegy keresése QR-kód alapján, felhasználtnak jelölés.</td> <td>JegyEllenorzoService</td> </tr>
+        <tr> <td>FeladatRepository</td> <td>Feladatok mentése, el nem fogadott feladatok keresése.</td> <td>FeladatService</td> </tr>
+    </table>
+    <h4>Az adatbázissal kapcsolatot tartó osztályok.</h4>
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/20_rt_repository.png" alt="A repository osztályok" style="width: 100%; max-width: 784px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>2. ábra: A repository osztályok, a közös interfész és a tesztekben használt memóriás változat</em></div>
+    </div>
+</div>
+
+<!-- 4. OBJEKTUMTERVEZÉS -->
+<a name="rt-objektumterv"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">4. Objektumtervezés</h2>
+
+<a name="rt-vezerles"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.1 A rendszer vezérlése: aktív és passzív objektumok</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A legtöbb objektum <strong>passzív</strong>: csak akkor dolgozik, ha egy kérés meghívja. Néhány feladatot viszont magától, időzítve kell
+    elvégezni, ezek az <strong>aktív</strong> objektumok. Az objektumok egymást függőség-befecskendezéssel (FastAPI <code>Depends</code>) érik el,
+    így minden szolgáltatás csak azokat az osztályokat látja, amelyeket a konstruktorában megkap.
+    <table style="margin-top: 10px;">
+        <tr> <th>Objektum</th> <th>Fajta</th> <th>Mikor fut</th> <th>Mit csinál</th> </tr>
+        <tr> <td>SzekZarolo.lejartakFelszabaditasa</td> <td>Aktív (időzített)</td> <td>30 másodpercenként</td> <td>Felszabadítja a 10 percnél régebben zárolt székeket.</td> </tr>
+        <tr> <td>FeladatService.eszkalal</td> <td>Aktív (időzített)</td> <td>Percenként</td> <td>A 15 perce el nem fogadott feladatokról szól minden dolgozónak és az adminnak.</td> </tr>
+        <tr> <td>FeladatService.takaritastIndit</td> <td>Aktív (időzített)</td> <td>Minden vetítés végén</td> <td>Takarítási feladatot hoz létre a teremhez.</td> </tr>
+        <tr> <td>ErtesitesKozpont</td> <td>Aktív (folyamatosan fut)</td> <td>Az alkalmazás indulásától</td> <td>Tartja a WebSocket kapcsolatokat, kiküldi az üzeneteket.</td> </tr>
+        <tr> <td>Szolgáltatás osztályok (pl. JegyfoglaloService)</td> <td>Passzív</td> <td>Kérésenként</td> <td>Az üzleti szabályok ellenőrzése.</td> </tr>
+        <tr> <td>Entitás osztályok</td> <td>Passzív</td> <td>–</td> <td>Adattárolás.</td> </tr>
+    </table>
+    <h4>Az aktív és passzív objektumok.</h4>
+    <p>Az időzített feladatokat az <strong>APScheduler</strong> könyvtár futtatja, egy külön <code>utemezo</code> folyamatban (6.2 pont), nem a
+        webszerverben. Ennek oka, hogy premierkor a webszerverből több példány is futhat (NFK-04), és ha mindegyik elindítaná az időzítőt, egy lejárt
+        zárolást többször is felszabadítanánk, egy feladatot többször eszkalálnánk. Az ütemezőből mindig pontosan egy példány fut. Az ütemező
+        ugyanazokat a szolgáltatás osztályokat hívja, mint a végpontok, így az üzleti szabályok csak egy helyen vannak megírva.</p>
+</div>
+
+<a name="rt-kapcsolatok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.2 Az osztályok közötti kapcsolatok megvalósítása</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Kapcsolat a H4-ben</th> <th>Megvalósítás</th> <th>Példa</th> </tr>
+        <tr> <td>Asszociáció (1–N)</td> <td>Idegen kulcs + SQLAlchemy <code>relationship()</code></td> <td>Vetites – Jegy</td> </tr>
+        <tr> <td>Kompozíció</td> <td>Idegen kulcs, törléskor a részek is törlődnek (<code>cascade</code>)</td> <td>Terem – Szek</td> </tr>
+        <tr> <td>N–M kapcsolat</td> <td>Kapcsolótábla</td> <td>Film – Mufaj</td> </tr>
+        <tr> <td>Öröklődés</td> <td>Egy tábla, a <code>jogosultsag</code> mező szerint (single table inheritance)</td> <td>Felhasznalo – Vendeg, Dolgozo, Admin</td> </tr>
+        <tr> <td>Interfész</td> <td>Python <code>Protocol</code> osztály, a megvalósítás induláskor kerül be</td> <td>FizetesiSzolgaltato, EmailKuldo</td> </tr>
+        <tr> <td>Stratégia minta</td> <td>Az ArKalkulator egy <code>ArSzabaly</code> listát kap, sorban meghívja őket</td> <td>TechnologiaFelar, NapszakSzabaly</td> </tr>
+    </table>
+    <h4>Az analízis modell kapcsolatainak megvalósítása a kódban.</h4>
+    A H4-hez képest új, csak az implementációhoz szükséges osztályok:
+    <ul style="margin-top: 10px;">
+        <li><strong>Ora:</strong> az aktuális időt adja vissza. Minden időfüggő szabály (10 perces zárolás, 2 órás lemondás, 20 perces takarítás) ezt használja,
+            így a tesztekben az idő „megállítható” vagy előre tekerhető.</li>
+        <li><strong>Pydantic sémák (DTO):</strong> a kérések és válaszok formája, pl. <code>SzekValasztasKeres</code>, <code>RendelesValasz</code>.</li>
+        <li><strong>HibaKod és UzletiHiba:</strong> az üzleti szabály megsértésekor dobott kivétel, amelyből az API réteg 4xx választ készít.</li>
+    </ul>
+</div>
+
+<a name="rt-modulok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">4.3 Modulok (implementációs egységek)</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A backend a H4 csomagdiagramját (4. ábra) követi: minden üzleti modul egy külön Python csomag, saját modellekkel, repository-val,
+    szolgáltatással és végpontokkal. A frontend mappaszerkezete a H4 4.7 pontjában van.
+<pre style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.5;"><code>backend/
+├── app/
+│   ├── main.py                FastAPI alkalmazás, végpontok bekötése
+│   ├── kozos/                 AdatbazisMunkamenet, Ora, UzletiHiba, beállítások
+│   ├── hitelesites/           AuthService, JwtKezelo, JogosultsagOr
+│   ├── felfedezo/             Regio, Mozi, Film, Vetites, FilmAdatForras
+│   ├── foglalas/              JegyfoglaloService, SzekZarolo, ArKalkulator, arszabalyok/
+│   ├── bufe/                  BufeTermek, Ar, BufeTetel
+│   ├── penzugy/               Fizetes, FizetesiSzolgaltato, HusegSzamla
+│   ├── uzemelteto/            MusorTervezoService, JegyEllenorzoService, FeladatService
+│   ├── ertesites/             ErtesitesKozpont, WebSocket végpont
+│   └── kulso/                 adapterek: fizetés, OpenAI, IMDB, e-mail
+├── migrations/                Alembic migrációk
+└── tests/
+    ├── unit/                  pytest, adatbázis nélkül
+    ├── integracios/           pytest, PostgreSQL konténerrel
+    └── segedek/               FakeOra, FakeFizetesiSzolgaltato, ...</code></pre>
+    <table style="margin-top: 10px;">
+        <tr> <th>Modul</th> <th>Felelős</th> <th>Kapcsolódó követelmények</th> </tr>
+        <tr> <td>kozos, hitelesites, migrations</td> <td>Padányi Milán</td> <td>FK-01 – FK-07, NFK-06, NFK-07</td> </tr>
+        <tr> <td>felfedezo, bufe</td> <td>Ujfalussy Kristóf</td> <td>FK-08 – FK-14, FK-22 – FK-25</td> </tr>
+        <tr> <td>foglalas, penzugy</td> <td>Kecskés Gábor</td> <td>FK-15 – FK-21, FK-26 – FK-30</td> </tr>
+        <tr> <td>uzemelteto, ertesites</td> <td>Laczkó Norbert</td> <td>FK-31 – FK-39</td> </tr>
+        <tr> <td>kulso, frontend váz, CI, Docker</td> <td>Lengyel János</td> <td>NFK-05, NFK-10, NFK-11</td> </tr>
+    </table>
+    <h4>A modulok és felelőseik.</h4>
+    <p>A felosztás a H4 csomagdiagramját követi: aki egy modult fejleszt, az írja a hozzá tartozó automatikus teszteket is (7.2 pont). A frontend oldalait
+        a backend modul felelőse készíti el a közös komponensekből, így egy funkció (pl. a műsortervezés) a végponttól a képernyőig egy kézben van.</p>
+</div>
+
+<!-- 5. FUNKCIONÁLIS MODELL KIEGÉSZÍTÉSE -->
+<a name="rt-funkcionalis"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">5. A funkcionális modell kiegészítése</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Az SRS és a H4 a folyamatok fő ágát mutatta be. Itt a fizetés <strong>kivételes és alternatív ágait</strong> rajzoltuk le,
+    mert ezeknél a legkönnyebb hibás adatot hagyni az adatbázisban.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/14_rt_fizetes_kivetelek.png" alt="A fizetés kivételes és alternatív ágai" style="width: 100%; max-width: 567px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>3. ábra: A fizetés kivételes és alternatív ágai</em></div>
+    </div>
+    <p>A lemondás és a jegyellenőrzés kivételes ágai egyszerűbbek, ezért táblázatban írtuk le őket.</p>
+    <table style="margin-top: 10px;">
+        <tr> <th>Folyamat</th> <th>Kivételes helyzet</th> <th>Mit csinál a rendszer</th> </tr>
+        <tr> <td rowspan="3">Lemondás (ÜSZ-06)</td> <td>A vetítésig kevesebb mint 2 óra van.</td> <td>Elutasítja (<code>LEMONDAS_KESO</code>), semmi nem változik.</td> </tr>
+        <tr> <td>A visszatérítés a fizetési szolgáltatónál nem sikerül.</td> <td>A jegyek LEMONDOTT állapotba kerülnek, a székek felszabadulnak, a visszatérítést az ütemező óránként újrapróbálja, az admin értesítést kap.</td> </tr>
+        <tr> <td>A vendég a rendelés pontjait már elköltötte.</td> <td>A levonás után a pontegyenleg negatív lehet, a következő vásárlások pontjai ezt pótolják (ÜSZ-09).</td> </tr>
+        <tr> <td rowspan="3">Jegyellenőrzés (ÜSZ-07)</td> <td>A QR-kód nem olvasható vagy nem létezik.</td> <td>Piros képernyő: „Ismeretlen jegy.”, a dolgozó kézzel beírhatja a jegy kódját.</td> </tr>
+        <tr> <td>A tablet nem éri el a szervert.</td> <td>Piros sáv: „Nincs kapcsolat.”, a dolgozó a pénztárban ellenőrizteti a jegyet. A jegyet nem jelöljük felhasználtnak.</td> </tr>
+        <tr> <td>Két tablet egyszerre olvassa be ugyanazt a jegyet.</td> <td>A felhasználtnak jelölés tranzakcióban fut, így csak az egyik kap zöld képernyőt, a másik <code>JEGY_FELHASZNALT</code> hibát.</td> </tr>
+    </table>
+    <h4>A lemondás és a jegyellenőrzés kivételes ágai.</h4>
+</div>
+
+<!-- 6. IMPLEMENTÁCIÓ -->
+<a name="rt-implementacio"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">6. Implementáció (váz)</h2>
+
+<a name="rt-allapot"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.1 A váz tervezett tartalma</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A H5-ben még nincs implementáció. A fejlesztés első lépéseként a rendszer <strong>vázát</strong> készítenénk el: a mappaszerkezetet (4.3 pont),
+    az osztályokat a metódusok fejlécével, az adatbázis migrációkat és a végpontokat. A még meg nem írt metódusok <code>NotImplementedError</code>-t
+    dobnának, a hozzájuk tartozó végpontok <code>501 Not Implemented</code> választ adnának, a frontend pedig a hiányzó végpontok helyett
+    mintaadatokat használna. Így a felület és a backend párhuzamosan fejleszthető, és a teszt osztályok (7.2 pont) is megírhatók előre.
+    <table style="margin-top: 10px;">
+        <tr> <th>Modul</th> <th>Ami már a vázba kerülne</th> <th>Ami később készülne el</th> <th>Mérföldkő (H1)</th> </tr>
+        <tr> <td>hitelesites</td> <td>Regisztráció, bejelentkezés, JWT, jogosultság ellenőrzés</td> <td>Elfelejtett jelszó</td> <td>1.</td> </tr>
+        <tr> <td>felfedezo</td> <td>Mozik és műsor lekérdezése</td> <td>IMDB bekötés, szűrők</td> <td>1.</td> </tr>
+        <tr> <td>foglalas</td> <td>Osztályok és végpontok fejléce</td> <td>Székválasztás, zárolás, árszámítás, AI ajánló</td> <td>2.</td> </tr>
+        <tr> <td>bufe</td> <td>Osztályok és végpontok fejléce</td> <td>Kosár, extrák, kiadás QR-kóddal</td> <td>2.</td> </tr>
+        <tr> <td>penzugy</td> <td>A FizetesiSzolgaltato interfész és a teszt megvalósítás</td> <td>Valódi fizetés, hűségpontok, visszatérítés, dinamikus ár</td> <td>3.</td> </tr>
+        <tr> <td>uzemelteto</td> <td>Osztályok és végpontok fejléce</td> <td>Műsortervezés (3.), jegyellenőrzés, feladatok, eszkaláció (4.)</td> <td>3. – 4.</td> </tr>
+        <tr> <td>ertesites</td> <td>WebSocket kapcsolat felépítése</td> <td>Székállapot és dolgozói üzenetek</td> <td>2. – 4.</td> </tr>
+        <tr> <td>kulso</td> <td>Interfészek és teszt megvalósítások (7.4 pont)</td> <td>Valódi OpenAI, IMDB és e-mail adapter</td> <td>2. – 3.</td> </tr>
+    </table>
+    <h4>Ami a vázba kerülne, és ami később készülne el, modulonként.</h4>
+</div>
+
+<a name="rt-futtatas"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">6.2 Futtatás</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    A rendszer minden része Docker konténerben futna, így a fejlesztőknek csak Dockerre és Gitre lenne szükségük.
+    <table style="margin-top: 10px;">
+        <tr> <th>Konténer</th> <th>Mi fut benne</th> <th>Port</th> </tr>
+        <tr> <td><code>db</code></td> <td>PostgreSQL 16, induláskor mintaadatokkal (2 régió, 3 mozi, 5 film, egy heti műsor)</td> <td>5432</td> </tr>
+        <tr> <td><code>backend</code></td> <td>FastAPI alkalmazás, a Swagger leírás a <code>/docs</code> címen</td> <td>8000</td> </tr>
+        <tr> <td><code>utemezo</code></td> <td>Az időzített feladatok (4.1 pont), egy példányban</td> <td>–</td> </tr>
+        <tr> <td><code>frontend</code></td> <td>Next.js alkalmazás</td> <td>3000</td> </tr>
+    </table>
+    <h4>A rendszer tervezett konténerei.</h4>
+<pre style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.5;"><code># indítás mintaadatokkal
+docker compose up --build
+
+# adatbázis séma frissítése új migráció után
+docker compose exec backend alembic upgrade head
+
+# automatikus tesztek
+docker compose exec backend pytest
+docker compose exec frontend npm test</code></pre>
+    A mintaadatok között minden szerepkörből lenne egy teszt felhasználó (vendég, dolgozó a miskolci moziban, admin), ezekkel végeznénk a manuális teszteket (7.6 pont).
+</div>
+
+<!-- 7. TESZTELÉSI TERV -->
+<a name="rt-teszteles"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">7. Tesztelési terv</h2>
+
+<a name="rt-strategia"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.1 Tesztelési szintek és eszközök</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A Projekt terv 5. pontja és az SRS nem funkcionális követelményei (NFK-11: unit tesztek a fontos számításokhoz, NFK-08: dupla eladás kizárása)
+    alapján két részre bontottuk a tesztelést: <strong>automatikus tesztek</strong>, amelyek minden Git feltöltéskor lefutnának, és
+    <strong>manuális tesztek</strong>, amelyeket a felületen kattintva végeznénk el.
+    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+        <img src="diagramok/15_rt_teszteles_menete.png" alt="A tesztelés menete" style="width: 100%; max-width: 558px;">
+        <div style="font-size: 0.9em; color: #bbb; margin-top: 10px;"><em>4. ábra: A tesztelés menete</em></div>
+    </div>
+    <table style="margin-top: 15px;">
+        <tr> <th>Szint</th> <th>Eszköz</th> <th>Mit vizsgálna</th> <th>Mikor futna</th> </tr>
+        <tr> <td>Unit teszt (backend)</td> <td>pytest</td> <td>Egy osztály szabályait, a külső részeket helyettesítve (7.4 pont).</td> <td>Minden feltöltéskor (CI)</td> </tr>
+        <tr> <td>Unit teszt (frontend)</td> <td>Vitest</td> <td>A kosár és a komponensek logikáját.</td> <td>Minden feltöltéskor (CI)</td> </tr>
+        <tr> <td>Integrációs teszt</td> <td>pytest + PostgreSQL konténer</td> <td>A tranzakciókat és az egyedi indexeket valódi adatbázissal.</td> <td>Minden feltöltéskor (CI)</td> </tr>
+        <tr> <td>E2E teszt</td> <td>Playwright</td> <td>A teljes jegyvásárlást böngészőben.</td> <td>A <code>main</code> ágra kerülés előtt</td> </tr>
+        <tr> <td>Manuális teszt</td> <td>Böngésző, telefon, tablet</td> <td>A felhasználó szemszögéből, a 7.6 pont táblázata szerint.</td> <td>Mérföldkövenként</td> </tr>
+    </table>
+    <h4>A tesztelés szintjei és a használt eszközök.</h4>
+</div>
+
+<a name="rt-automatikus"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.2 Automatikus tesztek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Azokat az osztályokat tesztelnénk automatikusan, amelyekben üzleti szabály vagy számítás van: ha ezek hibáznak, a vendég rossz árat fizet,
+    vagy egy széket kétszer adunk el. Minden tesztelt osztályhoz egy teszt osztály tartozik, a neve <code>Test</code> + az osztály neve.
+    A <em>pozitív</em> teszt azt nézi, hogy helyes adatra jó eredményt kapunk, a <em>negatív</em> azt, hogy hibás adatra a rendszer elutasít.
+    Az üzleti szabályoknál a határértékeket külön tesztelnénk (pl. 19, 20 és 21 perc a takarítási szünetnél).
+    <table style="margin-top: 10px;">
+        <tr> <th>Az.</th> <th>Tesztelt osztály</th> <th>Teszt osztály (fájl)</th> <th>Mit tesztel</th> <th>Követelmény</th> <th>Mikor készül (mérföldkő)</th> </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-01</td>
+            <td>ArKalkulator</td>
+            <td><code>TestArKalkulator</code><br><small>tests/unit/test_ar_kalkulator.py</small></td>
+            <td>Pozitív: alapár + technológia felár + napszak szabály helyes összege; diák, gyerek, nyugdíjas kedvezmény.<br>
+                Negatív: két kedvezmény egy jegyre nem adható.</td>
+            <td>FK-26, ÜSZ-03, NFK-11</td>
+            <td>3.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-02</td>
+            <td>ArKorlat</td>
+            <td><code>TestArKorlat</code><br><small>tests/unit/test_ar_korlat.py</small></td>
+            <td>Határértékek: az ár nem lehet 30%-nál olcsóbb és 25%-nál drágább az alapárnál; pontosan −30% és +25% még elfogadott.</td>
+            <td>ÜSZ-05</td>
+            <td>3.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-03</td>
+            <td>SzekZarolo</td>
+            <td><code>TestSzekZarolo</code><br><small>tests/unit/test_szek_zarolo.py</small></td>
+            <td>Pozitív: szabad szék zárolása.<br>
+                Negatív: már zárolt szék második zárolása <code>False</code>.<br>
+                Időzítés: 10 perc után a <code>lejartakFelszabaditasa</code> felszabadítja (FakeOra).</td>
+            <td>FK-16, FK-17</td>
+            <td>2.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-04</td>
+            <td>JegyfoglaloService</td>
+            <td><code>TestJegyfoglaloService</code><br><small>tests/unit/test_jegyfoglalo_service.py</small></td>
+            <td>Negatív: 11. szék nem választható; 18-as filmre fiatalabb vendég nem vásárolhat.<br>
+                Pozitív: sikeres fizetés után a rendelés FIZETVE (FakeFizetesiSzolgaltato).</td>
+            <td>FK-15, FK-19, ÜSZ-04</td>
+            <td>2.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-05</td>
+            <td>MusorTervezoService</td>
+            <td><code>TestMusorTervezoService</code><br><small>tests/unit/test_musor_tervezo_service.py</small></td>
+            <td>Határértékek: két vetítés között 19 perc → ütközés, 20 és 21 perc → menthető. Másik teremben nincs ütközés.</td>
+            <td>FK-32, ÜSZ-08</td>
+            <td>3.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-06</td>
+            <td>JegyEllenorzoService</td>
+            <td><code>TestJegyEllenorzoService</code><br><small>tests/unit/test_jegy_ellenorzo_service.py</small></td>
+            <td>Pozitív: érvényes jegy az időablakban.<br>
+                Negatív: túl korán (31 perccel előtte), túl későn (21 perccel utána), már felhasznált jegy, másik mozi jegye.</td>
+            <td>FK-37, ÜSZ-07</td>
+            <td>4.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-07</td>
+            <td>AuthService, JwtKezelo</td>
+            <td><code>TestAuthService</code>, <code>TestJwtKezelo</code><br><small>tests/unit/test_hitelesites.py</small></td>
+            <td>Pozitív: helyes jelszóval token, a jelszó bcrypt hash-ként tárolódik.<br>
+                Negatív: rossz jelszó, foglalt e-mail cím, lejárt vagy módosított token elutasítása.</td>
+            <td>FK-01 – FK-03, NFK-06</td>
+            <td>1.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-08</td>
+            <td>JogosultsagOr</td>
+            <td><code>TestJogosultsagOr</code><br><small>tests/unit/test_jogosultsag_or.py</small></td>
+            <td>Pozitív: dolgozó a saját mozijában ellenőrizhet jegyet.<br>
+                Negatív: dolgozó másik mozi adataihoz, vendég admin végponthoz nem fér hozzá.</td>
+            <td>FK-06, ÜSZ-10, NFK-07</td>
+            <td>1.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-09</td>
+            <td>FeladatService</td>
+            <td><code>TestFeladatService</code><br><small>tests/unit/test_feladat_service.py</small></td>
+            <td>Pozitív: a vetítés végén takarítási feladat jön létre, értesítés megy (FakeErtesitesKozpont).<br>
+                Időzítés: 15 perc után eszkalálódik, 14 perc után még nem.</td>
+            <td>FK-38, FK-39</td>
+            <td>4.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">AT-10</td>
+            <td>Kosár tároló (<code>store/kosar.ts</code>)</td>
+            <td><code>kosar.test.ts</code> (Vitest)<br><small>frontend/tests/unit/kosar.test.ts</small></td>
+            <td>Pozitív: szék és büfé tétel hozzáadása, végösszeg.<br>
+                Negatív: 11. szék nem kerül be. A lejárati idő után a kosár kiürül.</td>
+            <td>FK-15, FK-22</td>
+            <td>2.</td>
+        </tr>
+    </table>
+    <h4>Az automatikusan tesztelt osztályok, a hozzájuk tartozó teszt osztályok, és hogy mit ellenőriznek.</h4>
+    <p>A táblázat a rendszer „motorjait” sorolja fel, amelyeket a program minden változtatásakor automatikusan ellenőriznénk. Egy-egy teszt osztály
+        sok kis tesztből állna: például a TestArKalkulator külön megnézné a sima 2D jegyet, a felárasat, a kedvezményeset, és azt is, hogy két kedvezményt
+        nem lehet egyszerre használni. A tesztek nem kapcsolódnának sem a valódi bankhoz, sem az e-mail szolgáltatóhoz, sem az adatbázishoz (ezeket a
+        7.4 pont segédosztályai helyettesítenék), így néhány másodperc alatt lefutnának. Ha bármelyik teszt hibát jelezne, a változtatás nem kerülhetne a
+        <code>main</code> ágra.</p>
+    <p>Az utolsó oszlop azt mutatja, hogy a Projekt terv melyik mérföldkövénél készülne el a teszt: amikor a tesztelt osztály is. A teszt osztályt
+        és a teszt esetek nevét már a vázban (6.1 pont) létrehoznánk, így a fejlesztő előre látja, milyen szabályoknak kell megfelelnie a kódjának.</p>
+</div>
+
+<a name="rt-integracios"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.3 Integrációs és E2E tesztek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Ezek a tesztek több osztályt és valódi PostgreSQL adatbázist használnának, ezért lassabbak. Azokat a szabályokat ellenőriznék, amelyek csak az adatbázissal
+    együtt működnek (tranzakciók, egyedi indexek), vagy amelyekben több modul vesz részt.
+    <table style="margin-top: 10px;">
+        <tr> <th>Az.</th> <th>Teszt (fájl)</th> <th>Mit tesztelne</th> <th>Követelmény</th> </tr>
+        <tr> <td style="white-space: nowrap;">IT-01</td> <td><code>test_dupla_eladas.py</code></td> <td>Két párhuzamos kérés ugyanarra a székre: pontosan egynek kell sikerülnie, a másik <code>SZEK_FOGLALT</code> hibát kap.</td> <td>NFK-08</td> </tr>
+        <tr> <td style="white-space: nowrap;">IT-02</td> <td><code>test_lemondas.py</code></td> <td>Lemondás 2 óra 1 perccel a vetítés előtt sikerül (jegy és büfé visszatérítés, pontlevonás), 1 óra 59 perccel előtte nem.</td> <td>ÜSZ-06, ÜSZ-09</td> </tr>
+        <tr> <td style="white-space: nowrap;">IT-03</td> <td><code>test_husegpontok.py</code></td> <td>Jóváírás (100 Ft = 1 pont), beváltás (100 pont = 500 Ft), az 1 évnél régebbi pontok nem számítanak.</td> <td>FK-29, ÜSZ-09</td> </tr>
+        <tr> <td style="white-space: nowrap;">IT-04</td> <td><code>test_websocket_szekallapot.py</code></td> <td>Zárolás után a másik kliens 1 másodpercen belül megkapja a szék új állapotát.</td> <td>NFK-03</td> </tr>
+        <tr> <td style="white-space: nowrap;">E2E-01</td> <td><code>frontend/tests/e2e/vasarlas.spec.ts</code></td> <td>Playwright: bejelentkezés, vetítés, 2 szék, 1 popcorn, fizetés a teszt fizetési oldalon, az e-jegy megjelenik a Jegyeim oldalon.</td> <td>UC-06 – UC-09</td> </tr>
+    </table>
+    <h4>Az integrációs és végponttól végpontig (E2E) tesztek.</h4>
+</div>
+
+<a name="rt-segedosztalyok"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.4 Teszteléshez használható implementációs elemek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A H4-ben a külső rendszereket interfészek mögé rejtettük. A tesztekben ezek helyére egyszerű, kiszámítható változatokat (<em>fake</em> osztályokat) teszünk,
+    így a tesztek gyorsak, nem kell hozzájuk internet, és nem terhelnek valódi bankkártyát.
+    <table style="margin-top: 10px;">
+        <tr> <th>Segédosztály</th> <th>Mit helyettesít</th> <th>Mire jó</th> </tr>
+        <tr> <td>FakeOra</td> <td>Ora</td> <td>Az idő beállítható és előre tekerhető (<code>tekerj(perc=10)</code>), így a 10 perces zárolás nem 10 percig tart.</td> </tr>
+        <tr> <td>FakeFizetesiSzolgaltato</td> <td>FizetesiSzolgaltato</td> <td>Előre megadható, hogy a fizetés sikeres, elutasított vagy válasz nélküli legyen.</td> </tr>
+        <tr> <td>FakeEmailKuldo</td> <td>EmailKuldo</td> <td>Nem küld levelet, csak listába gyűjti, a teszt megnézheti, mi ment volna ki.</td> </tr>
+        <tr> <td>FakeErtesitesKozpont</td> <td>ErtesitesKozpont</td> <td>Összegyűjti a WebSocket üzeneteket.</td> </tr>
+        <tr> <td>MemoriaRepository-k</td> <td>Repository osztályok (3.4)</td> <td>A unit tesztekben adatbázis helyett szótárban tárolnak.</td> </tr>
+        <tr> <td>Tesztadat gyártók</td> <td>–</td> <td>Egy sorban készítenek érvényes vendéget, vetítést, termet (<code>uj_vetites(kezdes="18:00")</code>).</td> </tr>
+        <tr> <td>Teszt fizetési oldal</td> <td>Valódi fizetési oldal</td> <td>A manuális tesztekhez: a <code>4000…0002</code> kártyaszámra elutasít, minden másra elfogad.</td> </tr>
+    </table>
+    <h4>Az automatikus és manuális teszteléshez készített segédelemek.</h4>
+</div>
+
+<a name="rt-minta"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.5 Minta teszt osztály</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    Így nézne ki egy teszt osztály (AT-05). A többi teszt osztály is így épülne fel: előkészítés, a vizsgált metódus meghívása, az eredmény ellenőrzése.
+<pre style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.5;"><code>import pytest
+from app.uzemelteto.musor import MusorTervezoService
+from app.kozos.hibak import UzletiHiba, HibaKod
+from tests.segedek import FakeOra, MemoriaVetitesRepository, uj_terem, uj_film
+
+
+class TestMusorTervezoService:
+
+    def setup_method(self):
+        self.repo = MemoriaVetitesRepository()
+        self.service = MusorTervezoService(repo=self.repo, ora=FakeOra("2026-12-01 08:00"))
+        self.terem = uj_terem(nev="2-es terem")
+        self.film = uj_film(hossz_perc=120)
+        # 16:00 - 18:00 között már van egy vetítés
+        self.service.vetitestFelvesz(film=self.film, terem=self.terem, kezdes="2026-12-01 16:00")
+
+    @pytest.mark.parametrize("kezdes, utkozik", [
+        ("2026-12-01 18:19", True),    # 19 perc szünet: kevés (ÜSZ-08)
+        ("2026-12-01 18:20", False),   # pontosan 20 perc: elfogadott
+        ("2026-12-01 18:21", False),
+    ])
+    def test_takaritasi_szunet_hatarertekei(self, kezdes, utkozik):
+        if utkozik:
+            with pytest.raises(UzletiHiba) as hiba:
+                self.service.vetitestFelvesz(film=self.film, terem=self.terem, kezdes=kezdes)
+            assert hiba.value.kod == HibaKod.VETITES_UTKOZIK
+        else:
+            vetites = self.service.vetitestFelvesz(film=self.film, terem=self.terem, kezdes=kezdes)
+            assert vetites.id is not None
+
+    def test_masik_teremben_nincs_utkozes(self):
+        masik = uj_terem(nev="3-as terem")
+        vetites = self.service.vetitestFelvesz(film=self.film, terem=masik, kezdes="2026-12-01 16:30")
+        assert vetites.terem == masik</code></pre>
+    A <code>setup_method</code> minden teszt előtt lefut, így minden teszt tiszta állapotból indul. A <code>parametrize</code> ugyanazt a tesztet több
+    bemenettel futtatja le, ezzel írjuk le a határértékeket. A többi teszt osztály a 7.2 pont táblázatában megadott fájlokba kerülne.
+</div>
+
+<a name="rt-manualis"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.6 Manuális tesztek</h3>
+<div style="line-height: 1.7; margin-bottom: 20px;">
+    A manuális teszteket a <a href="felhasznaloi_kezikonyv.html">Felhasználói Kézikönyv</a> lépései szerint végeznénk el, a mintaadatokkal (6.2 pont):
+    Chrome böngészőben számítógépen, Safariban telefonon, a dolgozói felületet tableten. A fizetéshez a teszt fizetési oldalt használnánk (7.4 pont).
+    Minden esetnél leírtuk, mire kattint a tesztelő, és mit kell látnia. A <em>pozitív</em> esetek a helyes használatot, a <em>negatív</em> esetek
+    a hibás vagy szabályellenes lépéseket próbálják ki.
+    <table style="margin-top: 10px;">
+        <tr> <th>Az.</th> <th>Előfeltétel</th> <th>Mit csinál a tesztelő (mire kattint)</th> <th>Várt eredmény (mi történik)</th> <th>Típus</th> <th>Működik?</th> <th>Ha nem működik: mit írt ki / mire figyeljünk</th> </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-01</td>
+            <td>Regisztrált vendég</td>
+            <td>Belépés oldalon helyes e-mail és jelszó, <strong>Bejelentkezés</strong> gomb.</td>
+            <td>A főoldalra visz, a fejlécben a vendég neve látszik, zöld sáv: „Sikeres bejelentkezés.”</td>
+            <td>Pozitív</td>
+            <td class="center">☐</td>
+            <td>Hibás, ha a belépés oldalon marad, vagy a fejlécben nem a vendég neve van.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-02</td>
+            <td>Regisztrált vendég</td>
+            <td>Belépés oldalon helyes e-mail, rossz jelszó, <strong>Bejelentkezés</strong> gomb.</td>
+            <td>A belépés oldalon marad, piros sáv: „Hibás e-mail cím vagy jelszó.”</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>Az üzenet nem árulhatja el, hogy az e-mail vagy a jelszó volt-e hibás.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-03</td>
+            <td>Bejelentkezett vendég, a vetítésen van szabad szék</td>
+            <td>Székválasztásnál kattintás egy szabad (szürke) székre.</td>
+            <td>A szék kék lesz, a kosárba kerül, elindul a 10 perces visszaszámláló.</td>
+            <td>Pozitív</td>
+            <td class="center">☐</td>
+            <td>A visszaszámlálónak 10:00-ról kell indulnia.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-04</td>
+            <td>Két böngésző, két vendég ugyanazon a vetítésen</td>
+            <td>Az első böngészőben kiválasztunk egy széket, a másodikban ugyanarra kattintunk, mielőtt frissülne.</td>
+            <td>A második vendég piros sávot kap: „Ezt a széket közben valaki más választotta.”, a szék szürkén foglalt lesz.</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>A második böngészőben kb. 1 mp-en belül frissülnie kell a széknek (NFK-03).</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-05</td>
+            <td>10 szék már a kosárban</td>
+            <td>Kattintás egy 11. szabad székre.</td>
+            <td>A szék nem kerül a kosárba, piros sáv: „Egyszerre legfeljebb 10 széket választhat.”</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>A kosár számlálójának 10-en kell maradnia.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-06</td>
+            <td>Székek a kosárban</td>
+            <td>10 percig nem csinálunk semmit, utána a <strong>Tovább</strong> gomb.</td>
+            <td>A székek felszabadulnak, üzenet: „Lejárt a foglalási idő.”, a vásárlás elölről indul.</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>Hibás, ha csak a felület számol vissza, de a szék a másik böngészőben továbbra is foglalt (AT-03).</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-07</td>
+            <td>Székek a kosárban</td>
+            <td><strong>Fizetés</strong> gomb, a teszt fizetési oldalon elfogadott kártyaszám.</td>
+            <td>Zöld sáv: „Sikeres vásárlás.”, az e-jegy QR-kóddal megjelenik a <strong>Jegyeim</strong> oldalon.</td>
+            <td>Pozitív</td>
+            <td class="center">☐</td>
+            <td>Az e-jegynek a teszt e-mail fiókba is meg kell érkeznie.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-08</td>
+            <td>Székek a kosárban</td>
+            <td><strong>Fizetés</strong> gomb, a teszt fizetési oldalon az elutasított kártyaszám.</td>
+            <td>Visszavisz az összesítőre, piros sáv: „Sikertelen fizetés.”, a székek a kosárban maradnak.</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>A visszaszámláló nem indulhat újra 10:00-ról.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-09</td>
+            <td>Dolgozó a tableten, egy már beolvasott jegy</td>
+            <td><strong>Beolvasás</strong> gomb, ugyanazt a QR-kódot másodszor is beolvassuk.</td>
+            <td>Piros képernyő: „A jegyet már felhasználták.” és az első beolvasás időpontja.</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>Az első beolvasás időpontjának is látszania kell.</td>
+        </tr>
+        <tr>
+            <td style="white-space: nowrap;">MT-10</td>
+            <td>Admin, a 2-es teremben 16:00–18:00 vetítés</td>
+            <td>Műsortervezőben egy film húzása a 2-es terem 18:10-es idősávjába, <strong>Mentés</strong>.</td>
+            <td>Az idősáv piros, nem menthető: „A vetítés ütközik egy másikkal.”</td>
+            <td>Negatív</td>
+            <td class="center">☐</td>
+            <td>Hibás, ha a felület pirosat mutat, de a mentés mégis sikerül: a 20 perces szünetet a backendnek is ellenőriznie kell (AT-05).</td>
+        </tr>
+    </table>
+    <h4>A manuális teszt esetek: mire kattint a tesztelő, mit vár, és mi számít hibának.</h4>
+    <p>A teszt futtatásakor a tesztelő a <strong>Működik?</strong> oszlopba <span style="color: #6c6;">✔</span>-t ír, ha a várt eredményt kapta,
+        és <span style="color: #e55;">✘</span>-t, ha nem. Ilyenkor az utolsó oszlopba beírja, pontosan mit írt ki a rendszer (vagy mi történt
+        helyette), és a 7.7 pont szerint hibát rögzít. Az utolsó oszlopban most azt soroltuk fel, mire kell különösen figyelni, mert ott a legvalószínűbb
+        a hiba. Az MT-06 és az MT-10 ugyanazt a szabályt ellenőrzi a felületről, mint az AT-03 és az AT-05 automatikus teszt, így ha ezek közül valamelyik
+        hibát jelez, a másikat is újra kell futtatni.</p>
+</div>
+
+<a name="rt-hibak"></a><h3 style="margin-bottom: 10px; margin-top: 20px;">7.7 A hibák rögzítése</h3>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    Ha egy automatikus vagy manuális teszt hibát jelez, a tesztelő a projekt Git repository-jában hibajegyet (GitHub Issue) nyitna az alábbi
+    mezőkkel. A hibajegyet a modul felelőse (4.3 pont) kapná meg, és a javítás után a tesztet újra lefuttatnánk.
+    <table style="margin-top: 10px;">
+        <tr> <th>Mező</th> <th>Mit kell beírni</th> </tr>
+        <tr> <td>Azonosító</td> <td><code>H-01</code>, <code>H-02</code>, … sorban.</td> </tr>
+        <tr> <td>Teszt</td> <td>Melyik tesztnél jött elő (pl. <code>MT-06</code>, <code>AT-03</code>).</td> </tr>
+        <tr> <td>Lépések</td> <td>Mit csinált a tesztelő, a teszt táblázat alapján, és ha eltért tőle, miben.</td> </tr>
+        <tr> <td>Várt eredmény</td> <td>A teszt táblázatból.</td> </tr>
+        <tr> <td>Mit írt ki / mi történt</td> <td>A pontos üzenet szó szerint, képernyőkép, automatikus tesztnél a hibaüzenet.</td> </tr>
+        <tr> <td>Környezet</td> <td>Böngésző és eszköz (pl. Safari, telefon).</td> </tr>
+        <tr> <td>Felelős</td> <td>A modul felelőse a 4.3 pont szerint.</td> </tr>
+        <tr> <td>Állapot</td> <td>Nyitott → Javítva → Újratesztelve.</td> </tr>
+    </table>
+    <h4>A hibajegy mezői.</h4>
+</div>
+
+<!-- 8. DÖNTÉSEK -->
+<a name="rt-dontesek"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">8. Döntések a H4 nyitott kérdéseiről</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Kérdés (H4 6. pont)</th> <th>Döntés</th> </tr>
+        <tr> <td>A szék zárolását az adatbázisban vagy Redisben tároljuk?</td> <td>Egyelőre az adatbázisban (Rendelések tábla, <code>lejarat</code> mező), mert egy komponenssel kevesebb. Ha a terheléses teszt (NFK-04) lassú lesz, Redisre váltunk: a SzekZarolo osztályon kívül semmi nem változik.</td> </tr>
+        <tr> <td>Kell-e külön Filmkereső tábla?</td> <td>Nem, a keresés a Vetítések táblából egy lekérdezéssel megoldható.</td> </tr>
+        <tr> <td>Tartozhat-e egy dolgozó több mozihoz?</td> <td>Nem, egy dolgozó egyszerre egy mozihoz tartozik (<code>mozi_id</code>). Ha valaki máshol helyettesít, az admin átállítja a moziját, ez a következő bejelentkezéskor él (új token). Így az ÜSZ-10 ellenőrzése egyszerű marad.</td> </tr>
+        <tr> <td>A pénztári vásárlás ugyanazt a Rendeles osztályt használja-e?</td> <td>Igen, a rendelés <code>csatorna</code> mezője (ONLINE / PENZTAR) különbözteti meg. A pénztári rendelésnél nincs 10 perces lejárat, és a fizetés készpénzzel is rögzíthető. Így a statisztikák és a dupla eladás elleni védelem mindkét csatornára ugyanúgy működik.</td> </tr>
+    </table>
+    <h4>A H4-ben nyitva maradt kérdések és a csapat döntései.</h4>
+</div>
+
+<!-- 9. KOCKÁZATOK -->
+<a name="rt-kockazatok"></a><h2 style="margin-bottom: 15px; margin-top: 30px;">9. Kockázatok</h2>
+<div style="line-height: 1.7; margin-bottom: 30px;">
+    <table style="margin-top: 10px;">
+        <tr> <th>Kockázat</th> <th>Hatás</th> <th>Kezelés</th> </tr>
+        <tr> <td>Premierkor lassú lesz a székek zárolása az adatbázisban.</td> <td>Közepes</td> <td>Terheléses teszt a 3. mérföldkőnél; szükség esetén a SzekZarolo átírása Redisre (8. pont).</td> </tr>
+        <tr> <td>A fizetési szolgáltató nem válaszol, vagy késve válaszol.</td> <td>Nagy</td> <td>FIZETESRE_VAR állapot és újrapróbálás (5. pont), a tesztekben FakeFizetesiSzolgaltato.</td> </tr>
+        <tr> <td>Az OpenAI vagy az IMDB nem érhető el.</td> <td>Kicsi</td> <td>Az ajánló helyett a legnépszerűbb filmek jelennek meg; a filmadatok az adatbázisban maradnak.</td> </tr>
+        <tr> <td>Az időfüggő szabályok (10 perc, 2 óra, 20 perc) hibásak.</td> <td>Nagy</td> <td>Minden időfüggő szabály az <code>Ora</code> osztályon keresztül kapja az időt, a határértékeket automatikus tesztek ellenőrzik.</td> </tr>
+        <tr> <td>A félév végéig nem készül el minden „ha marad idő” (C) követelmény.</td> <td>Közepes</td> <td>A modulokat az SRS fontossági sorrendje (M → S → C) szerint fejlesztjük; a C követelmények (pl. FK-24 büfé kiadás) a végére maradnak.</td> </tr>
+    </table>
+    <h4>A projekt legfontosabb kockázatai és kezelésük.</h4>
+</div>
+
+    <div class="footer"></div>
+</body>
+</html>
